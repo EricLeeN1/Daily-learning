@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="apple-touch-icon" href="favicon.png">
+    <script src="js/index.js"></script>
+    <title>js下载问题</title>
+</head>
+
+<body>
+    <h1>case1:html5的download属性</h1>
+    <a href="data:text/txt;charset=utf-8,测试下载纯文本" download="测试.txt">下载1</a>
+    <a href="data:text/txt;charset=utf-8,测试下载纯文本">下载2</a>
+    <div data-href="data:text/txt;charset=utf-8,测试下载纯文本">下载2</div>
+    <script>
+        window.onload = function () {
+            var div = document.querySelector('div');
+            var href = div.getAttribute('data-href');
+            console.log(href);
+            div.onclick = function(){
+                openDownloadDialog(href,"测试.txt");
+            }
+        };
+    </script>
+</body>
+
+</html>

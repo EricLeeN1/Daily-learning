@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS 生成 CSV 文件并下载</title>
+    <script src="js/csv.js"></script>
+</head>
+
+<body>
+    <a href="data:text/txt;charset=utf-8,测试下载纯文本" download="测试.txt">下载1</a>
+    <button>下载csv</button>
+    <script>
+        window.onload = function () {
+            let btn = document.querySelector('button');
+            btn.onclick = function () {
+                test();
+            };
+            function test() {
+                let csv = '姓名,期中成绩,期末成绩\n张三,58,95\n李四,98,74';
+                var a = document.createElement('a');
+                a.href = 'data:text/txt;charset=utf-8,\ufeff' + encodeURIComponent(csv);
+                a.download = '测试.csv';
+                a.click();
+            }
+            function test1() {
+                var csv = '姓名,期中成绩,期末成绩\n张三,58,95\n李四,98,74';
+                var blob = new Blob(['\ufeff' + data], { type: 'text/csv,charset=UTF-8' });
+                openDownloadDialog(blob, '测试.csv');
+            }
+        };
+
+        // 不考虑兼容性的保存 CSV 方法：
+
+        /**
+         * 保存CSV文件
+         * @params csv csv文件内容
+         * @params saveName 保存的文件名
+         */
+        function saveCSV(csv, saveName) {
+            var a = document.createElement('a');
+            a.href = 'data:text/csv;charset=utf-8,\ufeff' + encodeURIComponent(csv);
+            a.download = saveName;
+            a.click();
+        }
+        // 考虑兼容性的保存 CSV 方法：
+
+/**
+ * 保存CSV文件
+ * @params csv csv文件内容
+ * @params saveName 保存的文件名
+ */
+function saveCSV(csv, saveName)
+{
+    var blob = new Blob(['\ufeff' + csv], {type: 'text/csv,charset=UTF-8'});
+    openDownloadDialog(blob, saveName);
+}
+
+// 掌握了 csv，再去下载纯文本基本上就没啥问题了，就是换一下文件类型而已：
+
+var csv = '你好，我是小茗同学！\n测试换行！';
+var blob = new Blob([data], {type: 'text/txt,charset=UTF-8'});
+openDownloadDialog(blob, '测试.csv');
+
+
+
+
+        /**
+ * 将某个canvas保存为图片
+ * @param canvasObj canvas对象
+ * @param saveName 保存的名称
+ * @param type 保存的图片格式，如 image/png
+ * @param quality 图片质量，可选0-1
+ */
+        function saveImage(canvasObj, saveName, type, quality) {
+            if (!canvasObj) return;
+            type = type || 'image/png';
+            quality = quality || 0.92;
+            var url = canvasObj.toDataURL(type, quality).replace(/image\/.*?;/, 'image/octet-stream;');
+            openDownloadDialog(url, saveName);
+        }
+        
+    </script>
+</body>
+
+</html>
