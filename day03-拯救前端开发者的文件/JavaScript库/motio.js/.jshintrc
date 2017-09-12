@@ -1,0 +1,22 @@
+{
+	"predef" : [
+		"jQuery"
+	],
+
+	"eqeqeq": true,
+	"immed": true,
+	"newcap": true,
+	"noempty": true,
+	"quotmark": "single",
+	"undef": true,
+	"unused": true,
+	"trailing": true,
+
+	"eqnull": true,
+	"laxbreak": true,
+	"laxcomma": true,
+	"scripturl": true,
+	"smarttabs": true,
+
+	"browser": true
+}
