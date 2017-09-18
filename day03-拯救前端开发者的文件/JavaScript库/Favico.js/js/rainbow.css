@@ -1,0 +1,47 @@
+.string {
+	color: #00F;
+}
+.support {
+	color: #909;
+}
+.function, .method {
+	color: #009;
+}
+.call {
+	color: #000;
+}
+.comment, .comment a {
+	color: #999;
+}
+.comment a {
+	padding: 2px 0;
+	border-radius: 3px;
+}
+.comment a:hover {
+	background: #999;
+	color: #fff;
+}
+.constant, .null {
+	color: #F00;
+}
+.tag-name, .attribute {
+	color: #c50;
+}
+.keyword {
+	color: #009;
+}
+.rainbow {
+	color: #000;
+}
+.operator {
+	color:#00F;
+}
+.class, .pseudo {
+	color: #68c244;
+}
+.css-property {
+	color: #009;
+}
+.css-value {
+	color: #00f;
+}

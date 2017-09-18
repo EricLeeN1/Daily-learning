@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>iziModal-时尚炫酷的jQuery模态窗口插件</title>
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+	<link rel="stylesheet" type="text/css" href="css/iziModal.css">
+	<!--[if IE]>
+		<script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
+	<![endif]-->
+    <style>
+    	body{ background-color:#2B2B2B}
+    </style>
+</head>
+<body>
+	<div class="jq22-container">
+		
+		<div class="core">
+			<h3>效果演示：</h3>
+			<ul class="buttons">
+	                  <li><a href="#" class="trigger-default">Default</a></li>
+	                  <li><a href="http://mussumipsum.com/" class="trigger-iframe">Iframe</a></li>
+	                  <li><a href="#" class="trigger-custom">Custom</a></li>
+	                  <li><a href="#" class="trigger-alert">Alert like</a></li>
+	                  <li><a href="#" class="trigger-alert2">Alert like II</a></li>
+	                  <li><a href="#" class="trigger-large">Large Content</a></li>
+	                  <li class="lava"></li>
+	              </ul>
+             </div>
+	</div>
+	<!--模态窗口-->
+	<div id="modal-default" class="iziModal">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore voluptate aut dignissimos iusto, perferendis corrupti deserunt. Cum, distinctio atque iusto, voluptatum illum fugiat asperiores dignissimos harum incidunt nam! Ad, dolorum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo error aperiam voluptates enim quo unde officiis vero aliquid iste omnis odit nihil eaque quasi deserunt nesciunt, architecto, illo tenetur dolores!</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis, modi voluptate voluptates pariatur quos distinctio perspiciatis, vitae nihil consectetur, ipsam a magnam omnis sequi necessitatibus. Quisquam nesciunt ullam iste optio!</p>
+    </div>
+
+    <div id="modal-iframe" class="iziModal light"></div>
+    <div id="modal-custom" class="iziModal">
+        <button data-iziModal-close class="icon-close"></button>
+        <header>
+            <a href="" id="signin">Sign in</a>
+            <a href="" class="active">New Account</a>
+        </header>
+        <section class="hide">
+            <input type="text" placeholder="Username">
+            <input type="password" placeholder="Password">
+            <footer>
+                <button data-iziModal-close>Cancel</button>
+                <button class="submit">Log in</button>            
+            </footer>
+        </section>
+        <section>
+            <input type="text" placeholder="Username">
+            <input type="text" placeholder="Email">
+            <input type="password" placeholder="Password">
+            <label for="check"><input type="checkbox" name="checkbox" id="check" value="1"> I agree to the <u>Terms</u>.</label>
+            <footer>
+                <button data-iziModal-close>Cancel</button>
+                <button class="submit">Create Account</button>            
+            </footer>
+        </section>
+    </div>
+	<div id="modal-alert" class="iziModal"></div>
+    <div id="modal-alert2" class="iziModal"></div>
+    <div id="modal-large" class="iziModal">
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, ea ad aspernatur, temporibus iusto cum autem repudiandae, delectus non voluptas corporis facere cumque! Qui accusantium ratione eum eligendi maiores velit ea porro voluptatibus architecto dolore. Dolorum perferendis, non nisi quisquam animi iusto, officiis eligendi eos, fugit, dolore corporis provident accusantium. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, ea ad aspernatur, temporibus iusto cum autem repudiandae, delectus non voluptas corporis facere cumque! Qui accusantium ratione eum eligendi maiores velit ea porro voluptatibus architecto dolore. Dolorum perferendis, non nisi quisquam animi iusto, officiis eligendi eos, fugit, dolore corporis provident accusantium. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, ea ad aspernatur, temporibus iusto cum autem repudiandae, delectus non voluptas corporis facere cumque! Qui accusantium ratione eum eligendi maiores velit ea porro voluptatibus architecto dolore. Dolorum perferendis, non nisi quisquam animi iusto, officiis eligendi eos, fugit, dolore corporis provident accusantium.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, ea ad aspernatur, temporibus iusto cum autem repudiandae, delectus non voluptas corporis facere cumque! Qui accusantium ratione eum eligendi maiores velit ea porro voluptatibus architecto dolore. Dolorum perferendis, non nisi quisquam animi iusto, officiis eligendi eos, fugit, dolore corporis provident accusantium. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, ea ad aspernatur, temporibus iusto cum autem repudiandae, delectus non voluptas corporis facere cumque! Qui accusantium ratione eum eligendi maiores velit ea porro voluptatibus architecto dolore. Dolorum perferendis, non nisi quisquam animi iusto, officiis eligendi eos, fugit, dolore corporis provident accusantium. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, ea ad aspernatur, temporibus iusto cum autem repudiandae, delectus non voluptas corporis facere cumque! Qui accusantium ratione eum eligendi maiores velit ea porro voluptatibus architecto dolore. Dolorum perferendis, non nisi quisquam animi iusto, officiis eligendi eos, fugit, dolore corporis provident accusantium. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, ea ad aspernatur, temporibus iusto cum autem repudiandae, delectus non voluptas corporis facere cumque! Qui accusantium ratione eum eligendi maiores velit ea porro voluptatibus architecto dolore. Dolorum perferendis, non nisi quisquam animi iusto, officiis eligendi eos, fugit, dolore corporis provident accusantium. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, ea ad aspernatur, temporibus iusto cum autem repudiandae, delectus non voluptas corporis facere cumque! Qui accusantium ratione eum eligendi maiores velit ea porro voluptatibus architecto dolore.</p>
+        <hr>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, ea ad aspernatur, temporibus iusto cum autem repudiandae, delectus non voluptas corporis facere cumque! Qui accusantium ratione eum eligendi maiores velit ea porro voluptatibus architecto dolore. Dolorum perferendis, non nisi quisquam animi iusto, officiis eligendi eos, fugit, dolore corporis provident accusantium. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, ea ad aspernatur, temporibus iusto cum autem repudiandae, delectus non voluptas corporis facere cumque! Qui accusantium ratione eum eligendi maiores velit ea porro voluptatibus architecto dolore. Dolorum perferendis, non nisi quisquam animi iusto, officiis eligendi eos, fugit, dolore corporis provident accusantium. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, ea ad aspernatur, temporibus iusto cum autem repudiandae, delectus non voluptas corporis facere cumque! Qui accusantium ratione eum eligendi maiores velit ea porro voluptatibus architecto dolore. Dolorum perferendis, non nisi quisquam animi iusto, officiis eligendi eos, fugit, dolore corporis provident accusantium.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, ea ad aspernatur, temporibus iusto cum autem repudiandae, delectus non voluptas corporis facere cumque! Qui accusantium ratione eum eligendi maiores velit ea porro voluptatibus architecto dolore. Dolorum perferendis, non nisi quisquam animi iusto, officiis eligendi eos, fugit, dolore corporis provident accusantium. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, ea ad aspernatur, temporibus iusto cum autem repudiandae, delectus non voluptas corporis facere cumque! Qui accusantium ratione eum eligendi maiores velit ea porro voluptatibus architecto dolore. Dolorum perferendis, non nisi quisquam animi iusto, officiis eligendi eos, fugit, dolore corporis provident accusantium. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, ea ad aspernatur, temporibus iusto cum autem repudiandae, delectus non voluptas corporis facere cumque! Qui accusantium ratione eum eligendi maiores velit ea porro voluptatibus architecto dolore. Dolorum perferendis, non nisi quisquam animi iusto, officiis eligendi eos, fugit, dolore corporis provident accusantium. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, ea ad aspernatur, temporibus iusto cum autem repudiandae, delectus non voluptas corporis facere cumque! Qui accusantium ratione eum eligendi maiores velit ea porro voluptatibus architecto dolore. Dolorum perferendis, non nisi quisquam animi iusto, officiis eligendi eos, fugit, dolore corporis provident accusantium. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id, ea ad aspernatur, temporibus iusto cum autem repudiandae, delectus non voluptas corporis facere cumque! Qui accusantium ratione eum eligendi maiores velit ea porro voluptatibus architecto dolore.</p>
+    </div>
+	
+	<script src="http://www.jq22.com/jquery/1.11.1/jquery.min.js"></script>
+	<script src="js/iziModal.min.js" type="text/javascript"></script>
+	<script type="text/javascript">
+	    $("#modal-default").iziModal({
+	        title: "Welcome to the iziModal",
+	        subtitle: "Simple, complete and lightweight modal plugin with jquery.",
+	        iconClass: 'icon-announcement',
+	        width: 700,
+	        padding: 20
+	    });
+	    $(document).on('click', '.trigger-default', function (event) {
+	        event.preventDefault();
+	        $('#modal-default').iziModal('open');
+	    });
+
+
+	    $("#modal-iframe").iziModal({
+	        title: 'iziModal with iframe',
+	        subtitle: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+	        iconClass: 'icon-settings_system_daydream',
+	        transitionIn: 'transitionIn',
+	        transitionOut: 'transitionOut',
+	        headerColor: '#fff',
+	        theme: 'light',
+	        width: 1200,
+	        overlayClose: true,
+	        iframe : true
+	    });
+
+
+	    $(document).on('click', '.trigger-iframe', function (event) {
+	        event.preventDefault();
+	        //$('#modal-iframe').trigger('izi.open', this);
+	        $("#modal-iframe").iziModal('open', event);
+	    });
+
+
+	    $("#modal-custom").iziModal({
+	        overlayClose: false,
+	        width: 600,
+	        autoOpen: false,
+	        overlayColor: 'rgba(0, 0, 0, 0.6)',
+	        onOpened: function() {
+	            console.log('onOpened');
+	        },
+	        onClosed: function() {
+	            console.log('onClosed');  
+	        }
+	    });
+	    $(document).on('click', '.trigger-custom', function (event) {
+	        event.preventDefault();
+	        $('#modal-custom').iziModal('open');
+	    });
+
+	    $("#modal-alert").iziModal({
+	        title: "Your message has been sent successfully",
+	        iconClass: 'icon-check',
+	        headerColor: '#5bbd72',
+	        width: 600
+	    });
+	    $(document).on('click', '.trigger-alert', function (event) {
+	        event.preventDefault();
+	        $('#modal-alert').iziModal('open');
+	    });
+
+	    $("#modal-alert2").iziModal({
+	        title: "Attention",
+	        subtitle: 'you are being disconnected..',
+	        iconClass: 'icon-power_settings_new',
+	        headerColor: '#BD5B5B',
+	        width: 600
+	    });
+	    $(document).on('click', '.trigger-alert2', function (event) {
+	        event.preventDefault();
+	        $('#modal-alert2').iziModal('open');
+	    });
+
+	    $("#modal-large").iziModal({
+	        title: "Welcome to the iziModal",
+	        subtitle: "Simple, complete and lightweight modal plugin with jquery.",
+	        iconClass: 'icon-chat',
+	        overlayColor: 'rgba(255, 255, 255, 0.4)',
+	        headerColor: '#334c7b',
+	        iconColor: '#00ffba',
+	        width: 700,
+	        padding: 20
+	    });
+	    $(document).on('click', '.trigger-large', function (event) {
+	        event.preventDefault();
+	        $('#modal-large').iziModal('open');
+	    });
+
+
+
+	    $(document).on('opening', '#modal-iframe', function (e) {
+	        //console.dir(e);
+	    });
+	    $(document).on('opened', '#modal-iframe', function (e) {
+	        //console.dir(e);
+	    });
+	    $(document).on('closing', '#modal-iframe', function (e) {
+	        //console.dir(e);
+	    });
+	    $(document).on('closed', '#modal-iframe', function (e) {
+	        //console.dir(e);
+	    });
+
+
+	    $("#modal-custom").on('click', 'header a', function(event) {
+	        event.preventDefault();
+	        var index = $(this).index();
+	        $(this).addClass('active').siblings('a').removeClass('active');
+	        $(this).parents("div").find("section").eq(index).removeClass('hide').siblings('section').addClass('hide');
+
+	        if( $(this).index() === 0 ){
+	            $("#modal-custom .iziModal-content .icon-close").css('background', '#ddd');
+	        } else {
+	            $("#modal-custom .iziModal-content .icon-close").attr('style', '');
+	        }
+	    });
+
+	    $("#modal-custom").on('click', '.submit', function(event) {
+	        event.preventDefault();
+
+	        var fx = "wobble",  //wobble shake
+	            $modal = $(this).closest('.iziModal');
+
+	        if( !$modal.hasClass(fx) ){
+	            $modal.addClass(fx);
+	            setTimeout(function(){
+	                $modal.removeClass(fx);
+	            }, 1500);
+	        }
+	    });
+	</script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+<h1>另一个效果</h1>
+<p>
+    试着关闭提示消息并注意网页图标。
+</p>
+<div ng-repeat="message in messages" class="alert alert-danger">
+    <a class="close" data-dismiss="alert" ng-click="removeMessage(message)">×</a><strong>{{message.title}}</strong> {{message.text}}
+</div>

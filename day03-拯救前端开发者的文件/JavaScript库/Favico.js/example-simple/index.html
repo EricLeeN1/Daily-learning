@@ -1,0 +1,238 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+
+	<head>
+
+		<meta charset="utf-8">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<meta name="description" content="Favico.js - example">
+
+		<meta name="author" content="Miroslav Magda">
+
+
+
+		<link rel="shortcut icon" type="image/png" href="favicon32.ico">
+
+
+
+		<title>favico.js - Make a use of your favicon</title>
+
+		<link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet"/>
+
+		<link href="http://www.jq22.com/jquery/font-awesome.4.6.0.css" rel="stylesheet"/>
+
+
+
+		<!--[if lt IE 9]>
+
+		<script src="http://libs.baidu.com/html5shiv/3.6.2/html5shiv.min.js"></script>
+
+		<script src="http://libs.baidu.com/respond.js/1.2.0/respond.min.js"></script>
+
+		<![endif]-->
+
+		<link href="style.css" rel="stylesheet"/>
+
+	</head>
+
+
+
+	<body>
+
+
+
+		<div class="navbar-wrapper">
+
+			<div class="container">
+
+
+
+				<div class="navbar navbar-inverse navbar-static-top">
+
+					<div class="container">
+
+						<div class="navbar-header">
+
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+
+								<span class="icon-bar"></span>
+
+								<span class="icon-bar"></span>
+
+								<span class="icon-bar"></span>
+
+							</button>
+
+							<a class="navbar-brand" href="../">favico.js</a>
+
+						</div>
+
+						<div class="navbar-collapse collapse">
+
+							<ul class="nav navbar-nav navbar-right">
+
+								<li>
+
+									<a href="javascript:;"><i class="icon-code"></i> 源码</a>
+
+								</li>
+
+								<li>
+
+									<a href="javascript:;"><i class="icon-envelope-alt"></i> 联系</a>
+
+								</li>
+
+							</ul>
+
+						</div>
+
+					</div>
+
+				</div>
+
+
+
+			</div>
+
+		</div>
+
+
+
+		<!-- Carousel
+
+		================================================== -->
+
+		<div class="container">
+
+			<p class="text-left">
+
+				<pre class="text-left"><code data-language="javascript">$(document).ready(function() {
+
+    var badge = 5;
+
+    var favicon = new Favico({
+
+        animation : 'popFade'
+
+    });
+
+    $('#plusOne').bind('click',function() {
+
+        badge = badge + 1;
+
+        favicon.badge(badge);
+
+    });
+
+    $('#minusOne').bind('click',function() {
+
+        badge = (badge-1 < 0) ? 0 : (badge - 1);
+
+        favicon.badge(badge);
+
+    });
+
+    $('#reset').bind('click',function() {
+
+        favicon.reset();
+
+    });
+
+    //初始值
+
+    favicon.badge(badge);
+
+});</code></pre>
+
+			</p>
+
+			<button id="plusOne" class="btn btn-sm btn-primary favBadge">
+
+				&nbsp;&nbsp;&nbsp;<i class="icon-circle-arrow-up"></i> +1&nbsp;&nbsp;&nbsp;
+
+			</button>
+
+			<button id="minusOne" class="btn btn-sm btn-primary favBadge">
+
+				&nbsp;&nbsp;&nbsp;<i class="icon-circle-arrow-down"></i> -1&nbsp;&nbsp;&nbsp;
+
+			</button>
+
+			<button id="reset" class="btn btn-sm btn-primary favBadge">
+
+				<i class="icon-off"></i> Reset
+
+			</button>
+
+		</div>
+
+
+
+		<!-- Bootstrap core JavaScript
+
+		================================================== -->
+
+		<!-- Placed at the end of the document so the pages load faster -->
+
+		<script src="http://www.jq22.com/jquery/1.11.1/jquery.min.js"></script>
+
+		<script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+		<script src="../js/rainbow.js"></script>
+
+
+
+		<script src="../favico.min.js"></script>
+
+		<script>
+
+			$(document).ready(function() {
+
+				var badge = 5;
+
+				var favicon = new Favico({
+
+					animation : 'popFade'
+
+				});
+
+				$('#plusOne').bind('click', function() {
+
+					badge = badge + 1;
+
+					favicon.badge(badge);
+
+				});
+
+				$('#minusOne').bind('click', function() {
+
+					badge = (badge - 1 < 0) ? 0 : (badge - 1);
+
+					favicon.badge(badge);
+
+				});
+
+				$('#reset').bind('click', function() {
+
+					favicon.reset();
+
+				});
+
+				//intial value
+
+				favicon.badge(badge);
+
+			});
+
+		</script>
+
+
+
+	</body>
+
+</html>
+

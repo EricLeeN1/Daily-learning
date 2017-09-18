@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+	<head>
+
+		<meta charset="utf-8">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<meta name="description" content="Favico.js - example">
+
+		<meta name="author" content="Miroslav Magda">
+
+
+
+		<link rel="shortcut icon" type="image/png" href="favicon32.ico">
+
+
+
+		<title>favico.js - Make use of your favicon</title>
+
+		<link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet"/>
+
+		<link href="http://libs.baidu.com/fontawesome/4.0.3/css/font-awesome.min.css" rel="stylesheet"/>
+
+
+
+		<!--[if lt IE 9]>
+
+		<script src="http://libs.baidu.com/html5shiv/3.6.2/html5shiv.min.js"></script>
+
+		<script src="http://libs.baidu.com/respond.js/1.2.0/respond.min.js"></script>
+
+		<![endif]-->
+
+		<link href="style.css" rel="stylesheet"/>
+
+	</head>
+
+
+
+	<body>
+
+
+
+		<div class="navbar-wrapper">
+
+			<div class="container">
+
+
+
+				<div class="navbar navbar-inverse navbar-static-top">
+
+					<div class="container">
+
+						<div class="navbar-header">
+
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+
+								<span class="icon-bar"></span>
+
+								<span class="icon-bar"></span>
+
+								<span class="icon-bar"></span>
+
+							</button>
+
+							<a class="navbar-brand" href="#">favico.js</a>
+
+						</div>
+
+						
+
+					</div>
+
+				</div>
+
+
+
+			</div>
+
+		</div>
+
+
+
+		<!-- Carousel
+
+		================================================== -->
+
+		<div id="myCarousel" class="carousel slide">
+
+			<!-- Indicators -->
+
+			<div class="carousel-inner">
+
+				<div class="item active">
+
+					<div class="container">
+
+						<div class="carousel-caption">
+
+							<h1>favico.js <small>v0.3.8</small></h1>
+
+							<p><img id="badgeMirror" width="140" height="140" src="favicon140.ico"/>
+
+								<h4>在你的网页图标上使用角标、图片或视频 </h4>
+
+							</p>
+
+							<p>
+
+				
+
+							</p>
+
+							<p>
+
+								<small>试试看：</small>
+
+								<br />
+
+								<button favicon-action="favicon|plus1|faviconMirror|plus1" class="btn btn-sm btn-primary favBadge">
+
+									&nbsp;&nbsp;&nbsp;<i class="fa fa-arrow-circle-up"></i> +1&nbsp;&nbsp;&nbsp;
+
+								</button>
+
+								<button favicon-action="favicon|minus1|faviconMirror|minus1" class="btn btn-sm btn-primary favBadge">
+
+									&nbsp;&nbsp;&nbsp;<i class="fa fa-arrow-circle-down"></i> -1&nbsp;&nbsp;&nbsp;
+
+								</button>
+
+								<button favicon-action="badgeImageIco" class="btn btn-sm btn-primary favImage">
+
+									<i class="fa fa-picture-o"></i> 设置图标
+
+								</button>
+
+								<button favicon-action="badgeVideoIco" class="btn btn-sm btn-primary favVideo">
+
+									<i class="fa fa-film"></i> 播放视频
+
+								</button>
+
+								<button favicon-action="badgeVideoIco" class="btn btn-sm btn-primary favWebcam">
+
+									<i class="fa fa-camera"></i> 启动摄像头
+
+								</button>
+
+								<button favicon-action="favicon|reset|faviconMirror|reset" class="btn btn-sm btn-primary favBadge">
+
+									<i class="fa fa-power-off"></i> 重置
+
+								</button>
+
+							</p>
+
+							<h6>适用于 Chrome, Firefox, Opera 和 IE11+</h6>
+
+
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div><!-- /.carousel -->
+
+
+
+		<div class="container marketing">
+
+			<h3>角标</h3>
+
+			<p>
+
+                用动态的角标让你的网页图标动起来。你可以自定义动画类型，位置，背景颜色和文本颜色。
+
+			</p>
+
+			<div class="row">
+
+				<div class="col-lg-4">
+
+					<h3>滑动动画</h3>
+
+					<span class="browser"> <img id="badgeSlide" width="16" height="16" src="favicon32.ico"/> </span>
+
+					<p>
+
+						<button favicon-action="faviconSlide|plus1" class="btn btn-sm btn-default favBadge">
+
+							&nbsp;&nbsp;&nbsp;+1&nbsp;&nbsp;&nbsp;
+
+						</button>
+
+						<button favicon-action="faviconSlide|minus1" class="btn btn-sm btn-default favBadge">
+
+							&nbsp;&nbsp;&nbsp;-1&nbsp;&nbsp;&nbsp;
+
+						</button>
+
+						<button favicon-action="faviconSlide|reset" class="btn btn-sm btn-default favBadge">
+
+							重置
+
+						</button>
+
+					</p>
+
+					<p class="text-left">
+
+						<pre class="text-left">var favicon=new Favico({
+
+    animation:'slide'
+
+});
+
+favicon.badge(1);</pre>
+
+					</p>
+
+				</div><!-- /.col-lg-4 -->
+
+				<div class="col-lg-4">
+
+					<h3>渐隐动画</h3>
+
+					<span class="browser"> <img id="badgeFade" width="16" height="16" src="favicon32.ico"/> </span>
+
+					<p>
+
+						<button favicon-action="faviconFade|plus1" class="btn btn-sm btn-default favBadge">
+
+							&nbsp;&nbsp;&nbsp;+1&nbsp;&nbsp;&nbsp;
+
+						</button>
+
+						<button favicon-action="faviconFade|minus1" class="btn btn-sm btn-default favBadge">
+
+							&nbsp;&nbsp;&nbsp;-1&nbsp;&nbsp;&nbsp;
+
+						</button>
+
+						<button favicon-action="faviconFade|reset" class="btn btn-sm btn-default favBadge">
+
+							重置
+
+						</button>
+
+					</p>
+
+					<p class="text-left">
+
+						<pre class="text-left">var favicon=new Favico({
+
+    animation:'fade'
+
+});
+
+favicon.badge(2);</pre>
+
+					</p>
+
+				</div><!-- /.col-lg-4 -->
+
+				<div class="col-lg-4">
+
+					<h3>弹出动画</h3>
+
+					<span class="browser"> <img id="badgePop" width="16" height="16" src="favicon32.ico"/> </span>
+
+					<p>
+
+						<button favicon-action="faviconPop|plus1" class="btn btn-sm btn-default favBadge">
+
+							&nbsp;&nbsp;&nbsp;+1&nbsp;&nbsp;&nbsp;
+
+						</button>
+
+						<button favicon-action="faviconPop|minus1" class="btn btn-sm btn-default favBadge">
+
+							&nbsp;&nbsp;&nbsp;-1&nbsp;&nbsp;&nbsp;
+
+						</button>
+
+						<button favicon-action="faviconPop|reset" class="btn btn-sm btn-default favBadge">
+
+							重置
+
+						</button>
+
+					</p>
+
+					<p class="text-left">
+
+						<pre class="text-left">var favicon=new Favico({
+
+    animation:'pop'
+
+});
+
+favicon.badge(3);</pre>
+
+					</p>
+
+				</div><!-- /.col-lg-4 -->
+
+				<div class="col-lg-4">
+
+					<h3>弹出&amp;渐隐动画</h3>
+
+					<span class="browser"> <img id="badgePopFade" width="16" height="16" src="favicon32.ico"/> </span>
+
+					<p>
+
+						<button favicon-action="faviconPopFade|plus1" class="btn btn-sm btn-default favBadge">
+
+							&nbsp;&nbsp;&nbsp;+1&nbsp;&nbsp;&nbsp;
+
+						</button>
+
+						<button favicon-action="faviconPopFade|minus1" class="btn btn-sm btn-default favBadge">
+
+							&nbsp;&nbsp;&nbsp;-1&nbsp;&nbsp;&nbsp;
+
+						</button>
+
+						<button favicon-action="faviconPopFade|reset" class="btn btn-sm btn-default favBadge">
+
+							重置
+
+						</button>
+
+					</p>
+
+					<p class="text-left">
+
+						<pre class="text-left">var favicon=new Favico({
+
+    animation:'popFade'
+
+});
+
+favicon.badge(1);</pre>
+
+					</p>
+
+				</div><!-- /.col-lg-4 -->
+
+				<div class="col-lg-4">
+
+					<h3>无动画</h3>
+
+					<span class="browser"> <img id="badgeNone" width="16" height="16" src="favicon32.ico"/> </span>
+
+					<p>
+
+						<button favicon-action="faviconNone|plus1" class="btn btn-sm btn-default favBadge">
+
+							&nbsp;&nbsp;&nbsp;+1&nbsp;&nbsp;&nbsp;
+
+						</button>
+
+						<button favicon-action="faviconNone|minus1" class="btn btn-sm btn-default favBadge">
+
+							&nbsp;&nbsp;&nbsp;-1&nbsp;&nbsp;&nbsp;
+
+						</button>
+
+						<button favicon-action="faviconNone|reset" class="btn btn-sm btn-default favBadge">
+
+							重置
+
+						</button>
+
+					</p>
+
+					<p class="text-left">
+
+						<pre class="text-left">var favicon=new Favico({
+
+    animation:'none'
+
+});
+
+favicon.badge(2);</pre>
+
+					</p>
+
+				</div><!-- /.col-lg-4 -->
+
+				<div class="col-lg-4">
+
+					<h3>位置</h3>
+
+					<span class="browser"> <img id="badgePosition" width="16" height="16" src="favicon32.ico"/> </span>
+
+					<p>
+
+						<button favicon-action="faviconPosition|plus1" class="btn btn-sm btn-default favBadge">
+
+							&nbsp;&nbsp;&nbsp;+1&nbsp;&nbsp;&nbsp;
+
+						</button>
+
+						<button favicon-action="faviconPosition|minus1" class="btn btn-sm btn-default favBadge">
+
+							&nbsp;&nbsp;&nbsp;-1&nbsp;&nbsp;&nbsp;
+
+						</button>
+
+						<button favicon-action="faviconPosition|reset" class="btn btn-sm btn-default favBadge">
+
+							重置
+
+						</button>
+
+					</p>
+
+					<p class="text-left">
+
+						<pre class="text-left">var favicon=new Favico({
+
+    position : 'up'
+
+});
+
+favicon.badge(3);</pre>
+
+					</p>
+
+				</div><!-- /.col-lg-4 -->
+
+				<div class="col-lg-4">
+
+					<h3>形状设置</h3>
+
+					<span class="browser"> <img id="badgeShape" width="16" height="16" src="favicon32.ico"/> </span>
+
+					<p>
+
+						<button favicon-action="faviconShape|plus1" class="btn btn-sm btn-default favBadge">
+
+							&nbsp;&nbsp;&nbsp;+1&nbsp;&nbsp;&nbsp;
+
+						</button>
+
+						<button favicon-action="faviconShape|minus1" class="btn btn-sm btn-default favBadge">
+
+							&nbsp;&nbsp;&nbsp;-1&nbsp;&nbsp;&nbsp;
+
+						</button>
+
+						<button favicon-action="faviconShape|reset" class="btn btn-sm btn-default favBadge">
+
+							重置
+
+						</button>
+
+					</p>
+
+					<p class="text-left">
+
+						<pre class="text-left">var favicon=new Favico({
+
+    type : 'rectangle',
+
+    animation: 'slide',
+
+});
+
+favicon.badge(1);</pre>
+
+					</p>
+
+				</div><!-- /.col-lg-4 -->
+
+				<div class="col-lg-4">
+
+					<h3>自定义字体支持</h3>
+
+					<span class="browser"> <img id="badgeFont" width="16" height="16" src="favicon32.ico"/> </span>
+
+					<p>
+
+						<button favicon-action="faviconFont|volumeMute" class="btn btn-sm btn-default favBadge">
+
+							&nbsp;&nbsp;&nbsp;<i class="fa fa-volume-off"></i>&nbsp;&nbsp;&nbsp;
+
+						</button>						
+
+						<button favicon-action="faviconFont|volumeDown" class="btn btn-sm btn-default favBadge">
+
+							&nbsp;&nbsp;&nbsp;<i class="fa fa-volume-down"></i>&nbsp;&nbsp;&nbsp;
+
+						</button>
+
+						<button favicon-action="faviconFont|volumeUp" class="btn btn-sm btn-default favBadge">
+
+							&nbsp;&nbsp;&nbsp;<i class="fa fa-volume-up"></i>&nbsp;&nbsp;&nbsp;
+
+						</button>
+
+					</p>
+
+					<p class="text-left">
+
+						<pre class="text-left">var favicon=new Favico({
+
+    fontFamily : 'FontAwesome',
+
+    elementId : 'badgeFont'
+
+});
+
+favicon.badge('\f0a2');</pre>
+
+					</p>
+
+				</div><!-- /.col-lg-4 -->
+
+				<div class="col-lg-4">
+
+					<h3>颜色设置</h3>
+
+					<span class="browser"> <img id="badgeColor" width="16" height="16" src="favicon32.ico"/> </span>
+
+					<p>
+
+						<button favicon-action="faviconColor|plus1" class="btn btn-sm btn-default favBadge">
+
+							&nbsp;&nbsp;&nbsp;+1&nbsp;&nbsp;&nbsp;
+
+						</button>
+
+						<button favicon-action="faviconColor|minus1" class="btn btn-sm btn-default favBadge">
+
+							&nbsp;&nbsp;&nbsp;-1&nbsp;&nbsp;&nbsp;
+
+						</button>
+
+						<button favicon-action="faviconColor|reset" class="btn btn-sm btn-default favBadge">
+
+							重置
+
+						</button>
+
+					</p>
+
+					<p class="text-left">
+
+						<pre class="text-left">var favicon=new Favico({
+
+    bgColor : '#5CB85C',
+
+    textColor : '#ff0',
+
+});
+
+favicon.badge(3);</pre>
+
+					</p>
+
+				</div><!-- /.col-lg-4 -->
+
+                <div class="col-lg-4">
+
+					<h3>回调函数</h3>
+
+					<span class="browser"> <img id="badgeDataUrl" width="16" height="16" src="favicon32.ico"/> </span>
+
+					<p>
+
+						<button favicon-action="faviconDataUrl|plus1" class="btn btn-sm btn-default favBadge">
+
+							&nbsp;&nbsp;&nbsp;+1&nbsp;&nbsp;&nbsp;
+
+						</button>
+
+						<button favicon-action="faviconDataUrl|minus1" class="btn btn-sm btn-default favBadge">
+
+							&nbsp;&nbsp;&nbsp;-1&nbsp;&nbsp;&nbsp;
+
+						</button>
+
+						<button favicon-action="faviconDataUrl|reset" class="btn btn-sm btn-default favBadge">
+
+							重置
+
+						</button>
+
+					</p>
+
+					<p class="text-left">
+
+						<pre class="text-left">var favicon=new Favico({
+
+    DataUrl : function(url){
+
+        document.getElementById("elementId").innerHTML = "返回值：" + url;
+
+    }
+
+});
+
+favicon.badge(1);</pre>
+
+					</p>
+
+				</div><!-- /.col-lg-4 -->
+
+                <div class="col-lg-4">
+
+                	<h3>回调函数返回值</h3>
+
+                	<pre class="text-left" style="height:270px;overflow:auto;">返回值：<a class="dataUrlTest" target="_blank"></a>
+
+                    </pre>
+
+                </div><!-- /.col-lg-4 -->
+
+			</div>
+
+			<!-- /.row -->
+
+			<h3>图像 / 视频 / 摄像头</h3>
+
+			<p>
+
+				通过图像、视频甚至是摄像头来创建网页图标
+
+			</p>
+
+			<div class="row">
+
+				<div class="col-lg-4">
+
+					<h3>常规图像到网页图标</h3>
+
+					<p class="mkt">
+
+						<img id="badgeImageIco" src="images/html5logo.png"/>
+
+					</p>
+
+					<p>
+
+						<button favicon-action="badgeImageIco" class="btn btn-sm btn-default favImage">
+
+							设置图标
+
+						</button>
+
+					</p>
+
+					<p class="text-left">
+
+						<pre class="text-left">var favicon=new Favico();
+
+var image=document.getElementById('imageId');
+
+favicon.image(image);</pre>
+
+					</p>
+
+				</div><!-- /.col-lg-4 -->
+
+				<div class="col-lg-4">
+
+					<h3>HTML5视频到网页图标</h3>
+
+					<p class="mkt">
+
+						<video id="badgeVideoIco" width="300">
+
+							<source src="videos/chromeicon.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+
+							<source src="videos/chromeicon.webm" type='video/webm; codecs="vp8, vorbis"' />
+
+							不支持视频标签。点击<a href="videos/chromeicon.mp4">这里</a>下载视频。
+
+						</video>
+
+					</p>
+
+					<p>
+
+						<button favicon-action="badgeVideoIco" class="btn btn-sm btn-default favVideo">
+
+							在图标中播放视频
+
+						</button>
+
+					</p>
+
+					<p class="text-left">
+
+						<pre class="text-left">var favicon=new Favico();
+
+var video=document.getElementById('videoId');
+
+favicon.video(video);
+
+//停止
+
+favicon.video('stop');
+
+</pre>
+
+					</p>
+
+				</div><!-- /.col-lg-4 -->
+
+				<div class="col-lg-4">
+
+					<h3>摄像头到网页图标</h3>
+
+					<p class="mkt">
+
+						这仅仅是为了好玩，但是它可以运行:)
+
+						<br />
+
+						<small>适用于 Chrome, Firefox 和 Opera</small>
+
+					</p>
+
+					<p>
+
+						<button favicon-action="badgeVideoIco" class="btn btn-sm btn-default favWebcam">
+
+							启动摄像头
+
+						</button>
+
+					</p>
+
+					<p class="text-left">
+
+						<pre class="text-left">var favicon=new Favico();
+
+favicon.webcam();
+
+//停止
+
+favicon.webcam('stop');
+
+</pre>
+
+					</p>
+
+				</div><!-- /.col-lg-4 -->
+
+			</div>
+
+			<h4>角标选项</h4>
+
+			<p>
+
+				<div class="table-responsive">
+
+					<table class="table">
+
+						<colgroup>
+
+							<col class="col-lg-1">
+
+							<col class="col-lg-1">
+
+							<col class="col-lg-6">
+
+						</colgroup>
+
+						<thead>
+
+							<tr>
+
+								<th>属性</th>
+
+								<th>默认值</th>
+
+								<th></th>
+
+							</tr>
+
+						</thead>
+
+						<tbody>
+
+							<tr>
+
+								<td>bgColor</td>
+
+								<td>#d00</td>
+
+								<td>角标背景颜色</td>
+
+							</tr>
+
+							<tr>
+
+								<td>textColor</td>
+
+								<td>#fff</td>
+
+								<td>角标文字颜色</td>
+
+							</tr>
+
+							<tr>
+
+								<td>fontFamily</td>
+
+								<td>sans-serif</td>
+
+								<td>文字字体家族 (Arial, Verdana, Times New Roman, serif, sans-serif,...)</td>
+
+							</tr>
+
+							<tr>
+
+								<td>fontStyle</td>
+
+								<td>bold</td>
+
+								<td>字体样式 (normal, italic, oblique, bold, bolder, lighter, 100, 200, 300, 400, 500, 600, 700, 800, 900)</td>
+
+							</tr>
+
+							<tr>
+
+								<td>type</td>
+
+								<td>circle</td>
+
+								<td>角标形状 (circle（圆形）, rectangle（方形）)</td>
+
+							</tr>
+
+							<tr>
+
+								<td>position</td>
+
+								<td>down</td>
+
+								<td>角标位置 (up（上方）, down（下方）, left（左方）, upleft（左上）)</td>
+
+							</tr>
+
+							<tr>
+
+								<td>animation</td>
+
+								<td>slide</td>
+
+								<td>角标动画类型 (slide（滑动）, fade（渐隐）, pop（弹出）, popFade（弹出&amp;渐隐）, none（无） )</td>
+
+							</tr>
+
+							<tr>
+
+								<td>elementId</td>
+
+								<td>false</td>
+
+								<td>如果要把角标显示在某一图像元素上，可以在这里输入图像元素的ID</td>
+
+							</tr>
+
+							<tr>
+
+								<td>element</td>
+
+								<td>false</td>
+
+								<td>如果要把角标作为一个元素显示（图像元素），可以在这里选择元素（用选择器）</td>
+
+							</tr>
+
+							<tr>
+
+								<td>dataUrl</td>
+
+								<td>false</td>
+
+								<td>图标发生变动时执行的脚本</td>
+
+							</tr>
+
+						</tbody>
+
+					</table>
+
+				</div>
+
+			</p>
+
+			<h4>Bower</h4>
+
+			<p>
+
+				<pre class="text-left">bower install favico.js</pre>
+
+			</p>
+
+			<hr>
+
+			<p>
+
+				相关插件 <a href="http://blog.tommoor.com/tinycon/">Tinycon</a>, <a href="http://www.thepetedesign.com/demos/notify_better_demo.html">Notify Better</a> 或 <a href="https://github.com/Dlom/favicon.js">favicon.js</a>.
+
+			</p>
+
+			<hr>
+
+			<h4>路线图</h4>
+
+			<p>
+
+				<ul>
+
+					<li>
+
+						更多选项(Badge position, animations,...)
+
+					</li>
+
+				</ul>
+
+			</p>
+
+
+
+			<h4>许可</h4>
+
+			
+
+			<hr>
+
+
+
+			
+
+
+
+		</div><!-- /.container -->
+
+
+
+		<!-- /container -->
+
+
+
+		<!-- Bootstrap core JavaScript
+
+		================================================== -->
+
+		<!-- Placed at the end of the document so the pages load faster -->
+
+		<script src="http://www.jq22.com/jquery/1.11.1/jquery.min.js"></script>
+
+		<script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+
+
+		<script src="favico.min.js"></script>
+
+		<!--script src="../favico.js"></script-->
+
+		<script src="js/example.js"></script>
+
+	</body>
+
+</html>
+

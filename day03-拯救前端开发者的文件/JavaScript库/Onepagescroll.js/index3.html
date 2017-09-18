@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh" class="demo3 no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>jQuery带视觉差的整个页面滚动特效插件OnePageScroll.js-demo3_jQuery之家-自由分享jQuery、html5、css3的插件库</title>
+		<link rel="stylesheet" type="text/css" href="css/default.css" />
+		
+		<!-- Edit Below -->
+		<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+	    <script type="text/javascript" src="js/jquery.onepage-scroll.js"></script>
+	    <link rel="stylesheet" type="text/css" href="css/style.css" />
+	    <link rel="stylesheet" type="text/css" href="css/onepage-scroll.css" />
+	    <link rel="stylesheet" type="text/css" href="css/elusive-webfont.css" />
+	    <script src="js/modernizr.js"></script>
+	</head>
+	<body class="demo3">
+	<div class="header">
+		<h1>Scroll website one page at a time<br>with OnePageScroll.js: Animation Time + EaseInOutBack</h1>
+		更多精彩内容请关注：<a href="http://www.htmleaf.com/" target="_blank">jQuery之家</a>
+	</div>
+  
+	<div class="menu">
+		<a href="index.html">Demo 1</a>
+		<a href="index2.html">Demo 2</a>
+		<a class="active" href="index3.html">Demo 3</a>
+	</div>
+	
+	<div class="main">
+	  <section class="page1">
+      <div class="page_container">
+        <h1>Forward Thinking</h1>
+        <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."</p>
+        </div>
+    </section>
+    <section class="page2">
+      <div class="page_container">
+        <h1>iPhone 5S</h1>
+        <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</p>
+      </div>
+    </section>
+    <section class="page3">
+      <div class="page_container">
+        <h1>Pretty cool eh?</h1>
+        <p>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+      </div>
+    </section>
+	</div>
+	<script type="text/javascript">
+	    $(".main").onepage_scroll({
+	      sectionContainer: "section",
+	      animationTime: 2000,
+	      easing: "cubic-bezier(0.680, -0.550, 0.265, 1.550)"
+	    });
+  	</script>
+
+	</body>
+</html>

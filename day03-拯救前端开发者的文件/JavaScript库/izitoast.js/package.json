@@ -1,0 +1,92 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "izitoast",
+        "scope": null,
+        "escapedName": "izitoast",
+        "name": "izitoast",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "C:\\Users\\Eric"
+    ]
+  ],
+  "_from": "izitoast@latest",
+  "_id": "izitoast@1.1.5",
+  "_inCache": true,
+  "_location": "/izitoast",
+  "_nodeVersion": "7.9.0",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/izitoast-1.1.5.tgz_1501710023882_0.17836226569488645"
+  },
+  "_npmUser": {
+    "name": "dolce",
+    "email": "dolcemarcelo@gmail.com"
+  },
+  "_npmVersion": "5.0.4",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "izitoast",
+    "scope": null,
+    "escapedName": "izitoast",
+    "name": "izitoast",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/izitoast/-/izitoast-1.1.5.tgz",
+  "_shasum": "8f7849f515161b155f855ba54e840992805cdc02",
+  "_shrinkwrap": null,
+  "_spec": "izitoast",
+  "_where": "C:\\Users\\Eric",
+  "author": {
+    "name": "Marcelo Dolce",
+    "email": "dolcemarcelo@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/dolce/iziToast/issues"
+  },
+  "dependencies": {},
+  "description": "Elegant, responsive, flexible and lightweight notification plugin with no dependencies.",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "integrity": "sha512-6BIBIUw2cjpq5aAWlhHypIYuJ+IlW9meDZj5q3kmKLopArOWzHherfn4k85oc2bgU/YsWTHyy0HskWYKGx4yzA==",
+    "shasum": "8f7849f515161b155f855ba54e840992805cdc02",
+    "tarball": "https://registry.npmjs.org/izitoast/-/izitoast-1.1.5.tgz"
+  },
+  "gitHead": "9f87adfb63521219b98de85aba52f2bc76245e40",
+  "homepage": "https://github.com/dolce/iziToast#readme",
+  "keywords": [
+    "izitoast",
+    "notification",
+    "toaster",
+    "toast",
+    "message",
+    "alert",
+    "confirm",
+    "js"
+  ],
+  "license": "Apache-2.0",
+  "main": "dist/js/iziToast.js",
+  "maintainers": [
+    {
+      "name": "dolce",
+      "email": "dolcemarcelo@gmail.com"
+    }
+  ],
+  "name": "izitoast",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dolce/iziToast.git"
+  },
+  "version": "1.1.5"
+}

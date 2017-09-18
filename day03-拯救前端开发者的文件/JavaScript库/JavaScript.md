@@ -31,7 +31,7 @@
     27. Favico.js — 动态 favicon
     28. Midnight.js — 固定头部切换效果
     29. Anime.js — 动画库
-    30. Keycode — 获取键盘按键的 JavaScript keycode
+    #30. Keycode — 获取键盘按键的 JavaScript keycode
     31. Sortable — 拖拽插件
     32. Flexdatalist — 自动补全
     33. Slideout.js — 移动应用侧滑导航
