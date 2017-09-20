@@ -1,0 +1,20 @@
+{
+  "name": "somepackage",
+  "version": "0.0.1",
+  "keywords": [
+    "demo",
+    "hello"
+  ],
+  "maintainers": [
+    "eric"
+  ],
+  "contributors": [
+    "eric"
+  ],
+  "bugs": "179310009@qq.com",
+  "licenses": [],
+  "repositories": [],
+  "dependencies": {
+  },
+  "main": "./lib/interface.js"
+}
