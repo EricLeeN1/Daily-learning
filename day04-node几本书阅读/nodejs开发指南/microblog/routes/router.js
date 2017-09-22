@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
+var Dog = require('../schema/dogSchema');
+
 
 router.showIndex = function (req,res,next) {
     res.json({title: 'Express'});
