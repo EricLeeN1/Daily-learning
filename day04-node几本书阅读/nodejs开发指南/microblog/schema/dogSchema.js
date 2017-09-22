@@ -44,15 +44,19 @@ dogSchema.methods.speak = function (cb) {
     var greeting = this.name ? "Woof name is " + this.name : "I don't have a name";
     return cb(err, greeting);
 };
+// 4.给表结构的静态方法对象指定一个函数
+dogSchema.statics.findByNames = function (name,cb) {
+    return this.find({ name: new RegExp(name, 'i') }, cb);
+};
 
 var white = new Dog({name: "Little White"});
-// white.speak(function (err, greeting) {
-//     if (err) {
-//         console.error(err);
-//         return;
-//     }
-//     console.log(greeting);
-// });
+Dog.findByNames("Little White", function (err, dogs) {
+    if (err) {
+        console.error(err);
+        return;
+    }
+    console.log(dogs);
+});
 
 // 把小白写入数据库，成功后小白会叫一下;
 white.save(function (err, white) {
