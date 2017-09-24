@@ -45,48 +45,48 @@ dogSchema.methods.speak = function (cb) {
     return cb(err, greeting);
 };
 // 4.给表结构的静态方法对象指定一个函数
-dogSchema.statics.findByNames = function (name,cb) {
-    return this.find({ name: new RegExp(name, 'i') }, cb);
+dogSchema.statics.findByNames = function (name, cb) {
+    return this.find({"name": name}, cb);
 };
 
 var white = new Dog({name: "Little White"});
-Dog.findByNames("Little White", function (err, dogs) {
-    if (err) {
-        console.error(err);
-        return;
-    }
-    console.log(dogs);
-});
+// Dog.findByNames("Little White", function (err, dogs) {
+//     if (err) {
+//         console.error(err);
+//         return;
+//     }
+//     console.log(dogs);
+// });
 
-// 把小白写入数据库，成功后小白会叫一下;
-white.save(function (err, white) {
-    if (err) {
-        console.error(err);
-        return;
-    } else {
-        // white.speak();
-    }
-});
+// // 把小白写入数据库，成功后小白会叫一下;
+// white.save(function (err, white) {
+//     if (err) {
+//         console.error(err);
+//         return;
+//     } else {
+//         // white.speak();
+//     }
+// });
 
-//查找并打印所有的狗狗，返回来的应该也是一个数组
-Dog.find(function (err, dogs) {
-    if (err) {
-        console.error(err);
-        return;
-    } else {
-        console.log(dogs);
-        // dogs
-    }
-});
+// //查找并打印所有的狗狗，返回来的应该也是一个数组
+// Dog.find(function (err, dogs) {
+//     if (err) {
+//         console.error(err);
+//         return;
+//     } else {
+//         console.log(dogs);
+//         // dogs
+//     }
+// });
 
-//有参数的查找,返回的是一个数组
-Dog.find({name: /^Little/}, function (err, dog) {
-    if (err) {
-        console.error(err);
-        return;
-    } else {
-        console.log(dog);
-        //dog typeof =>Array
-    }
-});
+// //有参数的查找,返回的是一个数组
+// Dog.find({name: /^Little/}, function (err, dog) {
+//     if (err) {
+//         console.error(err);
+//         return;
+//     } else {
+//         console.log(dog);
+//         //dog typeof =>Array
+//     }
+// });
 module.exports = Dog;
