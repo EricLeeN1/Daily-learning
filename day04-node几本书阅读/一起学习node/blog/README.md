@@ -38,6 +38,11 @@
     
     通过一下代码设置
     `app.use(express.static(path.join(__dirname, 'public')))`;
+    
+###区分get跟post
+
+    自定义两个前缀明显区分
         
+###
 
     
