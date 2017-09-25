@@ -43,6 +43,11 @@
 
     自定义两个前缀明显区分
         
-###
+###settings.js设置
 
+    db是数据库的名称
+    host是数据库的地址
+    cookieSecret是用于Cookie加密的
+
+###
     
