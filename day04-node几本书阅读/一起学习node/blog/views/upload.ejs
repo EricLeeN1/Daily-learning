@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title><%= title %></title>
+</head>
+<body>
+<%- include header %>
+<form action="/upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="file1"><br>
+    <input type="file" name="file2"><br>
+    <input type="file" name="file3"><br>
+    <input type="file" name="file4"><br>
+    <input type="file" name="file5"><br>
+    <input type="submit" value="Upload Now">
+</form>
+<%- include footer %>
+</body>
+</html>

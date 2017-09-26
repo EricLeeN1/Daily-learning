@@ -22,6 +22,10 @@ app.use(flash());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser({
+    keepExtensions:true,
+    uploadDir:'./public/images'
+}));//保留上传文件的后缀名，并设置上传目录
 app.use(cookieParser());
 app.use(session({
     secret: 'Eric',
@@ -46,6 +50,10 @@ app.post('/post', routes.checkLogin);
 app.post('/post', routes.doPost);
 app.get('/logout', routes.checkLogin);
 app.get('/logout', routes.logout);
+app.get('/upload', routes.checkLogin);
+app.get('/upload', routes.upload);
+app.post('/upload', routes.checkLogin);
+app.post('/upload', routes.doUpload);
 // app.use('/users', user.list);
 
 // catch 404 and forward to error handler

@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var crypto = require('crypto'),
+    fs = require('fs'),
     User = require('../models/user'),
     Post = require('../models/post');
 /* GET home page. */
@@ -125,7 +126,33 @@ router.logout = function (req, res, next) {
     req.flash('success', '登出成功！');
     res.redirect('/');
 };
-//不同情况要检查是否登录
+router.upload = function (req, res, next) {
+    res.render('upload', {
+        title: '文件上传',
+        user: req.session.user,
+        success: req.flash('success').toString(),
+        error: req.flash('error').toString()
+    })
+};
+router.doUpload = function (req, res, next) {
+    for (var i in req.files) {
+        console.log(req.files);
+        if (req.files[i].size==0) {
+            //使用同步方式删除一个文件
+            fs.unlinkSync(req.files[i].path);
+            console.log('成功一出一个空文件!');
+        }else {
+            var target_Path ='./public/images/'+req.files[i].name;
+            //使用同步方式重命名一个文件
+            fs.renameSync(req.files[i].path,target_Path);
+            console.log('成功重命名一个文件');
+        }
+    };
+    console.log(req.files);
+    req.flash('success','文件上传成功!');
+    res.redirect('/upload');
+};
+//不同情况检查是否登录
 router.checkLogin = function (req, res, next) {
     if (!req.session.user) {
         req.flash('error', '未登录!');
