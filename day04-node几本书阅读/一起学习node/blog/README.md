@@ -49,5 +49,10 @@
     host是数据库的地址
     cookieSecret是用于Cookie加密的
 
-###
+###模版设置
+
+    由于一般网页共有头部和尾部，这两个部分即可设置为模版
+    <%- include header %>
+    这是主页
+    <%- include footer %
     
