@@ -22,10 +22,10 @@ app.use(flash());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser({
-    keepExtensions:true,
-    uploadDir:'./public/images'
-}));//保留上传文件的后缀名，并设置上传目录
+// app.use(bodyParser({
+//     keepExtensions:true,
+//     uploadDir:'./public/images'
+// }));//保留上传文件的后缀名，并设置上传目录
 app.use(cookieParser());
 app.use(session({
     secret: 'Eric',
