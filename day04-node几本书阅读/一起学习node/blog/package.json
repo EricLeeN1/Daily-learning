@@ -14,6 +14,7 @@
     "ejs": "~2.5.6",
     "express": "~4.15.2",
     "express-session": "^1.15.5",
+    "markdown": "^0.5.0",
     "mongodb": "*",
     "morgan": "~1.8.1",
     "serve-favicon": "~2.4.2"
