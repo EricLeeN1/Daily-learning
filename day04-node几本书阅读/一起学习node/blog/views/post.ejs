@@ -10,14 +10,13 @@
 </head>
 <body>
 <%- include header %>
-<% articles.forEach(function (article, index) { %>
-<h2><a href="#"><%= article.title %></a></h2>
-<p class="info">
-    作者：<a href="#"><%= article.name%></a>
-    日期：<%= article.time.minute %>
-</p>
-<p><%- article.article%></p>
-<% }) %>
+<form action="" method="post">
+    <h3>标题：</h3>
+    <p><input type="text" name="title" id="title"></p>
+    <h4>正文：</h4>
+    <textarea name="article" id="article" cols="100" rows="20"></textarea><br>
+    <input type="submit" value="Publish Now">
+</form>
 <%- include footer %>
 </body>
 </html>
