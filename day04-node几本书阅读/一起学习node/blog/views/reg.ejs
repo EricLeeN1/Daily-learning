@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title><%= title %></title>
+</head>
+<body>
+<%- include header %>
+
+<form action="" method="post">
+    <label for="name">
+        用户名称：<input type="text" name="name" id="name">
+    </label><br>
+    <label for="password">
+        用户密码：<input type="password" name="password" id="password">
+    </label><br>
+    <label for="resurepassword">
+        确认密码：<input type="password" name="resurepassword" id="resurepassword">
+    </label><br>
+    <label for="email">
+        用户邮箱：<input type="email" name="email" id="email">
+    </label><br>
+    <input type="submit" value="Register Now">
+</form>
+<%- include footer %>
+</body>
+</html>

@@ -5,6 +5,7 @@
     req.query ： 处理 get 请求
     req.params ： 处理 /:xxx 形式的 get 请求
     req.body ： 处理 post 请求
+        就是 POST 请求信息解析过后的对象
     req.param() ： 可以处理 get 和 post 请求，但查找优先级由高到低为req.params→req.body→req.query
     
 ###使用模版引擎
@@ -54,5 +55,13 @@
     由于一般网页共有头部和尾部，这两个部分即可设置为模版
     <%- include header %>
     这是主页
-    <%- include footer %
+    <%- include footer %>
+    
+###mongodb与mongoose区别
+
+    1. mongodb需要每次打开关闭数据库，mongoose只打开一次
+    
+###其他一些方法
+
+    res.redirect： 重定向功能，实现页面的跳转
     
