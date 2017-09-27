@@ -1,0 +1,7 @@
+::ffff:127.0.0.1 - - [27/Sep/2017:02:29:31 +0000] "GET / HTTP/1.1" 200 1039 "http://127.0.0.1:3000/login" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3178.0 Safari/537.36"
+::ffff:127.0.0.1 - - [27/Sep/2017:02:29:31 +0000] "GET /stylesheets/style.css HTTP/1.1" 304 - "http://127.0.0.1:3000/" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3178.0 Safari/537.36"
+::ffff:127.0.0.1 - - [27/Sep/2017:02:29:32 +0000] "GET /login HTTP/1.1" 200 1061 "http://127.0.0.1:3000/" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3178.0 Safari/537.36"
+::ffff:127.0.0.1 - - [27/Sep/2017:02:29:32 +0000] "GET /stylesheets/style.css HTTP/1.1" 304 - "http://127.0.0.1:3000/login" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3178.0 Safari/537.36"
+::ffff:127.0.0.1 - - [27/Sep/2017:02:29:33 +0000] "POST /login HTTP/1.1" 302 46 "http://127.0.0.1:3000/login" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3178.0 Safari/537.36"
+::ffff:127.0.0.1 - - [27/Sep/2017:02:29:33 +0000] "GET / HTTP/1.1" 200 1136 "http://127.0.0.1:3000/login" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3178.0 Safari/537.36"
+::ffff:127.0.0.1 - - [27/Sep/2017:02:29:33 +0000] "GET /stylesheets/style.css HTTP/1.1" 304 - "http://127.0.0.1:3000/" "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3178.0 Safari/537.36"

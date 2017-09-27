@@ -1,6 +1,7 @@
 var express = require('express');
 var session = require('express-session');
 var path = require('path');
+var fs = require('fs');
 var settings = require('./settings');
 var flash = require('connect-flash');
 var favicon = require('serve-favicon');
@@ -18,9 +19,16 @@ app.set('view engine', 'ejs');
 app.use(flash());
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+app.use(favicon(path.join(__dirname, 'public/images/', 'favicon.ico')));
+// app.use(logger('dev'));
+// create a write stream (in append mode)
+var accessLogStream = fs.createWriteStream(path.join(__dirname+'/logs/', 'access.log'), {flags: 'a'});
+
+// setup the logger
+app.use(logger('combined', {stream: accessLogStream}));
+// parse application/json
 app.use(bodyParser.json());
+// parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: false}));
 // app.use(bodyParser({
 //     keepExtensions:true,
@@ -32,7 +40,7 @@ app.use(session({
     cookie: {maxAge: 80000},
     resave:false,
     saveUninitialized: true
-}))
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', routes.index);
