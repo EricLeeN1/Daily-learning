@@ -162,3 +162,8 @@
             app.use(bodyParser.raw({ type: 'application/vnd.custom-type' }))
             // parse an HTML body into a string -> 将HTML主体解析成字符串
             app.use(bodyParser.text({ type: 'text/html' }))
+
+##7.formidable（用于解析表单数据的js模块，尤其是文件上传。）貌似已经被express内置了、那就算了不学了。
+
+    1. 安装：$ npm install formidable
+    
