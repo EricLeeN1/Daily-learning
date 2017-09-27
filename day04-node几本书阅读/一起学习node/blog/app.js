@@ -17,12 +17,14 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(flash());
-
+// app.use(function (req, res, next) {
+//     app.locals.title = "My App";
+// });
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public/images/', 'favicon.ico')));
 // app.use(logger('dev'));
 // create a write stream (in append mode)
-var accessLogStream = fs.createWriteStream(path.join(__dirname+'/logs/', 'access.log'), {flags: 'a'});
+var accessLogStream = fs.createWriteStream(path.join(__dirname + '/logs/', 'access.log'), {flags: 'a'});
 
 // setup the logger
 app.use(logger('combined', {stream: accessLogStream}));
@@ -30,39 +32,40 @@ app.use(logger('combined', {stream: accessLogStream}));
 app.use(bodyParser.json());
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: false}));
-// app.use(bodyParser({
-//     keepExtensions:true,
-//     uploadDir:'./public/images'
-// }));//保留上传文件的后缀名，并设置上传目录
 app.use(cookieParser());
 app.use(session({
     secret: 'Eric',
     cookie: {maxAge: 80000},
-    resave:false,
+    resave: false,
     saveUninitialized: true
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', routes.index);
-app.get('/reg', routes.checkNotLogin);
-app.get('/reg', routes.reg);
-app.post('/reg',routes.checkNotLogin);
-app.post('/reg', routes.doReg);
-app.get('/login', routes.checkNotLogin);
-app.get('/login', routes.login);
-app.post('/login', routes.checkNotLogin);
-app.post('/login', routes.doLogin);
-app.get('/post',routes.checkLogin);
-app.get('/post', routes.post);
-app.post('/post', routes.checkLogin);
-app.post('/post', routes.doPost);
-app.get('/logout', routes.checkLogin);
-app.get('/logout', routes.logout);
-app.get('/upload', routes.checkLogin);
-app.get('/upload', routes.upload);
-app.post('/upload', routes.checkLogin);
-app.post('/upload', routes.doUpload);
-// app.use('/users', user.list);
+app.route('/')
+    .get(routes.index);
+app.route('/reg')
+    .get(routes.checkNotLogin)
+    .get(routes.reg)
+    .post(routes.checkNotLogin)
+    .post(routes.doReg);
+app.route('/login')
+    .get(routes.checkNotLogin)
+    .get(routes.login)
+    .post(routes.checkNotLogin)
+    .post(routes.doLogin);
+app.route('/post')
+    .get(routes.checkLogin)
+    .get(routes.post)
+    .post(routes.checkLogin)
+    .post(routes.doPost);
+app.route('/logout')
+    .get(routes.checkLogin)
+    .get(routes.logout);
+app.route('/upload')
+    .get(routes.checkLogin)
+    .get(routes.upload)
+    .post(routes.checkLogin)
+    .post(routes.doUpload);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -71,7 +74,7 @@ app.use(function (req, res, next) {
     next(err);
 });
 
-// error handler
+// error handler错误捕获页面处理
 app.use(function (err, req, res, next) {
     // set locals, only providing error in development
     res.locals.message = err.message;
