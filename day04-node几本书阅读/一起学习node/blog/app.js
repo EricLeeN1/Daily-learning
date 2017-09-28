@@ -17,6 +17,8 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(flash());
+app.set('title', 'My Site');
+console.log(app.get('title'));
 // app.use(function (req, res, next) {
 //     app.locals.title = "My App";
 // });
@@ -44,27 +46,23 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.route('/')
     .get(routes.index);
 app.route('/reg')
-    .get(routes.checkNotLogin)
+    .all(routes.checkNotLogin)
     .get(routes.reg)
-    .post(routes.checkNotLogin)
     .post(routes.doReg);
 app.route('/login')
-    .get(routes.checkNotLogin)
+    .all(routes.checkNotLogin)
     .get(routes.login)
-    .post(routes.checkNotLogin)
     .post(routes.doLogin);
 app.route('/post')
-    .get(routes.checkLogin)
+    .all(routes.checkLogin)
     .get(routes.post)
-    .post(routes.checkLogin)
     .post(routes.doPost);
 app.route('/logout')
     .get(routes.checkLogin)
     .get(routes.logout);
 app.route('/upload')
-    .get(routes.checkLogin)
+    .all(routes.checkLogin)
     .get(routes.upload)
-    .post(routes.checkLogin)
     .post(routes.doUpload);
 
 // catch 404 and forward to error handler
