@@ -11,12 +11,12 @@
 <body>
 <%- include header %>
 <% articles.forEach(function (article, index) { %>
-<h2><a href="#"><%= article.title %></a></h2>
+<p><h2><a href="/u/<%= article.name %>/<%= article.time.day %>/<%= article.title %>"><%= article.title %></a></h2></p>
 <p class="info">
-    作者：<a href="#"><%= article.name%></a>
+    作者：<a href="/u/<%= article.name %>"><%= article.name %></a> |
     日期：<%= article.time.minute %>
 </p>
-<p><%- article.article%></p>
+<p><%- article.article %></p>
 <% }) %>
 <%- include footer %>
 </body>

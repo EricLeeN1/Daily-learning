@@ -9,6 +9,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+
 var routes = require('./routes/router');
 
 var app = express();
@@ -28,12 +29,15 @@ app.use(favicon(path.join(__dirname, 'public/images/', 'favicon.ico')));
 // create a write stream (in append mode)
 var accessLogStream = fs.createWriteStream(path.join(__dirname + '/logs/', 'access.log'), {flags: 'a'});
 
-// setup the logger
+//for  setup the logger
 app.use(logger('combined', {stream: accessLogStream}));
-// parse application/json
+//for  parse application/json
 app.use(bodyParser.json());
-// parse application/x-www-form-urlencoded
+//for  parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: false}));
+// for parsing multipart/form-data
+app.use(bodyParser({ keepExtensions: true, uploadDir: './public/images' }));
+// app.use(multer());// for parsing multipart/form-data
 app.use(cookieParser());
 app.use(session({
     secret: 'Eric',
@@ -64,7 +68,10 @@ app.route('/upload')
     .all(routes.checkLogin)
     .get(routes.upload)
     .post(routes.doUpload);
-
+app.route('/u/:name')
+    .get(routes.user);
+app.route('/u/:name/:day/:title')
+    .get(routes.article);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     var err = new Error('Not Found');

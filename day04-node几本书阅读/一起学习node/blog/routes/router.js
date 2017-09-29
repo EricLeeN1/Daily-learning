@@ -6,7 +6,7 @@ var crypto = require('crypto'),
     Post = require('../models/post');
 /* GET home page. */
 router.index = function (req, res, next) {
-    Post.get(null, function (err, articles) {
+    Post.getAll(null, function (err, articles) {
         if (err) {
             articles = [];
         }
@@ -135,23 +135,66 @@ router.upload = function (req, res, next) {
     })
 };
 router.doUpload = function (req, res, next) {
+    console.log(1111);
     for (var i in req.files) {
-        console.log(req.files);
-        if (req.files[i].size==0) {
-            //使用同步方式删除一个文件
+        console.log('这个是不是没走？');
+        if (req.files[i].size == 0) {
+// 使用同步方式删除一个文件
             fs.unlinkSync(req.files[i].path);
-            console.log('成功一出一个空文件!');
-        }else {
-            var target_Path ='./public/images/'+req.files[i].name;
-            //使用同步方式重命名一个文件
-            fs.renameSync(req.files[i].path,target_Path);
-            console.log('成功重命名一个文件');
+            console.log('Successfully removed an empty file!');
+        } else {
+            var target_path = './public/images/' + req.files[i].name;
+// 使用同步方式重命名一个文件
+            fs.renameSync(req.files[i].path, target_path);
+            console.log('Successfully renamed a file!');
         }
-    };
-    console.log(req.files);
-    req.flash('success','文件上传成功!');
+    }
+    req.flash('success', '文件上传成功!');
     res.redirect('/upload');
 };
+
+//用户页面
+router.user = function (req, res) {
+    //检查用户是否存在
+    User.get(req.params.name, function (err, user) {
+        if (!user) {
+            req.flash('error', '用户不存在');
+            return res.redirect('/');//用户不存在则跳转到主页
+        }
+        //查询并返回该用户的所有文章
+        Post.getAll(user.name, function (err, articles) {
+            if (err) {
+                req.flash('error', err);
+            }
+            res.render('user', {
+                title: user.name,
+                articles: articles,
+                user: req.session.user,
+                success: req.flash('success').toString(),
+                error: req.flash('error').toString()
+            });
+        });
+    })
+};
+
+//文章页面
+
+router.article = function (req, res) {
+    Post.getOne(req.params.name, req.params.day, req.params.title, function (err, article) {
+        if (err) {
+            req.flash('error', err);
+            return res.redirect('/');//没找到就返回主页
+        }
+        res.render('article', {
+            title: req.params.title,
+            article: article,
+            user: req.session.user,
+            success: req.flash('success').toString(),
+            error: req.flash('error').toString()
+        })
+    });
+};
+
 //不同情况检查是否登录
 router.checkLogin = function (req, res, next) {
     if (!req.session.user) {
@@ -169,5 +212,4 @@ router.checkNotLogin = function (req, res, next) {
 };
 // checkNotLogin 和  checkLogin 用来检测是否登陆，并通过  next() 转移控制权，
 // 检测到未登录则跳转到登录页，检测到已登录则跳转到上一个页面。
-
 module.exports = router;
