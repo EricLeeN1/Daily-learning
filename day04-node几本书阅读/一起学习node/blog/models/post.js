@@ -25,7 +25,7 @@ Post.prototype.save = function (callback) {
         time: time,
         title: this.title,
         article: this.article,
-        comments:[]
+        comments: []
     };
 
     //打开数据库
@@ -48,8 +48,8 @@ Post.prototype.save = function (callback) {
     });
 };
 
-//读取文章及其相关信息
-Post.getAll = function (name, callback) {
+//一次读取十篇文章及其相关信息
+Post.getTen = function (name, page, callback) {
     //打开数据库
     mongodb.open(function (err, db) {
         if (err) {
@@ -65,20 +65,26 @@ Post.getAll = function (name, callback) {
             if (name) {
                 query.name = name;
             }
-            //根据query对象查询文章
-            collection.find(query).sort({
-                time: -1
-            }).toArray(function (err, docs) {
-                mongodb.close();
-                if (err) {
-                    return callback(err);//查找失败，返回err
-                }
-                //解析Markdown为html
-                docs.forEach(function (doc) {
-                    doc.article = markdown.toHTML(doc.article);
+            //使用count返回特定查询的文档书total
+            collection.count(query, function (err, total) {
+                //根据query对象查询，并跳过前（page-1）*10个结果，返回之后的十个结果
+                collection.find(query, {
+                    skip: (page - 1) * 10,
+                    limit: 10
+                }).sort({
+                    time: -1
+                }).toArray(function (err, docs) {
+                    mongodb.close();
+                    if (err) {
+                        return callback(err);//查找失败，返回err
+                    }
+                    //解析Markdown为html
+                    docs.forEach(function (doc) {
+                        doc.article = markdown.toHTML(doc.article);
+                    });
+                    callback(null, docs, total);//查找成功！以数组形式返回查询的结果
                 });
-                callback(null, docs);//查找成功！以数组形式返回查询的结果
-            })
+            });
         });
     });
 };
@@ -111,7 +117,7 @@ Post.getOne = function (name, day, title, callback) {
                     // console.log(doc);
                     doc.article = markdown.toHTML(doc.article);
                     doc.comments.forEach(function (comment) {
-                       comment.content = markdown.toHTML(comment.content);
+                        comment.content = markdown.toHTML(comment.content);
                     });
                     callback(null, doc);//返回查询的一篇文章
                 } else {
