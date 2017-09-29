@@ -71,7 +71,8 @@ app.route('/upload')
 app.route('/u/:name')
     .get(routes.user);
 app.route('/u/:name/:day/:title')
-    .get(routes.article);
+    .get(routes.article)
+    .post(routes.doArticle);
 app.route('/edit/:name/:day/:title')
     .all(routes.checkLogin)
     .get(routes.edit)

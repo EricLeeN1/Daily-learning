@@ -24,7 +24,8 @@ Post.prototype.save = function (callback) {
         name: this.name,
         time: time,
         title: this.title,
-        article: this.article
+        article: this.article,
+        comments:[]
     };
 
     //打开数据库
@@ -109,6 +110,9 @@ Post.getOne = function (name, day, title, callback) {
                     //解析markdown为html
                     // console.log(doc);
                     doc.article = markdown.toHTML(doc.article);
+                    doc.comments.forEach(function (comment) {
+                       comment.content = markdown.toHTML(comment.content);
+                    });
                     callback(null, doc);//返回查询的一篇文章
                 } else {
                     return callback(err);

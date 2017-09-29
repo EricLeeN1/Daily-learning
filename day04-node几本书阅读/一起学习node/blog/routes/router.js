@@ -3,7 +3,8 @@ var router = express.Router();
 var crypto = require('crypto'),
     fs = require('fs'),
     User = require('../models/user'),
-    Post = require('../models/post');
+    Post = require('../models/post'),
+    Comment = require('../models/comment');
 /* GET home page. */
 router.index = function (req, res, next) {
     Post.getAll(null, function (err, articles) {
@@ -98,7 +99,7 @@ router.doLogin = function (req, res, next) {
         res.redirect('/');
     });
 };
-//发表页面
+//发表文章页面
 router.post = function (req, res, next) {
     res.render('post', {
         title: '发表',
@@ -107,7 +108,7 @@ router.post = function (req, res, next) {
         error: req.flash('error').toString()
     });
 };
-//发表验证
+//发表文章验证
 router.doPost = function (req, res, next) {
     var currentUser = req.session.user,
         post = new Post(currentUser.name, req.body.title, req.body.article);
@@ -117,7 +118,28 @@ router.doPost = function (req, res, next) {
             return res.redirect('/');
         }
         req.flash('success', '发布成功！');
-        res.redirect('/')
+        res.redirect('/');
+    });
+};
+// 发表评论页面
+router.doArticle = function (req, res, next) {
+    var date = new Date(),
+        time = date.getFullYear() + '-' + (date.getMonth() - 0 + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes();
+    var comment = {
+        name: req.body.name,
+        email: req.body.email,
+        website: req.body.website,
+        time: time,
+        content: req.body.content,
+    };
+    var newComment = new Comment(req.params.name, req.params.day, res.params.title,comment);
+    newComment.save(function (err) {
+        if (err) {
+            req.flash('error', err);
+            return res.redirect('/');
+        }
+        req.flash('success', '留言成功！');
+        res.redirect('back');//留言成功后返回到该文章页。
     });
 };
 //登出页面
@@ -126,6 +148,7 @@ router.logout = function (req, res, next) {
     req.flash('success', '登出成功！');
     res.redirect('/');
 };
+//上传文件页面
 router.upload = function (req, res, next) {
     res.render('upload', {
         title: '文件上传',
@@ -134,6 +157,7 @@ router.upload = function (req, res, next) {
         error: req.flash('error').toString()
     })
 };
+// 上传文件验证页面
 router.doUpload = function (req, res, next) {
     console.log(1111);
     for (var i in req.files) {
@@ -152,8 +176,7 @@ router.doUpload = function (req, res, next) {
     req.flash('success', '文件上传成功!');
     res.redirect('/upload');
 };
-
-//用户页面
+//用户个人中心页面
 router.user = function (req, res) {
     //检查用户是否存在
     User.get(req.params.name, function (err, user) {
@@ -176,8 +199,7 @@ router.user = function (req, res) {
         });
     })
 };
-
-//文章页面
+//文章详情页面
 router.article = function (req, res) {
     Post.getOne(req.params.name, req.params.day, req.params.title, function (err, article) {
         if (err) {
@@ -193,8 +215,7 @@ router.article = function (req, res) {
         })
     });
 };
-
-// 编辑
+// 编辑文章页面
 router.edit = function (req, res) {
     var currentUser = req.session.user;
     Post.edit(currentUser.name, req.params.day, req.params.title, function (err, article) {
@@ -211,8 +232,7 @@ router.edit = function (req, res) {
         });
     });
 };
-
-// 保存编辑
+// 保存文章页面
 router.doEdit = function (req, res) {
     var currentUser = req.session.user;
     Post.update(currentUser.name, req.params.day, req.params.title, req.body.article, function (err) {
@@ -225,8 +245,7 @@ router.doEdit = function (req, res) {
         res.redirect(url);//成功！返回文章页
     });
 };
-
-//删除
+//删除文章操作
 router.remove = function (req, res) {
     var currentUser = req.session.user;
     Post.remove(currentUser.name, req.params.day, req.params.title, function (err) {
