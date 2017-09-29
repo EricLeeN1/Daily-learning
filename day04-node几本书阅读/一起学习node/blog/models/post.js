@@ -8,7 +8,6 @@ function Post(name, title, article) {
 };
 
 
-
 //存储一篇文章及其相关信息
 Post.prototype.save = function (callback) {
     var date = new Date();
@@ -102,24 +101,114 @@ Post.getOne = function (name, day, title, callback) {
                 "name": name,
                 "time.day": day,
                 "title": title
-            },function (err,doc) {
-                console.log(doc);
+            }, function (err, doc) {
                 mongodb.close();
                 if (err) {
                     return callback(err);
-                }else if (doc) {
+                } else if (doc) {
                     //解析markdown为html
                     // console.log(doc);
                     doc.article = markdown.toHTML(doc.article);
-                    callback(null,doc);//返回查询的一篇文章
-                }else{
+                    callback(null, doc);//返回查询的一篇文章
+                } else {
                     return callback(err);
                 }
-
             });
         });
     });
 };
 
+
+//返回原始发表的内容(markdown 格式)
+Post.edit = function (name, day, title, callback) {
+    //打开数据库
+    mongodb.open(function (err, db) {
+        if (err) {
+            return callback(err);
+        }
+        //读取posts集合
+        db.collection('posts', function (err, collection) {
+            if (err) {
+                mongodb.close();
+                return callback(err);
+            }
+            //根据用户名、发表日期及文章名进行查询
+            collection.findOne({
+                "name": name,
+                "time.day": day,
+                "title": title
+            }, function (err, doc) {
+                mongodb.close();
+                if (err) {
+                    return callback(err);
+                } else if (doc) {
+                    callback(null, doc);//返回查询的一篇文章(markdown格式)
+                } else {
+                    return callback(err);
+                }
+            });
+        });
+    });
+};
+
+//更新改过的文章
+Post.update = function (name, day, title, article, callback) {
+    //打开数据库
+    mongodb.open(function (err, db) {
+        if (err) {
+            return callback(err);
+        }
+        //读取posts集合
+        db.collection('posts', function (err, collection) {
+            if (err) {
+                mongodb.close();
+                return callback(err);
+            }
+            //更新文章内容
+            collection.update({
+                "name": name,
+                "time.day": day,
+                "title": title
+            }, {
+                $set: {article: article}
+            }, function (err, result) {
+                mongodb.close();
+                if (err) {
+                    return callback(err);
+                }
+                callback(null);
+            });
+        });
+    });
+};
+
+//删除文章
+Post.remove = function (name, day, title, callback) {
+    //打开数据库
+    mongodb.open(function (err, db) {
+        if (err) {
+            return callback(err);
+        }
+        //读取posts集合
+        db.collection('posts', function (err, collection) {
+            if (err) {
+                mongodb.close();
+                return callback(err);
+            }
+            //根据用户名、日期和标题查找并删除一篇文章
+            collection.remove({
+                "name": name,
+                "time.day": day,
+                "title": title
+            }, function (err, result) {
+                mongodb.close();
+                if (err) {
+                    return callback(err);
+                }
+                callback(null);
+            });
+        });
+    });
+};
 
 module.exports = Post;

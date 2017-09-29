@@ -178,7 +178,6 @@ router.user = function (req, res) {
 };
 
 //文章页面
-
 router.article = function (req, res) {
     Post.getOne(req.params.name, req.params.day, req.params.title, function (err, article) {
         if (err) {
@@ -194,6 +193,53 @@ router.article = function (req, res) {
         })
     });
 };
+
+// 编辑
+router.edit = function (req, res) {
+    var currentUser = req.session.user;
+    Post.edit(currentUser.name, req.params.day, req.params.title, function (err, article) {
+        if (err) {
+            req.flash('error', err);
+            return res.redirect('back');
+        }
+        res.render('edit', {
+            title: '编辑',
+            article: article,
+            user: req.session.user,
+            success: req.flash('success').toString(),
+            error: req.flash('error').toString()
+        });
+    });
+};
+
+// 保存编辑
+router.doEdit = function (req, res) {
+    var currentUser = req.session.user;
+    Post.update(currentUser.name, req.params.day, req.params.title, req.body.article, function (err) {
+        var url = '/u/' + req.params.name + '/' + req.params.day + '/' + req.params.title;
+        if (err) {
+            req.flash('error', err);
+            return res.redirect(url);//出错! 返回文章页
+        }
+        req.flash('success', '修改成功!');
+        res.redirect(url);//成功！返回文章页
+    });
+};
+
+//删除
+router.remove = function (req, res) {
+    var currentUser = req.session.user;
+    Post.remove(currentUser.name, req.params.day, req.params.title, function (err) {
+        var url = '/u/' + req.params.name + '/' + req.params.day + '/' + req.params.title;
+        if (err) {
+            req.flash('error', err);
+            return res.redirect('back');
+        }
+        req.flash('success', '删除成功!');
+        res.redirect('/');
+    });
+};
+
 
 //不同情况检查是否登录
 router.checkLogin = function (req, res, next) {

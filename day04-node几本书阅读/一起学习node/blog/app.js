@@ -36,7 +36,7 @@ app.use(bodyParser.json());
 //for  parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: false}));
 // for parsing multipart/form-data
-app.use(bodyParser({ keepExtensions: true, uploadDir: './public/images' }));
+app.use(bodyParser({keepExtensions: true, uploadDir: './public/images'}));
 // app.use(multer());// for parsing multipart/form-data
 app.use(cookieParser());
 app.use(session({
@@ -72,6 +72,13 @@ app.route('/u/:name')
     .get(routes.user);
 app.route('/u/:name/:day/:title')
     .get(routes.article);
+app.route('/edit/:name/:day/:title')
+    .all(routes.checkLogin)
+    .get(routes.edit)
+    .post(routes.doEdit);
+app.route('/remove/:name/:day/:title')
+    .all(routes.checkLogin)
+    .get(routes.remove);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     var err = new Error('Not Found');
