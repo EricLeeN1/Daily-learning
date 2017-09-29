@@ -68,6 +68,8 @@ app.route('/upload')
     .all(routes.checkLogin)
     .get(routes.upload)
     .post(routes.doUpload);
+app.route('/archive')
+    .get(routes.archive)
 app.route('/u/:name')
     .get(routes.user);
 app.route('/u/:name/:day/:title')

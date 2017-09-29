@@ -182,6 +182,22 @@ router.doUpload = function (req, res, next) {
     req.flash('success', '文件上传成功!');
     res.redirect('/upload');
 };
+//存档页面
+router.archive = function (req, res) {
+    Post.getArchive(function (err, articles) {
+        if (err) {
+            req.flash('error', err);
+            return res.redirect('/');
+        }
+        res.render('archive', {
+            title: '存档',
+            articles: articles,
+            user: req.session.user,
+            success: req.flash('success').toString(),
+            error: req.flash('error').toString()
+        });
+    });
+};
 //用户个人中心页面
 router.user = function (req, res) {
     var page = req.query.p ? parseInt(req.query.p) : 1;
@@ -268,7 +284,6 @@ router.remove = function (req, res) {
         res.redirect('/');
     });
 };
-
 
 //不同情况检查是否登录
 router.checkLogin = function (req, res, next) {

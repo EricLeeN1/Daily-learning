@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title><%= title %></title>
+</head>
+<body>
+<%- include header %>
+<ul class="archive">
+    <% var lastYear = 0 %>
+    <% articles.forEach(function (article, index) { %>
+    <% if(lastYear != article.time.year){ %>
+    <li>
+        <h3><%= article.time.year %></h3>
+    </li>
+    <% lastYear = article.time.year} %>
+    <li>
+        <time><%= article.time.day %></time>
+    </li>
+    <li><a href="/u/<% article.name %>/<% article.day %>/<% article.title %>"><%= article.title %></a></li>
+    <% }) %>
+</ul>
+<%- include footer %>
+</body>
+</html>
