@@ -1,4 +1,5 @@
 var mongodb = require('./db');
+var ObjectID = require('mongodb').ObjectID;
 var markdown = require('markdown').markdown;
 
 function Post(name, avatar, title, tags, article) {
@@ -30,7 +31,7 @@ Post.prototype.save = function (callback) {
         tags: this.tags,
         article: this.article,
         comments: [],
-        peprint_info: {},
+        reprint_info: {},
         pv: 0
     };
 
@@ -97,7 +98,7 @@ Post.getTen = function (name, page, callback) {
 
 //获取一篇文章
 
-Post.getOne = function (name, day, title, callback) {
+Post.getOne = function (_id, callback) {
     //打开数据库
     mongodb.open(function (err, db) {
         if (err) {
@@ -111,9 +112,7 @@ Post.getOne = function (name, day, title, callback) {
             }
             //根据用户名、发表日期及文章名进行查询
             collection.findOne({
-                "name": name,
-                "time.day": day,
-                "title": title
+                "_id":new ObjectID(_id)
             }, function (err, doc) {
                 mongodb.close();
                 if (err) {
@@ -135,9 +134,7 @@ Post.getOne = function (name, day, title, callback) {
             });
             //每访问 1 次，pv 值增加 1
             collection.update({
-                "name": name,
-                "time.day": day,
-                "title": title
+                "_id":new ObjectID(_id)
             }, {
                 $inc: {"pv": 1}
             }, function (err, res) {

@@ -6,10 +6,11 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/stylesheets/style.css">
-    <title><%= title %></title>
+    <title><%= article.title %></title>
 </head>
 <body>
 <%- include header %>
+
 <% if(user && (user.name == article.name)){ %>
 <span><a href="/edit/<%= article.name %>/<%= article.time.day %>/<%= article.title %>" class="edit">Edit</a></span>
 <span><a href="/remove/<%= article.name %>/<%= article.time.day %>/<%= article.title %>"
@@ -17,12 +18,12 @@
 <br>
 <% } %>
 <% var flag = 1 %>
-<% if (user && (user.name != post.name)) { %>
-<% if ((post.reprint_info.reprint_from != undefined) && (user.name == post.reprint_info.reprint_from.name)) { %>
+<% if (user && (user.name != article.name)) { %>
+<% if ((article.reprint_info.reprint_from != undefined) && (user.name == article.reprint_info.reprint_from.name)) { %>
 <% flag = 0 %>
 <% } %>
-<% if ((post.reprint_info.reprint_to != undefined)) { %>
-<% post.reprint_info.reprint_to.forEach(function (reprint_to, index) { %>
+<% if ((article.reprint_info.reprint_to != undefined)) { %>
+<% article.reprint_info.reprint_to.forEach(function (reprint_to, index) { %>
 <% if (user.name == reprint_to.name) { %>
 <% flag = 0 %>
 <% } %>
@@ -32,10 +33,11 @@
 <% flag = 0 %>
 <% } %>
 <% if (flag) { %>
-<span><a class="edit" href="/reprint/<%= post.name %>/<%= post.time.day %>/<%= post.title %>">转载</a></span>
-<% } %>
+<span><a class="edit" href="/reprint/<%= article.name %>/<%= article.time.day %>/<%= article.title %>">转载</a></span>
 <br>
+<% } %>
 <p class="info">
+    <span style="font-size: 30px;"><%= article.title %></span><br>
     作者: <a href="/u/<%= article.name %>"><%= article.name %></a> |
     日期: <%= article.time.minute %> |
     标签：

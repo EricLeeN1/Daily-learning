@@ -289,11 +289,12 @@ router.user = function (req, res) {
 };
 //文章详情页面
 router.article = function (req, res) {
-    Post.getOne(req.params.name, req.params.day, req.params.title, function (err, article) {
+    Post.getOne(req.params._id, function (err, article) {
         if (err) {
             req.flash('error', err);
             return res.redirect('/');//没找到就返回主页
         }
+        console.log(req.params._id,article);
         res.render('article', {
             title: req.params.title,
             article: article,
@@ -348,21 +349,21 @@ router.remove = function (req, res) {
 };
 //转载文章操作
 router.reprint = function (req, res) {
-    Post.edit(req.params.name, req.params.day, req.params.title, function (err, post) {
+    Post.edit(req.params.name, req.params.day, req.params.title, function (err, article) {
         if (err) {
             req.flash('error', err);
             return res.redirect(back);
         }
         var currentUser = req.session.user,
-            reprint_from = {name: post.name, day: post.time.day, title: post.title},
+            reprint_from = {name: article.name, day: article.time.day, title: article.title},
             reprint_to = {name: currentUser.name, head: currentUser.avatar};
-        Post.reprint(reprint_from, reprint_to, function (err, post) {
+        Post.reprint(reprint_from, reprint_to, function (err, article) {
             if (err) {
                 req.flash('error', err);
                 return res.redirect('back');
             }
             req.flash('success', '转载成功!');
-            var url = '/u/' + post.name + '/' + post.time.day + '/' + post.title;
+            var url = '/u/' + article.name + '/' + article.time.day + '/' + article.title;
 //跳转到转载后的文章页面
             res.redirect(url);
         });

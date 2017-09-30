@@ -81,7 +81,7 @@ app.route('/links')
     .get(routes.links);
 app.route('/u/:name')
     .get(routes.user);
-app.route('/u/:name/:day/:title')
+app.route('/p/:_id')
     .get(routes.article)
     .post(routes.doArticle);
 app.route('/edit/:name/:day/:title')
@@ -106,12 +106,11 @@ app.use(function (err, req, res, next) {
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
-
+    var meta = '[' + new Date() + '] ' + req.url + '\n';
+    errorLogStream.write(meta + err.message + '\n');
     // render the error page
     res.status(err.status || 500);
-    res.render('error', {
-        title: res.locals.error
-    });
+    res.render('error');
 });
 app.listen(3000);
 module.exports = app;
