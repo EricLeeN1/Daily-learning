@@ -10,7 +10,7 @@ function Comment(name, day, title, comment) {
     this.comment = comment;
 };
 
-//存出一条留言信息
+//存储一条留言信息
 Comment.prototype.save = function (callback) {
     var name = this.name,
         day = this.day,
@@ -32,7 +32,7 @@ Comment.prototype.save = function (callback) {
                 "name": name,
                 "time.day": day,
                 "title": title
-            }, {$push: {"comments": comment}}, function (err, user) {
+            }, {$push: {"comments": comment}}, function (err, result) {
                 mongodb.close();//关闭数据库
                 callback(null);
             });

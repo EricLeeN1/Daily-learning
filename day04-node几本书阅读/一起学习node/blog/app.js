@@ -28,6 +28,7 @@ app.use(favicon(path.join(__dirname, 'public/images/', 'favicon.ico')));
 // app.use(logger('dev'));
 // create a write stream (in append mode)
 var accessLogStream = fs.createWriteStream(path.join(__dirname + '/logs/', 'access.log'), {flags: 'a'});
+var errorLogStream = fs.createWriteStream(path.join(__dirname + '/logs/', 'error.log'), {flags: 'a'});
 
 //for  setup the logger
 app.use(logger('combined', {stream: accessLogStream}));
@@ -69,7 +70,15 @@ app.route('/upload')
     .get(routes.upload)
     .post(routes.doUpload);
 app.route('/archive')
-    .get(routes.archive)
+    .get(routes.archive);
+app.route('/tags')
+    .get(routes.tags);
+app.route('/tags/:tag')
+    .get(routes.tag);
+app.route('/search')
+    .get(routes.search);
+app.route('/links')
+    .get(routes.links);
 app.route('/u/:name')
     .get(routes.user);
 app.route('/u/:name/:day/:title')
@@ -82,6 +91,9 @@ app.route('/edit/:name/:day/:title')
 app.route('/remove/:name/:day/:title')
     .all(routes.checkLogin)
     .get(routes.remove);
+app.route('/reprint/:name/:day/:title')
+    .all(routes.checkLogin)
+    .get(routes.reprint);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     var err = new Error('Not Found');
@@ -97,7 +109,9 @@ app.use(function (err, req, res, next) {
 
     // render the error page
     res.status(err.status || 500);
-    res.render('error');
+    res.render('error', {
+        title: res.locals.error
+    });
 });
 app.listen(3000);
 module.exports = app;

@@ -10,15 +10,11 @@
 </head>
 <body>
 <%- include header %>
-<form action="" method="post">
-    <h3>标题：</h3>
-    <p><input type="text" name="title" id="title"></p>
-    标签：<br>
-    <input type="text" name="tag1"> <input type="text" name="tag2"><input type="text" name="tag3"><br>
-    <h4>正文：</h4>
-    <textarea name="article" id="article" cols="100" rows="20"></textarea><br>
-    <input type="submit" value="Publish Now">
-</form>
+<% articles.forEach(function (tag, index) { %>
+<% if(tag){ %>
+<a href="/tags/<%= tag %>" class="tag"><%= tag %></a>
+<% } %>
+<% }) %>
 <%- include footer %>
 </body>
 </html>

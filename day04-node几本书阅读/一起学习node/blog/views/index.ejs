@@ -11,12 +11,34 @@
 <body>
 <%- include header %>
 <% articles.forEach(function (article, index) { %>
-<p><h2><a href="/u/<%= article.name %>/<%= article.time.day %>/<%= article.title %>"><%= article.title %></a></h2></p>
+<p>
+<h2><a href="/u/<%= article.name %>/<%= article.time.day %>/<%= article.title %>"><%= article.title %></a></h2>
+<a href="/u/<%= article.name%>"><img src="<%= article.avatar%>" class="r_avatar"></a>
+</p>
 <p class="info">
     作者：<a href="/u/<%= article.name %>"><%= article.name %></a> |
-    日期：<%= article.time.minute %>
+    日期：<%= article.time.minute %> |
+    标签：
+    <% article.tags.forEach(function (tag, index) { %>
+    <% if(tag.tag){%>
+    <a href="/tags/<%= tag.tag%>" class="tag"><%= tag.tag%></a>
+    <%}%>
+    <% }) %>
+    <% if (article.reprint_info.reprint_from) { %>
+    <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    <% } %>
 </p>
 <p><%- article.article %></p>
+<p class="info">
+    阅读：<%= article.pv %>|
+    评论：<%= article.comments.length %>|
+    转载：
+    <% if (article.reprint_info.reprint_to) { %>
+    <%= article.reprint_info.reprint_to.length %>
+    <% } else { %>
+    <%= 0 %>
+    <% } %>
+</p>
 <% }) %>
 <%- include paging %>
 <%- include footer %>

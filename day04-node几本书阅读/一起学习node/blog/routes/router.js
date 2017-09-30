@@ -117,7 +117,8 @@ router.post = function (req, res, next) {
 //发表文章验证
 router.doPost = function (req, res, next) {
     var currentUser = req.session.user,
-        post = new Post(currentUser.name, req.body.title, req.body.article);
+        tags = [{"tag": req.body.tag1}, {"tag": req.body.tag2}, {"tag": req.body.tag3}],
+        post = new Post(currentUser.name, currentUser.avatar, req.body.title, tags, req.body.article);
     post.save(function (err) {
         if (err) {
             req.flash('error', err);
@@ -131,14 +132,18 @@ router.doPost = function (req, res, next) {
 router.doArticle = function (req, res, next) {
     var date = new Date(),
         time = date.getFullYear() + '-' + (date.getMonth() - 0 + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes();
+    var md5 = crypto.createHash('md5'),
+        email_MD5 = md5.update(req.body.email.toLowerCase()).digest('hex'),
+        avatar = "http://www.gravatar.com/avatar/" + email_MD5 + "?s=48";
     var comment = {
         name: req.body.name,
+        avatar: avatar,
         email: req.body.email,
         website: req.body.website,
         time: time,
-        content: req.body.content,
+        content: req.body.content
     };
-    var newComment = new Comment(req.params.name, req.params.day, res.params.title, comment);
+    var newComment = new Comment(req.params.name, req.params.day, req.params.title, comment);
     newComment.save(function (err) {
         if (err) {
             req.flash('error', err);
@@ -198,6 +203,63 @@ router.archive = function (req, res) {
         });
     });
 };
+//标签页面
+router.tags = function (req, res, next) {
+    Post.getTags(function (err, articles) {
+        if (err) {
+            req.flash('error', err);
+            return res.redirect('/');
+        }
+        res.render('tags', {
+            title: "标签",
+            articles: articles,
+            user: req.session.user,
+            success: req.flash('success').toString(),
+            error: req.flash('error').toString()
+        });
+    });
+};
+//特定标签页面
+router.tag = function (req, res, next) {
+    Post.getTag(req.params.tag, function (err, articles) {
+        if (err) {
+            req.flash('error', err);
+            return res.redirect('/');
+        }
+        res.render('tag', {
+            title: "TAG：" + req.params.tag,
+            articles: articles,
+            user: req.session.user,
+            success: req.flash('success').toString(),
+            error: req.flash('error').toString()
+        });
+    });
+};
+//搜索页面
+router.search = function (req, res, next) {
+    Post.search(req.query.keyword, function (err, articles) {
+        if (err) {
+            req.flash('error', err);
+            return res.redirect('/');
+        }
+        res.render('search', {
+            title: "Search：" + req.query.keyword,
+            articles: articles,
+            user: req.session.user,
+            success: req.flash('success').toString(),
+            error: req.flash('error').toString()
+        });
+    });
+};
+//友情链接
+router.links = function (req, res, next) {
+    res.render('links', {
+        title: '友情链接',
+        user: req.session.user,
+        success: req.flash('success').toString(),
+        error: req.flash('error').toString()
+    });
+};
 //用户个人中心页面
 router.user = function (req, res) {
     var page = req.query.p ? parseInt(req.query.p) : 1;
@@ -217,7 +279,7 @@ router.user = function (req, res) {
                 articles: articles,
                 user: req.session.user,
                 isFirstPage: (page - 1) == 0,
-                isLastPage: ((page - 1) * 10 + posts.length) == total,
+                isLastPage: ((page - 1) * 10 + articles.length) == total,
                 page: page,
                 success: req.flash('success').toString(),
                 error: req.flash('error').toString()
@@ -284,7 +346,28 @@ router.remove = function (req, res) {
         res.redirect('/');
     });
 };
-
+//转载文章操作
+router.reprint = function (req, res) {
+    Post.edit(req.params.name, req.params.day, req.params.title, function (err, post) {
+        if (err) {
+            req.flash('error', err);
+            return res.redirect(back);
+        }
+        var currentUser = req.session.user,
+            reprint_from = {name: post.name, day: post.time.day, title: post.title},
+            reprint_to = {name: currentUser.name, head: currentUser.avatar};
+        Post.reprint(reprint_from, reprint_to, function (err, post) {
+            if (err) {
+                req.flash('error', err);
+                return res.redirect('back');
+            }
+            req.flash('success', '转载成功!');
+            var url = '/u/' + post.name + '/' + post.time.day + '/' + post.title;
+//跳转到转载后的文章页面
+            res.redirect(url);
+        });
+    });
+};
 //不同情况检查是否登录
 router.checkLogin = function (req, res, next) {
     if (!req.session.user) {

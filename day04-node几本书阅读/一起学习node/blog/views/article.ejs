@@ -11,18 +11,54 @@
 <body>
 <%- include header %>
 <% if(user && (user.name == article.name)){ %>
-<p>
-    <span><a href="/edit/<%= article.name %>/<%= article.time.day %>/<%= article.title %>" class="edit">Edit</a></span>
-    <span><a href="/remove/<%= article.name %>/<%= article.time.day %>/<%= article.title %>"
-             class="edit">Delete</a></span>
-</p>
+<span><a href="/edit/<%= article.name %>/<%= article.time.day %>/<%= article.title %>" class="edit">Edit</a></span>
+<span><a href="/remove/<%= article.name %>/<%= article.time.day %>/<%= article.title %>"
+         class="edit">Delete</a></span>
+<br>
 <% } %>
-
+<% var flag = 1 %>
+<% if (user && (user.name != post.name)) { %>
+<% if ((post.reprint_info.reprint_from != undefined) && (user.name == post.reprint_info.reprint_from.name)) { %>
+<% flag = 0 %>
+<% } %>
+<% if ((post.reprint_info.reprint_to != undefined)) { %>
+<% post.reprint_info.reprint_to.forEach(function (reprint_to, index) { %>
+<% if (user.name == reprint_to.name) { %>
+<% flag = 0 %>
+<% } %>
+<% }) %>
+<% } %>
+<% } else { %>
+<% flag = 0 %>
+<% } %>
+<% if (flag) { %>
+<span><a class="edit" href="/reprint/<%= post.name %>/<%= post.time.day %>/<%= post.title %>">转载</a></span>
+<% } %>
+<br>
 <p class="info">
-    作者: <a href="/u/<%= article.name %>"><%= article.name %></a>
-    日期: <%= article.time.minute %>
+    作者: <a href="/u/<%= article.name %>"><%= article.name %></a> |
+    日期: <%= article.time.minute %> |
+    标签：
+    <% article.tags.forEach(function (tag, index) { %>
+    <% if(tag.tag){ %>
+    <a href="/tags/<%= tag.tag %>" class="tag"><%= tag.tag %></a>
+    <% } %>
+    <% }) %>
+    <% if (article.reprint_info.reprint_from) { %>
+    <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    <% } %>
 </p>
 <p><%- article.article %></p>
+<p class="info">
+    阅读：<%= article.pv %>|
+    评论：<%= article.comments.length %>|
+    转载：
+    <% if (article.reprint_info.reprint_to) { %>
+    <%= article.reprint_info.reprint_to.length %>
+    <% } else { %>
+    <%= 0 %>
+    <% } %>
+</p>
 <%- include comment %>
 <%- include footer %>
 </body>
