@@ -1,0 +1,376 @@
+[Sat Sep 30 2017 14:31:57 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <%}%>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:32:35 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <%}%>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:32:41 GMT+0800 (中国标准时间)] /post
+Can't set headers after they are sent.
+[Sat Sep 30 2017 14:32:42 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <%}%>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:33:06 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <%}%>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:34:34 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <%}%>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:34:36 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <%}%>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:34:36 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <%}%>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:34:37 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <%}%>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:34:37 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <%}%>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:38:16 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <%}%>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:38:17 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <%}%>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:38:17 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <%}%>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:38:20 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <%}%>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:38:21 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <%}%>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:38:21 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <%}%>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:38:21 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <%}%>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:38:22 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <%}%>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:38:22 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <%}%>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:38:22 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <%}%>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:38:22 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <%}%>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:38:22 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <%}%>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:38:22 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <%}%>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:38:23 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <%}%>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:38:24 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <%}%>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:38:25 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <%}%>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:40:44 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <% } %>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from == true) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:40:44 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <% } %>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from == true) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:40:45 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <% } %>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from == true) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:40:45 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <% } %>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from == true) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:40:45 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <% } %>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from == true) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:40:46 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <% } %>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from == true) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:40:46 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <% } %>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from == true) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:40:50 GMT+0800 (中国标准时间)] /
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\index.ejs:27
+    25|     <% } %>
+    26|     <% }) %>
+ >> 27|     <% if (article.reprint_info.reprint_from == true) { %>
+    28|     <br><a href="/u/<%= article.reprint_info.reprint_from.name %>/<%= article.reprint_info.reprint_from.day %>/<%= article.reprint_info.reprint_from.title %>">原文链接</a>
+    29|     <% } %>
+    30| </p>
+
+Cannot read property 'reprint_from' of undefined
+[Sat Sep 30 2017 14:43:09 GMT+0800 (中国标准时间)] /p/59cf3cea94f70f0a881714bc
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\article.ejs:39
+    37| <br>
+    38| <p class="info">
+ >> 39|     作者: <a href="/u/<%= article.name %>"><%= article.name %></a> |
+    40|     日期: <%= article.time.minute %> |
+    41|     标签：
+    42|     <% article.tags.forEach(function (tag, index) { %>
+
+Cannot read property 'name' of undefined
+[Sat Sep 30 2017 14:45:12 GMT+0800 (中国标准时间)] /p/59cf3cea94f70f0a881714bc
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\article.ejs:39
+    37| <br>
+    38| <p class="info">
+ >> 39|     作者: <a href="/u/<%= article.name %>"><%= article.name %></a> |
+    40|     日期: <%= article.time.minute %> |
+    41|     标签：
+    42|     <% article.tags.forEach(function (tag, index) { %>
+
+Cannot read property 'name' of undefined
+[Sat Sep 30 2017 14:46:43 GMT+0800 (中国标准时间)] /p/59cf3cea94f70f0a881714bc
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\article.ejs:39
+    37| <br>
+    38| <p class="info">
+ >> 39|     作者: <a href="/u/<%= article.name %>"><%= article.name %></a> |
+    40|     日期: <%= article.time.minute %> |
+    41|     标签：
+    42|     <% article.tags.forEach(function (tag, index) { %>
+
+Cannot read property 'name' of undefined
+[Sat Sep 30 2017 14:47:06 GMT+0800 (中国标准时间)] /p/59cf3cea94f70f0a881714bc
+F:\develop\Daily-learning\day04-node几本书阅读\一起学习node\blog\views\article.ejs:39
+    37| <br>
+    38| <p class="info">
+ >> 39|     作者: <a href="/u/<%= article.name %>"><%= article.name %></a> |
+    40|     日期: <%= article.time.minute %> |
+    41|     标签：
+    42|     <% article.tags.forEach(function (tag, index) { %>
+
+Cannot read property 'name' of undefined
+[Sat Sep 30 2017 15:49:16 GMT+0800 (中国标准时间)] /
+Can't set headers after they are sent.
+[Sat Sep 30 2017 15:49:34 GMT+0800 (中国标准时间)] /
+Can't set headers after they are sent.
