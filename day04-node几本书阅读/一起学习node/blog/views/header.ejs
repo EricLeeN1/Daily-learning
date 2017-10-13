@@ -1,5 +1,5 @@
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
+<nav class="navbar navbar-inverse">
+    <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -8,14 +8,24 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Brand</a>
+            <a class="navbar-brand" href="#"><%= title %></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                <li><a href="#">Link</a></li>
+                <li class="active"><a title="主页" href="/">Home <span class="sr-only">(current)</span></a></li>
+                <li><a title="存档" href="/archive">Archive</a></li>
+                <li><a title="标签" href="/tags">Tags</a></li>
+                <li><a title="友情链接" href="/links">Links</a></li>
+                <% if (user) { %>
+                <li><a title="上传" href="/upload">Upload</a></li>
+                <li><a title="发表" href="/post">Post</a></li>
+                <li><a title="登出" href="/logout">Logout</a></li>
+                <% }else{ %>
+                <li><a title="登录" href="/login">Login</a></li>
+                <li><a title="注册" href="/reg">Register</a></li>
+                <% } %>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -29,50 +39,14 @@
                     </ul>
                 </li>
             </ul>
-            <form class="navbar-form navbar-left">
+            <form class="navbar-form navbar-right" action="/search" method="get">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
+                    <input type="text" class="form-control" placeholder="Search..." name="keyword">
                 </div>
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Link</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
-                </li>
-            </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
-</nav>
-
-<header>
-    <h1><%= title %></h1>
-</header>
-<nav>
-    <span><a title="主页" href="/">Home</a></span>
-    <span><a title="存档" href="/archive">Archive</a></span>
-    <span><a title="标签" href="/tags">Tags</a></span>
-    <span><a title="友情链接" href="/links">Links</a></span>
-    <% if (user) { %>
-    <span><a title="上传" href="/upload">Upload</a></span>
-    <span><a title="发表" href="/post">Post</a></span>
-    <span><a title="登出" href="/logout">Logout</a></span>
-    <% }else{ %>
-    <span><a title="登录" href="/login">Login</a></span>
-    <span><a title="注册" href="/reg">Register</a></span>
-    <% } %>
-    <span>
-        <form action="/search" method="get">
-        <input type="text" name="keyword" placeholder="Search..." class="search">
-        </form>
-    </span>
 </nav>
 <article>
     <% if (success) { %>
