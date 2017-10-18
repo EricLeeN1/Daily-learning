@@ -5,10 +5,52 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>微信交互</title>
+    <title>获取用户信息</title>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <script src="jquery.min.js"></script>
 </head>
 <body>
+<script>
+    function onBridgeReady() {
+        WeixinJSBridge.on('menu:share:appmessage', function(argv)
+        {
+            WeixinJSBridge.invoke('sendAppMessage',{
+                "link":"http://m.exmail.qq.com/",
+                "desc":"desc",
+                "title":"title for WeiXinJsBridge"
+            }, function(res) {
+                WeixinJSBridge.log(res.err_msg);
+            });
+        });
+        WeixinJSBridge.on('menu:share:timeline', function(argv)
+        {
+            WeixinJSBridge.invoke("shareTimeline",{
+                    "link":"http://m.exmail.qq.com",
+                    "img_url":"http://rescdn.qqmail.com/bizmail/zh_CN/htmledition/images/bizmail/v3/logo1ca3fe.png",
+                    "img_width":"172",
+                    "img_height":"40",
+                    "desc":"i am description",
+                    "title":"just test from WeixinJsBridge"
+                },
+                function(e){
+                    alert(e.err_msg);
+                })
+        });
+    }
 
+    if (typeof WeixinJSBridge === "undefined"){
+        if (document.addEventListener){
+            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+        }
+    }else{
+        onBridgeReady();
+    }
+    document.on('WeixinJSBridgeReady',function () {
+
+    });
+    $(function () {
+       console.log('111');
+    });
+</script>
 </body>
 </html>
