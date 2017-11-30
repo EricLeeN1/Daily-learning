@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title> 使用 :not() 在菜单上应用/取消应用边框</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        li{
+            list-style: none;
+            float: left;
+        }
+        .nav{
+            overflow: hidden;
+        }
+        /*第一种写法*/
+        /*.nav li{*/
+            /*border-right:1px solid #666;*/
+        /*}*/
+        /*.nav li:last-child{*/
+            /*border-right:none;*/
+        /*}*/
+        /*写法二*/
+        .nav li:not(:last-child){
+            border-right:1px solid #666;
+        }
+
+        /*写法3*/
+        .nav2 li:first-child~li{
+            border-left:1px solid #666;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <ul class="nav">
+        <li>导航1</li>
+        <li>导航2</li>
+        <li>导航3</li>
+        <li>导航4</li>
+        <li>导航5</li>
+        <li>导航6</li>
+        <li>导航7</li>
+        <li>导航8</li>
+    </ul>
+    <ul class="nav2">
+        <li>导航1</li>
+        <li>导航2</li>
+        <li>导航3</li>
+        <li>导航4</li>
+        <li>导航5</li>
+        <li>导航6</li>
+        <li>导航7</li>
+        <li>导航8</li>
+    </ul>
+</nav>
+</body>
+</html>

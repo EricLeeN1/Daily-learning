@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>使用负的nth-child选择项目</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        li {
+            list-style: none;
+            background-color: #f55053;
+            float: left;
+            color: #fff;
+        }
+
+        ul {
+            overflow: hidden;
+        }
+
+        li:nth-child(-n+3) {
+            background-color: royalblue;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>菜单1</li>
+    <li>菜单2</li>
+    <li>菜单3</li>
+    <li>菜单4</li>
+    <li>菜单5</li>
+    <li>菜单6</li>
+    <li>菜单7</li>
+    <li>菜单8</li>
+</ul>
+</body>
+</html>

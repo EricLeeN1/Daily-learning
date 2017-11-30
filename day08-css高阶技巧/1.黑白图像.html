@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>黑白图像</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        /*去色*/
+        img.desaturate{
+            filter: grayscale(100%);
+            -ms-filter: grayscale(100%);
+            -webkit-filter: grayscale(100%);
+            -o-filter: grayscale(100%);
+            -moz-filter: grayscale(100%);
+        }
+    </style>
+</head>
+<body>
+<h1>黑白图像</h1>
+<div>
+    <img class="desaturate" src="./img/4.png" alt="" width="200">
+</div>
+</body>
+</html>

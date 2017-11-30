@@ -10,46 +10,110 @@
     <script src="jquery.min.js"></script>
 </head>
 <body>
+<h1>微信api</h1>
+<h3 id="code">code:<span></span></h3>
+<div id="openid"></div>
+<div id="token"></div>
+<div id="userInfo"></div>
 <script>
-    function onBridgeReady() {
-        WeixinJSBridge.on('menu:share:appmessage', function(argv)
-        {
-            WeixinJSBridge.invoke('sendAppMessage',{
-                "link":"http://m.exmail.qq.com/",
-                "desc":"desc",
-                "title":"title for WeiXinJsBridge"
-            }, function(res) {
-                WeixinJSBridge.log(res.err_msg);
-            });
-        });
-        WeixinJSBridge.on('menu:share:timeline', function(argv)
-        {
-            WeixinJSBridge.invoke("shareTimeline",{
-                    "link":"http://m.exmail.qq.com",
-                    "img_url":"http://rescdn.qqmail.com/bizmail/zh_CN/htmledition/images/bizmail/v3/logo1ca3fe.png",
-                    "img_width":"172",
-                    "img_height":"40",
-                    "desc":"i am description",
-                    "title":"just test from WeixinJsBridge"
-                },
-                function(e){
-                    alert(e.err_msg);
-                })
-        });
-    }
-
-    if (typeof WeixinJSBridge === "undefined"){
-        if (document.addEventListener){
-            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
-        }
-    }else{
-        onBridgeReady();
-    }
-    document.on('WeixinJSBridgeReady',function () {
-
-    });
     $(function () {
-       console.log('111');
+        $("#code").on('click',function () {
+            window.location.href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxddf9f2122536e7c3&redirect_uri=http://zj.gexiazi.com/weixin/WeixinUserInfo.aspx&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+        });
+    	function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg); //获取url中"?"符后的字符串并正则匹配
+            var context = "";
+            if (r != null)
+                context = r[2];
+            reg = null;
+            r = null;
+            return context == null || context == "" || context == "undefined" ? "" : context;
+        };
+        var code = getQueryString('code');
+        $("#code>span").html(code);
+        getOpenid();
+        function getOpenid() {
+//          alert('1111');
+            try {
+                $.ajax({
+                    url: 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxddf9f2122536e7c3&secret=7a380d430a9aa087941b648b72e0be7c&code=' + code + '&grant_type=authorization_code ',
+                    data: {},
+                    type: "GET",
+                    success: function (res) {
+                        alert(res.openid);
+                        var html =
+                            '<div>' +
+                            '<h1>' + res.openid + '</h1>' +
+                            '<h2>' + res.access_token + '</h2>' +
+                            '<h3>' + res.expires_in + '</h3>' +
+                            '<h4>' + res.refresh_token + '</h4>' +
+                            '<h5>' + res.openid + '</h5>' +
+                            '<h6>' + res.scope + '</h6>' +
+                            '</div>';
+                        $("#openid").html(html);
+                    },
+                    fail: function (res) {
+                        alert('fail' + res);
+                    },
+//                dataType: 'json'
+                });
+            }catch (e){
+                alert(e);
+            }
+        };
+        $("#code").on('click', function () {
+            getOpenid();
+        });
+
+        function getAccessToken() {
+            $.ajax({
+                url: 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wxddf9f2122536e7c3&secret=7a380d430a9aa087941b648b72e0be7c',
+                data: {},
+                type: "GET",
+                success: function (res) {
+                    alert(res.openid);
+                    var html =
+                        '<div>' +
+                        '<h2>' + res.access_token + '</h2>' +
+                        '<h3>' + res.expires_in + '</h3>' +
+                        '</div>';
+                    $("#token").html(html);
+                },
+                fail: function (res) {
+                    alert('fail' + res);
+                },
+//                dataType: 'json'
+            });
+        };
+        $('#openid').on('click', function () {
+            getAccessToken();
+        });
+
+        function getInfo() {
+            var token = $('#token h2').text();
+            $.ajax({
+                url: 'https://api.weixin.qq.com/cgi-bin/user/info?access_token=' + token + '&openid=wxddf9f2122536e7c3',
+                data: {},
+                type: "GET",
+                success: function (res) {
+                    alert(res.openid);
+                    var html =
+                        '<div>' +
+                        '<h2>' + res.nickname + '</h2>' +
+                        '<h3>' + res.sex + '</h3>' +
+                        '</div>';
+                    $("#userInfo").html(html);
+                },
+                fail: function (res) {
+                    alert('fail' + res);
+                },
+//                dataType: 'json'
+            });
+        };
+        $('#token').on('click', function () {
+            getInfo();
+        })
     });
 </script>
 </body>
