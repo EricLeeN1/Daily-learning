@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>饼状图</title>
+    <script src="./lib/echarts.custom.min.js"></script>
+    <style>
+        #main {
+            width: 600px;
+            height: 400px;
+        }
+    </style>
+</head>
+
+<body>
+<div id="main"></div>
+<script>
+    echarts.init(document.getElementById('main')).setOption({
+        title: {
+            text: "Echart 入门示例"
+        },
+        tooltip: {},
+        series: {
+            type: "pie",
+            data: [
+                {name: "A", value: 1212},
+                {name: "B", value: 2323},
+                {name: "C", value: 1919},
+            ]
+        }
+    });
+</script>
+</body>
+
+</html>
