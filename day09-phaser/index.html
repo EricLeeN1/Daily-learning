@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="//cdn.jsdelivr.net/phaser/2.4.6/phaser.js"></script>
+    <title>Phaser</title>
+</head>
+
+<body>
+    <h1>Hello</h1>
+    <div id="phaser-example">
+
+    </div>
+    <script>
+        var game = new Phaser.Game(1000, 750, Phaser.AUTO, 'phaser-example', { preload: preload, create: create, update: update });
+        
+        function preload() {
+        
+            game.load.image('lazur', './demo/assets/sky.png');
+            game.load.spritesheet('mummy', './img/char_jump.png', 48, 54, 18);
+        
+        }
+        
+        var back;
+        var mummy;
+        var anim;
+        var loopText;
+        
+        function create() {
+        
+            back = game.add.image(0, -400, 'lazur');
+            back.scale.set(2);
+            back.smoothed = false;
+        
+            mummy = game.add.sprite(48, 54, 'mummy',5);
+            mummy.scale.set(1);
+            mummy.smoothed = false;
+            anim = mummy.animations.add('walk');
+        
+            anim.onStart.add(animationStarted, this);
+            anim.onLoop.add(animationLooped, this);
+            anim.onComplete.add(animationStopped, this);
+        
+            anim.play(5, true);
+        
+        }
+        
+        function animationStarted(sprite, animation) {
+        
+            game.add.text(32, 32, 'Animation started', { fill: 'white' });
+        
+        }
+        
+        function animationLooped(sprite, animation) {
+        
+            if (animation.loopCount === 1)
+            {
+                loopText = game.add.text(32, 64, 'Animation looped', { fill: 'white' });
+            }
+            else
+            {
+                loopText.text = 'Animation looped x2';
+                animation.loop = false;
+            }
+        
+        }
+        
+        function animationStopped(sprite, animation) {
+        
+            game.add.text(32, 64+32, 'Animation stopped', { fill: 'white' });
+        
+        }
+        
+        function update() {
+        
+            if (anim.isPlaying)
+            {
+                back.x -= 1;
+            }
+        
+        }
+    </script>
+</body>
+
+</html>
