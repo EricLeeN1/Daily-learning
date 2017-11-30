@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>继承 box-sizing</title>
+    <style>
+        html{
+            box-sizing: border-box;
+        }
+        *,*::before,*::after{
+            box-sizing: inherit;
+        }
+    </style>
+</head>
+<body>
+<h1>这样在插件或杠杆其他行为的其他组件中就能更容易地改变 box-sizing 了。</h1>
+</body>
+</html>

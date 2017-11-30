@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>13. 用 Flexbox 摆脱外边距的各种 hack</title>
+    <style>
+        .list {
+            display: flex;
+            justify-content: space-between;
+        }
+        .list .person {
+            flex-basis: 23%;
+        }
+    </style>
+</head>
+<body>
+<div class="list">
+    <div class="person">导航001</div>
+    <div class="person">导航002</div>
+    <div class="person">导航003</div>
+    <div class="person">导航004</div>
+    <div class="person">导航005</div>
+    <div class="person">导航006</div>
+</div>
+</body>
+</html>

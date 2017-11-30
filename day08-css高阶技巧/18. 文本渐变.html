@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>18. 文本渐变</title>
+    <style>
+        h2[data-text] {
+            position: relative;
+        }
+
+        h2[data-text]::after {
+            content: attr(data-text);
+            z-index: 10;
+            color: #e3e3e3;
+            position: absolute;
+            top: 0;
+            left: 0;
+            -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), color-stop(50%, rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
+        }
+    </style>
+</head>
+<body>
+<h2 data-text="文本渐变">文本渐变</h2>
+</body>
+</html>
