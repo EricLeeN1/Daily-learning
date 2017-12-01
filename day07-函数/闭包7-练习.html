@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zn-ch">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>练习,getRGB</title>
+</head>
+<body>
+<script>
+    window.onload = function () {
+        function getRGB(str) {
+            let color = str.split('#')[1], rgb = '';
+            let colorArray = [color.substr(0, 2), color.substr(2, 2), color.substr(4, 2)];
+            for (let i = 0; i < colorArray.length; i++) {
+                colorArray[i] = parseInt(colorArray[i], 16);
+            }
+            rgb = 'rgb(' + colorArray[0] + ',' + colorArray[1] + ',' + colorArray[2] + ')';
+            return rgb;
+        };
+        console.log(getRGB('#00ff00'));
+    };
+</script>
+</body>
+</html>

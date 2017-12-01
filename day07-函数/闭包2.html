@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>闭包2</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+<script>
+    window.onload = function () {
+        var inner;//占位符
+        var F = function () {
+            var b = 'local variable';
+            var N = function () {
+                return b;
+            };
+            inner = N;
+        }
+        F();
+        inner();
+        console.log(F());//undefined
+        console.log(inner());
+    }
+</script>
+</body>
+</html>

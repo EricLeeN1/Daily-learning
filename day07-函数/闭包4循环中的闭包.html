@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>循环中的闭包</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+<script>
+    window.onload = function () {
+        function F() {
+            var arr = [],
+                i;
+            //方法1
+            // for (let i = 0; i < 3; i++) {
+            //     arr[i] = function () {
+            //         return i;
+            //     };
+            // };
+
+            //方法2
+            // for (var i = 0; i < 3; i++) {
+            //     arr[i] = (function (x) {
+            //         return function () {
+            //             return x;
+            //         }
+            //     }(i));
+            // }
+
+            function binder(x) {
+                return function () {
+                    return x;
+                }
+            }
+
+            for (let i = 0; i < 3; i++) {
+                arr[i] = binder(i);
+            }
+            //方法3
+            return arr;
+        };
+        var arr = F();
+        console.log(arr[0]());
+        console.log(arr[1]());
+        console.log(arr[2]());
+    }
+</script>
+</body>
+
+</html>

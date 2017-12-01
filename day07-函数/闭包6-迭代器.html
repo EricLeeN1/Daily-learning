@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zn-ch">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>迭代器</title>
+</head>
+<body>
+<script>
+    function setup(x) {
+        var i = 0;
+        return function () {
+            return x[i++];
+        };
+    }
+
+    var next = setup(['a', 'b', 'c']);
+    console.log(next());
+    console.log(next());
+    console.log(next());
+</script>
+</body>
+</html>
