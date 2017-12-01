@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>构造器函数</title>
+</head>
+<body>
+    <script>
+    function Hero(name) {
+        this.name = name;
+        this.occupation = 'student';
+        this.whoAreYou = function () {
+            return "I'm " +this.name+". I'm a "+this.occupation+'.';
+        }
+    }
+    var h1 = new Hero('Sun Wukong');
+    var h2 = new Hero('Zhu Bajie');
+    console.log(h1.whoAreYou());
+    console.log(h2.whoAreYou());
+    </script>
+</body>
+</html>
