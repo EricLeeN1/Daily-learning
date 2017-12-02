@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>推断对象类型</title>
+</head>
+<body>
+    <script>
+        let oToStr = Object.prototype.toString;
+        console.log(oToStr.call({}));//[object Object]
+        console.log(oToStr.call([]));//[object Array]
+        console.log([1,2,3].toString());//1,2,3
+        function f() {
+            return oToStr.call(arguments);
+        };
+        console.log(f());//[object Arguments]
+        console.log(oToStr.call(document.body));//[object HTMLBodyElement]
+    </script>
+</body>
+</html>

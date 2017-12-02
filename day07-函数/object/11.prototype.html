@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Prototype</title>
+</head>
+
+<body>
+    <ul>
+        <li>1.每个函数的prototype属性中都指向了一个对象</li>
+        <li>2.它只有在该函数是构造器时才会发挥作用</li>
+        <li>3.该函数创建的所有对象都会持有一个该prototype属性，并且可以将其当做自身的属性来使用</li>
+    </ul>
+    <script>
+        let ninja = {
+            name: 'Eric',
+            say: function () {
+                return "I'm " + this.name;
+            }
+        };
+        function F() {
+            
+        };
+        console.log(typeof F.prototype);//object
+        F.prototype = ninja;
+        let baby_ninja = new F();
+        console.log(baby_ninja.name);
+        console.log(baby_ninja.say());
+    </script>
+</body>
+
+</html>

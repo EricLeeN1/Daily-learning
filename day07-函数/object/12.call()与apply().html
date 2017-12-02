@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>call()与apply()</title>
+</head>
+
+<body>
+    <h1>用来触发函数，并指定相关的调用方法</h1>
+    <h2>让一个对象去‘借用’另一个对象的方法，并为已所用。一个非常简单而实用的代码重用</h2>
+    <script>
+        let some_Obj = {
+            name: "Eric",
+            say: function (who) {
+                return 'Hey ' + who + ', I am ' + this.name + '!';
+            },
+            add: function (a, b, c) {
+                return a + b + c
+            }
+        }
+        console.log(some_Obj.say('manman'));
+        let my_obj = {
+            name: 'javascript'
+        }
+        console.log(some_Obj.say.call(my_obj, 'manman'));
+        console.log(some_Obj.say.call(this, 'manman'));
+        console.log(some_Obj.say.apply(my_obj, ['manman']));
+        console.log(some_Obj.add.call(my_obj,'1','2','3'));
+        console.log(some_Obj.add.apply(my_obj,[1,2,3]));
+        let name = '呵呵哒';
+        console.log(some_Obj.say.call(null,1));
+    </script>
+</body>
+
+</html>

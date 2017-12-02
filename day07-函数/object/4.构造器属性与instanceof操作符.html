@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>构造器属性</title>
+</head>
+
+<body>
+    <script>
+        function Hero(name) {
+            this.name = name;
+            this.occupation = 'student';
+            this.whoAreYou = function () {
+                return "I'm " + this.name + ". I'm a " + this.occupation + '.';
+            }
+        }
+        var h1 = new Hero('Sun Wukong');
+        var h2 = new Hero('Zhu Bajie');
+        var h3 = new h2.constructor('Sha Wujing');
+        console.log(h3.name);
+
+        var o = {};
+        console.log(o.constructor);
+
+        console.log(typeof o.constructor);
+        document.getElementsByTagName('body')[0].innerHTML = "通过instanceof操作符，我们可以测试一个对象是不是由某个指定的构造器函数所创建的";
+        console.log('h2 instanceof Hero :' + (h2 instanceof Hero));
+        console.log('h1 instanceof Hero :' + (h1 instanceof Hero));
+        console.log('h3 instanceof Hero :' + (h3 instanceof Hero));
+        console.log('o instanceof Object :' +(o instanceof Object));
+    </script>
+</body>
+
+</html>

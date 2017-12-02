@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Function</title>
+</head>
+<body>
+   <script>
+   let first = new Function ('a,b,c,d','return arguments;');
+   console.log(first(1,2,3,4));
+   let second = new Function ('a,b,c','d','return arguments;');
+   console.log(second(1,2,3,4));
+   let third = new Function ('a','b','c','d','return arguments;');
+   console.log(third(1,2,3,4));
+   </script> 
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Number</title>
+</head>
+<body>
+    <h1>一些内置属性不可更改</h1>
+    <script>
+        console.log(Number.MAX_VALUE);//1.7976931348623157e+308
+        console.log(Number.MIN_VALUE);//5e-324
+        console.log(Number.POSITIVE_INFINITY);//Infinity
+        console.log(Number.NEGATIVE_INFINITY);//-Infinity
+        console.log(Number.NaN);//NaN
+        let n = 123456;
+        console.log(n.toFixed(3));//123456.000 参数表示精确到小数位数
+        console.log(n.toExponential(5));//1.23456e+5  //参数表示指数计数时的小数点显示位数
+        console.log(typeof (n.toString(2)));//11110001001000000 参数表示用什么进制  字符串
+    </script>
+</body>
+</html>

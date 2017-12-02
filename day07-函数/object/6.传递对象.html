@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>传递对象</title>
+</head>
+
+<body>
+    <script>
+        let original = {
+            howmany: 1
+        };
+        let mycopy = original;
+        console.log(mycopy.howmany);
+        console.log(original.howmany);
+        mycopy.howmany = 100;
+        console.log(mycopy.howmany);
+        console.log(original.howmany);
+    </script>
+</body>
+
+</html>
