@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>math</title>
+</head>
+<body>
+    <script>
+    console.log("π:"+Math.PI);
+    console.log("2的平方根:"+Math.sqrt(2));
+    console.log("欧拉常数e:"+Math.E);
+    console.log("2的自然对数:"+Math.LN2);
+    console.log("2的八次方:"+Math.pow(2,8));
+    console.log("10的自然对数:"+Math.LN10);
+    console.log("生成0~1之间的随机数:"+Math.random());
+    console.log("生成2~10之间的随机数:"+((10-2)*(Math.random())+2));
+
+    console.log('取整数的方法');
+    console.log("生成2~10之间的随机整数:"+Math.floor((10-2)*(Math.random())+2));//取小于或等于指定值的最大整数
+    console.log("生成2~10之间的随机整数:"+Math.ceil((10-2)*(Math.random())+2));//取大于或等于指定值的最小整数
+    console.log("生成2~10之间的随机整数:"+Math.round((10-2)*(Math.random())+2));//取最靠近指定值的整数
+    console.log("2与10中最大值:"+Math.max(2,10));//取最靠近指定值的整数
+    console.log("2与10中最小值:"+Math.min(2,10));//取最靠近指定值的整数
+    let input = 6;
+    console.log('一个合法的月份值'+Math.min(Math.max(1,input),12));
+    </script>
+</body>
+</html>

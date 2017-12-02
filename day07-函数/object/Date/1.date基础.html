@@ -4,15 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>字符串基础</title>
+    <title>date基础</title>
 </head>
 <body>
+    <h1>月份从0开始的</h1>
+    <div class="time"></div>
     <script>
-    let str = 'Eric';
-    console.log(str.length);//4
-    console.log(str[0]);//E
-    console.log(str[2]);//i
-    console.log(str[str.length-1]);//c
+    document.getElementsByClassName('time')[0].innerHTML = new Date();
+    console.log(new Date());
     </script>
 </body>
 </html>

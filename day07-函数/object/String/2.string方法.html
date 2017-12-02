@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>string对象方法</title>
+</head>
+<body>
+    <script>
+        //数组及对象会分别用[]，{}包起来
+    let str = 'Hello Eric';
+    console.log(str.toLowerCase());//hello eric
+    console.log(str.toUpperCase());//HELLO ERIC
+    console.log(str.charAt(0));//H
+    console.log(str.charAt(101));//''
+    console.log(str.indexOf('l'));//2
+    console.log(str.indexOf('g'));//-1
+    console.log(str.indexOf('l',3));//3
+    if (str.indexOf('g')!==-1) {
+        console.log('找到了g');
+    }else{
+        console.log('没找到g');
+    }
+    console.log(str.lastIndexOf(''));//3
+    console.log(str.slice(1,5));//ello
+    console.log(str.substring(1,5));//ello
+    console.log(str.substring(1,-1));//H
+    console.log(str.slice(1,-1));//ello Eri
+    console.log(str.split(''));//["H", "e", "l", "l", "o", " ", "E", "r", "i", "c"]
+    console.log(str.split('').join());//H,e,l,l,o, ,E,r,i,c默认用逗号拼接
+    console.log(str.split(' '));//["Hello", "Eric"]
+    console.log(str.split(' ').join(' '));//Hello Eric
+    console.log(str.concat(', God bless you!'));//Hello Eric, God bless you!
+    </script>
+</body>
+</html>
