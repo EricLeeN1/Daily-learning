@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>以正则表达式为参数的字符串方法</title>
+</head>
+
+<body>
+    <h1>match,search,replace,split</h1>
+    <script>
+        //match()->返回一个数组其中有匹配对象
+        var s = 'HelloJavaScriptWorld';
+        console.log(s.match(/a/)); //["a", index: 6, input: "HelloJavaScriptWorld"]
+        console.log(s.match(/a/g)); //["a", "a"]
+        console.log(s.match(/j.*a/i)); //["Java", index: 5, input: "HelloJavaScriptWorld"]
+
+        //search()//返回匹配字符串的索引位置
+        console.log(s.search(/j.*a/i)); //5
+
+        //replace()//将相关的匹配文本替换成某些其他字符串
+        console.log(s.replace(/[A-Z]/g, '')); //elloavacriptorld
+        console.log(s.replace(/[A-Z]/, '')); //elloJavaScriptWorld
+        console.log(s.replace(/[A-Z]/g, '_$&')); //_Hello_Java_Script_World
+        console.log(s.replace(/([A-Z])/g, "_$1")); //_Hello_Java_Script_World
+        var email = "Eric@qq.com";
+        var username = email.replace(/(.*)@(.*)/, '$1');
+        var emailType = email.replace(/(.*)@(.*)\.(.*)/, '$2');
+        var emailSite = email.replace(/(.*)@(.*)\.(.*)/, '$3');
+        console.log(username); //Eric
+        console.log(emailType); //qq
+        console.log(emailSite); //com
+
+        //callback式替换
+        function replaceCallback(match) {
+            return "_" + match.toLowerCase();
+        }
+        console.log(s.replace(/[A-Z]/g,replaceCallback));//_hello_java_script_world
+
+        let glob;
+        let reg = /(.*)@(.*)\.(.*)/;
+        var callback = function () {
+            glob = arguments;
+            console.log(glob);//["Eric@qq.com", "Eric", "qq", "com", 0, "Eric@qq.com", callee: ƒ, Symbol(Symbol.iterator): ƒ]
+            return arguments[1] + ' at ' +arguments[2]+' dot '+arguments[3];
+        }
+        console.log(email.replace(reg,callback));//Eric at qq dot com
+
+        //split()
+        let csv = 'one, two ,three ,four';
+        console.log(csv.split(','));//["one", " two ", "three ", "four"]
+        console.log(csv.split(/\s*,\s*/));//["one", "two", "three", "four"]
+
+        //用字符串来代替过于简单的正则对象,需注意不能全局替换
+        console.log('pool'.replace('o','*'));//p*ol
+        console.log('pool'.replace(/o/g,'*'));//p**l
+    </script>
+</body>
+
+</html>

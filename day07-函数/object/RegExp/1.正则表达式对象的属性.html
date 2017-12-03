@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>正则表达式基础</title>
+</head>
+
+<body>
+    <h1>
+        gmi属性一旦被设置了就不能更改；
+    </h1>
+    <script>
+        let reg = new RegExp('j./*t', 'gmi');
+        let reg1 = /j.*t/gim;
+        console.log(reg.global); //true
+        console.log(reg.ignoreCase); //true
+        console.log(reg.multiline); //true
+        console.log(reg1.global); //true
+        console.log(reg1.ignoreCase); //true
+        console.log(reg1.multiline); //true
+    </script>
+</body>
+
+</html>

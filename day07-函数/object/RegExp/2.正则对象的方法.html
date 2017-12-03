@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>正则对象的方法</title>
+</head>
+
+<body>
+    <script>
+        let j = 'JavaScript';
+        console.log(/j.*t/.test(j));//false
+        console.log(/j.*t/i.test(j));//true
+        console.log(/j.*t/i.exec(j));//["JavaScript", index: 0, input: "JavaScript"]
+    </script>
+</body>
+
+</html>
