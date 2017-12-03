@@ -7,6 +7,14 @@
     <title>原型属性</title>
 </head>
 <body>
-    
+<script>
+    function foo(a, b) {
+        return a * b;
+    };
+    console.log(foo.length);//2
+    console.log(foo.constructor);//ƒ Function() { [native code] }
+    console.log(typeof foo.prototype);//object
+    foo.prototype = {};
+</script>
 </body>
 </html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>原型陷阱</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+<script>
+    function Dog() {
+        this.tail = true;
+    }
+
+    var benji = new Dog();
+    var rusty = new Dog();
+    Dog.prototype.say = function () {
+        return 'Woof!';
+    }
+    console.log(benji.say());//Woof!
+    console.log(rusty.say());//Woof!
+
+    console.log(benji.constructor === Dog);//true
+    console.log(rusty.constructor === Dog);//true
+
+    Dog.prototype = {
+        paws: 4,
+        hair: true
+    }
+
+    console.log(typeof benji.paws);//undefinded
+    console.log(benji.say());//Woof!
+    console.log(typeof benji.__proto__.say);//function
+    console.log(typeof benji.__proto__.paws);//undefined
+
+    var lucky = new Dog();
+    // console.log(lucky.say());//lucky.say is not a function
+    console.log(lucky.paws);//4
+
+    console.log(typeof lucky.__proto__.say);//undefined
+    console.log(typeof lucky.__proto__.paws);//number
+
+    console.log(lucky.constructor);//ƒ Object() { [native code] }
+    console.log(benji.constructor === Dog);//true
+    // ƒ Dog() {
+    // this.tail = true;
+    // }
+
+    //在重写某对象的prototype时，需要重置响应的constructor属性
+    Dog.prototype.constructor = Dog;
+    console.log(new Dog().constructor === Dog);//true
+    // ƒ Dog() {
+    // this.tail = true;
+    // }
+</script>
+<h1>当我们重写某对象的prototype时，需要重置相应的constructor属性</h1>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>扩展内建对象</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+<script>
+    //用于查询数组中是否存在某个特定的值
+    Array.prototype.inArray = function (needle) {
+        for (var i = 0; i < this.length; i++) {
+            if (this[i] === needle) {
+                return true;
+            }
+        }
+        return false;
+    }
+    let colors = ['red', 'orange', 'blue'];
+    console.log(colors.inArray('blue'));//true
+    console.log(colors.inArray('yellow'));//false
+
+    //String对象的reverse()方法
+    String.prototype.reverse = function () {
+        return Array.prototype.reverse.apply(this.split('')).join('');
+    }
+    console.log('bumblebee'.reverse());
+
+    //shims--polyfills
+    if (typeof String.prototype.trim !== 'function') {
+        String.prototype.trim = function () {
+            return this.replace(/^\s+|\s+$/g, '');
+        }
+    }
+    console.log(' Hello '.trim());//hello
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>_proto_</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+<h1>__proto__与prototype并不是等价的，__proto__实际上是某个实例对象的属性，而prototype是属于构造器函数的属性</h1>
+<h2>__proto__只能在学习或调试的环境下使用</h2>
+<script>
+    let monkey = {
+        hair: true,
+        feeds: 'banans',
+        breathes: 'air'
+    };
+
+    function Human(name) {
+        this.name = name;
+    }
+
+    Human.prototype = monkey;
+
+    let developer = new Human('11');
+    developer.feeds = 'pizza';
+    developer.hacks = 'JavaScript';
+    console.log(developer.hacks);//JavaScript
+    console.log(developer.feeds);//pizza
+    console.log(developer.breathes);//air
+    console.log(developer.__proto__ === monkey);//{hair: true, feeds: "banans", breathes: "air"} //true
+    console.log(developer);//Human {name: "11", feeds: "pizza", hacks: "JavaScript"}
+
+    console.log(typeof developer.__proto__);//object
+    console.log(typeof developer.prototype);//undefined
+    console.log(typeof developer.constructor.prototype);//object
+</script>
+</body>
+</html>

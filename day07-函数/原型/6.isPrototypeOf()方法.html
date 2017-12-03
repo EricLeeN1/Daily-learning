@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>isPrototypeOf()方法</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+<h1>isPrototypeOf()方法返回当前对象是否是另一个对象的原型</h1>
+<script>
+    let monkey = {
+        hair: true,
+        feeds: 'banans',
+        breathes: 'air'
+    };
+
+    function Human(name) {
+        this.name = name;
+    }
+
+    Human.prototype = monkey;
+    let george = new Human('George');
+    console.log(monkey.isPrototypeOf(george));//true
+    console.log(Object.getPrototypeOf(george));//{hair: true, feeds: "banans", breathes: "air"}
+    console.log(Object.getPrototypeOf(george) === monkey);//true
+</script>
+</body>
+</html>
