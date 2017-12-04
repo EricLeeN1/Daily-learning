@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>原型链</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+<h1>默认的继承模式：通过原型来实现继承关系链</h1>
+<script>
+    function Shape() {
+        this.name = 'Shape';
+        this.toString = function () {
+            return this.name;
+        }
+    }
+
+    function TwoDShape() {
+        this.name = "2D shape";
+    }
+
+    function Triangle(side, height) {
+        this.name = 'Triangle';
+        this.side = side;
+        this.height = height;
+        this.getArea = function () {
+            return this.side * this.height / 2;
+        };
+    }
+
+    TwoDShape.prototype = new Shape();
+    Triangle.prototype = new TwoDShape();
+
+    TwoDShape.prototype.constructor = TwoDShape;
+    Triangle.prototype.constructor = Triangle;
+
+    var my = new Triangle(5, 10);
+    console.log(my.__proto__);//TwoDShape {name: "2D shape", constructor: ƒ}
+    console.log(TwoDShape.__proto__);//ƒ () { [native code] }
+    console.log(my.getArea());//25
+    console.log(Shape.hasOwnProperty('name'));//true
+    console.log('当我们以my参数调用这些构造器原型的isPrototypeOf()方法时');
+    console.log(Shape.prototype.isPrototypeOf(my));//true
+    console.log(TwoDShape.prototype.isPrototypeOf(my));//true
+    console.log(Triangle.prototype.isPrototypeOf(my));//true
+    console.log(String.prototype.isPrototypeOf(my));//true
+    console.log(my.toString());
+
+    console.log(my.constructor === Triangle);//true
+    console.log("Shape是不是my的实例:" + (my instanceof Shape));//true
+    console.log("TwoDShape是不是my的实例:" + (my instanceof TwoDShape));//true
+    console.log("Triangle是不是my的实例:" + (my instanceof Triangle));//true
+    console.log("Array是不是my的实例:" + (my instanceof Array));//false
+
+    let td = new TwoDShape();
+    console.log(td.constructor === TwoDShape);//true
+    console.log(td.toString());//2D shape
+
+    var s = new Shape();
+    console.log(s.constructor === Shape);//true
+    console.log(s.toString());//Shape
+</script>
+</body>
+</html>

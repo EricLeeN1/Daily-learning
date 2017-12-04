@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>原型练习题</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+<script>
+    let shape = {};
+    shape.type = 'triangle';
+    shape.getType = function () {
+        return this.type;
+    };
+
+    function Triangle(a, b, c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
+
+    Triangle.prototype = shape;
+
+    //设置周长
+    Triangle.prototype.getPerimeter = function () {
+        return a + b + c;
+    }
+    let t = new Triangle(1, 2, 3);
+    console.log(t.constructor === Triangle);//false
+    console.log(shape.isPrototypeOf(t));//false
+    // console.log(t.getPerimeter());
+    console.log(t.getType());
+    console.log(shape.isPrototypeOf(t));//true
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>将共享属性迁移到原型中去</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+<h1>将共享属性迁移到原型中去</h1>
+<script>
+    function Shape() {
+    };//构造器函数
+    Shape.prototype.name = 'Shape';//构造器函数原型对象
+    Shape.prototype.toString = function () {
+        return this.name;
+    }
+    console.log(Shape);
+
+    function TwoDShape() {
+    }//构造器函数
+
+    //完成继承关系的构建
+    TwoDShape.prototype = new Shape();//将TwoDShape的原型对象设置为另一个构造器函数
+    TwoDShape.prototype.constructor = TwoDShape;//并重置构造器函数
+
+    //扩展原型对象
+    TwoDShape.prototype.name = '2D shape';
+    console.log(TwoDShape.prototype.name);//2D Shape
+
+    function Triangle(side, height) {
+        this.side = side;
+        this.height = height;
+    }
+
+    //完成继承关系的构建
+    Triangle.prototype = new TwoDShape();
+    Triangle.prototype.constructor = Triangle;
+
+    //扩展原型对象
+    Triangle.prototype.name = 'Triangle';
+    Triangle.prototype.getArea = function () {
+        return this.side * this.height / 2;
+    };
+
+    let my = new Triangle(5, 10);
+    console.log(my.getArea());//25
+    console.log(my.toString()); //Triangle
+
+    console.log('用hasOwnProperty来判断是自身属性(true)还是原型链属性(false)');
+    console.log(my.hasOwnProperty('side'));//true
+    console.log(my.hasOwnProperty('name'));//false
+
+    console.log('用isPrototypeOf来判断B是不是继承于A');
+    console.log(TwoDShape.prototype.isPrototypeOf(my));//true
+    console.log(Shape.prototype.isPrototypeOf(my));//true
+
+    console.log('用instanceof来判断A是不是由B构造函数构造的true/false');
+    console.log(my instanceof Shape);//true
+    console.log(my instanceof TwoDShape);//true
+    console.log(my instanceof Triangle);//true
+</script>
+<h2>必须在扩展原型对象之前完成继承关系的构建，先继承后扩展</h2>
+</body>
+</html>

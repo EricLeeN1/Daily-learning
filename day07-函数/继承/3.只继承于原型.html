@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>只继承于原型</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+我们尽可能地将一些可重用的属性和方法添加到原型中去，这样仅仅依靠原型就能完成继承关系的构建了。<br>
+不要单独为继承关系创建新对象。<br>
+尽量减少运行时方法搜索(例如toString());
+<script>
+    function Shape() {
+    };//构造器函数
+    Shape.prototype.name = 'Shape';//扩展原型
+    Shape.prototype.toString = function () {
+        return this.name;
+    }
+
+    function TwoDShape() {
+    }//构造器函数
+    //完成继承关系的构建
+    TwoDShape.prototype = Shape.prototype;//将TwoDShape的原型对象设置为Shape的原型
+    TwoDShape.prototype.constructor = TwoDShape;//并将TwoDShape构造器重置为TwoDShape
+
+    //扩展原型对象
+    TwoDShape.prototype.name = '2D shape';
+
+    function Triangle(side, height) {
+        this.side = side;
+        this.height = height;
+    }
+
+    //完成继承关系的构建
+    Triangle.prototype = TwoDShape.prototype;
+    Triangle.prototype.constructor = Triangle;
+
+    //扩展原型对象
+    Triangle.prototype.name = 'Triangle';
+    Triangle.prototype.getArea = function () {
+        return this.side * this.height / 2;
+    };
+
+    let my = new Triangle(5, 10);
+    console.log(my.getArea());//25
+    console.log(my.toString()); //Triangle
+
+    console.log('用hasOwnProperty来判断是自身属性(true)还是原型链属性(false)');
+    console.log(my.hasOwnProperty('side'));//true
+    console.log(my.hasOwnProperty('name'));//false
+
+    console.log('用isPrototypeOf来判断B是不是继承于A');
+    console.log(TwoDShape.prototype.isPrototypeOf(my));//true
+    console.log(Shape.prototype.isPrototypeOf(my));//true
+
+    console.log('用instanceof来判断A是不是由B构造函数构造的true/false');
+    console.log(my instanceof Shape);//true
+    console.log(my instanceof TwoDShape);//true
+    console.log(my instanceof Triangle);//true
+
+    Triangle.prototype.name = "Triangle";
+    var s = new Shape();
+    console.log(s.name);//Triangle
+</script>
+<h1>
+    需要注意的是副作用：由于子对象与父对象指向的都是一个对象，所以一旦子对象对其原型进行了修改，父对象也会被随之改变，甚至所有的继承关系都是如此。因此这种方法虽然效率更高，但在很多应用场景中并不适合使用。
+</h1>
+</body>
+</html>

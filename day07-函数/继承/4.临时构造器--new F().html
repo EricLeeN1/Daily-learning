@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>临时构造器--new F()</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+<h3 id="h3"></h3>
+<script>
+    document.getElementById('h3').innerHTML = '要解决<a href="./3.只继承于原型.html">3.只继承于原型.html</a>中出现的这个问题就必须利用某种中介来打破这种连锁关系。这里利用一个临时构造器函数来充当中介，我们创建一个空函数F()，并将其原型设置为父级构造器，我们既可以用new F()来创建一些不包含父对象属性的对象，同时又可以从父对象prototype属性中继承一切。';
+
+    function Shape() {
+    };
+    Shape.prototype.name = "Shape";
+    Shape.prototype.toString = function () {
+        return this.name;
+    };
+
+    function TwoDShape() {
+    };
+    var F = function () {
+    };
+    F.prototype = Shape.prototype;
+    TwoDShape.prototype = new F();
+    TwoDShape.prototype.constructor = TwoDShape;
+
+    TwoDShape.prototype.name = "2D shape";
+
+    function Triangle(side, height) {
+        this.side = side;
+        this.height = height;
+    };
+    var F = function () {
+    };
+    F.prototype = TwoDShape.prototype;
+    Triangle.prototype = new F();
+    Triangle.prototype.constructor = Triangle;
+
+    Triangle.prototype.name = "Triangle";
+    Triangle.prototype.getArea = function () {
+        return this.side * this.height / 2;
+    }
+
+    var my = new Triangle(5, 10);
+    console.log(my.getArea());//25
+    console.log(my.toString());//Triangle
+    console.log("通过这种方法我们可以保持住原型链");
+
+    console.log(my.__proto__ === Triangle.prototype);//true
+    console.log(my.__proto__.constructor === Triangle);//true
+    console.log(my.__proto__.__proto__ === TwoDShape.prototype);//true
+    console.log(my.__proto__.__proto__.__proto__.constructor === Shape);//true
+
+    console.log("父对象的属性不会被子对象所覆盖");
+    var s = new Shape();
+    console.log(s.name);//Shape
+    console.log("I am a " + new TwoDShape());//I am a 2D shape
+</script>
+<h2>要将所有要共享的属性与方法添加到原型中，然后只围绕原型构建继承关系，这种主张不鼓励将对象的自身属性纳入继承关系，因为自身属性往往随对象的不同而差别甚大,无法重用。</h2>
+</body>
+</html>
