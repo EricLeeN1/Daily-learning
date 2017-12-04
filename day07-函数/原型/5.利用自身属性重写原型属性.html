@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>利用自身属性重写原型属性</title>
+</head>
+
+<body>
+<script>
+    function Gadget(name, color) {
+        this.name = name;
+        this.color = color;
+        this.getName = function () {
+            return this.name;
+        }
+    }
+
+    Gadget.prototype.price = 100;
+    Gadget.prototype.rating = 3;
+    Gadget.prototype.name = "mirror";
+    let toy = new Gadget('camera');
+    console.log(toy.name);//camera
+
+    //hasOwnProperty()来判断一个属性是自身属性还是原型属性
+    console.log(toy.hasOwnProperty('name'));//true
+    delete  toy.name;
+    console.log(toy.name);//mirror
+    console.log(toy.hasOwnProperty('name'));//false
+    toy.name = "camera";
+    console.log(toy.name);//camera
+    console.log(toy.toString());//[object Object]
+    console.log(toy.hasOwnProperty('toString'));//false
+    console.log(toy.constructor.hasOwnProperty('toString'));//false
+    console.log(toy.constructor.prototype.hasOwnProperty('toString'));//false
+    console.log(Object.hasOwnProperty('toString'));//false
+    console.log(Object.prototype.hasOwnProperty('toString'));//true
+
+    // 枚举属性
+    var params = {
+        productid: 666,
+        section: 'products'
+    };
+    var url = "http://example.org/page/php?",
+        query = [];
+    for (let i in params) {
+        query.push(i + '=' + params[i]);
+    }
+    url += query.join('&');
+    console.log(url);//http://example.org/page/php?productid=666&section=products
+    let newtoy = new Gadget('webcam', 'black');
+    for (let prop in newtoy) {
+        if (newtoy.hasOwnProperty(prop)) {
+            // 对象属性
+            console.log(prop + ' = ' + newtoy[prop]);
+        } else {
+            // 原型属性
+            // console.log(prop + ' = ' + newtoy[prop]);
+        }
+    }// name = webcam
+    // color = black
+    // getName = function () {
+    // return this.name;
+    // }
+    // price = 100
+    // rating = 3
+
+    //propertyIsEnumerable对所有原型属性都返回false
+    console.log(newtoy.propertyIsEnumerable('name'));//true
+    console.log(newtoy.propertyIsEnumerable('color'));//true
+    console.log(newtoy.propertyIsEnumerable('getName'));//true
+
+    //对于内建属性和方法来说，他们大部分都是不可枚举的
+    console.log(newtoy.propertyIsEnumerable('constructor'));//false
+
+    //任何来自原型链中的属性也是不可枚举的
+    console.log(newtoy.propertyIsEnumerable('price'));//false
+
+    //如果propertyIsEnumerable()的调用是来自原型链上的某个对象，尼玛该对象中的属性是可枚举的
+    console.log(newtoy.constructor.prototype.propertyIsEnumerable('price'));//true
+</script>
+</body>
+
+</html>
