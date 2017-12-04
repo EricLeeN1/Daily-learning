@@ -30,6 +30,19 @@
     console.log(Wee.prototype.hasOwnProperty('name'));//true
     console.log(Wee.prototype.hasOwnProperty('owns'));//true
     console.log("name属于基本类型属性，创建的是一份全新的拷贝，而owns属性是一个数组对象，它所执行的是引用拷贝");
+    console.log(Wee.prototype.owns);//["porrideg", "chair", "bed"]
+    console.log(Wee.prototype.owns === Papa.prototype.owns);//true
+    Wee.prototype.name += ', Little Bear';
+    console.log(Papa.prototype.name)//Bear
+    Wee.prototype.owns.pop();
+    console.log(Wee.prototype.owns);//["porrideg", "chair"]
+    console.log(Papa.prototype.owns);//["porrideg", "chair"]
+
+    Wee.prototype.owns = ['空碗',"破盆"];
+    Papa.prototype.owns.push('bed');
+    console.log(Papa.prototype.owns);//["porrideg", "chair", "bed"]
+
+
 </script>
 </body>
 </html>

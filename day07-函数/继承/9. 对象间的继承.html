@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>对象间的继承</title>
+</head>
+<body>
+<script>
+    function extendCopy(p) {
+        let c = {};
+        for (let i in p) {
+            c[i] = p[i];
+        }
+        c.uber = p;
+        return c;
+    }
+    let shape = {
+        name: "Shape",
+        toString: function () {
+            return this.name;
+        }
+    };
+    let twoDee = extendCopy(shape);
+    twoDee.name = '2D shape';
+    twoDee.toString = function () {
+        return this.uber.toString() + ', ' + this.name;
+    };
+    let triangle = extendCopy(twoDee);
+    triangle.name = "Triangle";
+    triangle.getArea = function () {
+        return this.side * this.height / 2;
+    };
+    triangle.side = 5;
+    triangle.height = 10;
+    console.log(triangle.getArea());//25
+    console.log(triangle.toString());//Shape, 2D shape, Triangle
+
+</script>
+</body>
+</html>
