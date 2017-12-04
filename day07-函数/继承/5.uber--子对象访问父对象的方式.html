@@ -16,7 +16,7 @@
     Shape.prototype.name = "Shape";
     Shape.prototype.toString = function () {
         let consts = this.constructor;
-        return consts.uber ? this.consts.uber.toString() + ', ' + this.name : this.name;
+        return this.constructor.uber ? this.constructor.uber.toString() + ', ' + this.name : this.name;
     };
 
     function TwoDShape() {

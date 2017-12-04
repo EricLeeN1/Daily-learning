@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>请小心处理引用拷贝</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+<script>
+    function extend2(Child, Parent) {
+        let p = Parent.prototype;
+        let c = Child.prototype;
+        for (let i in p) {
+            c[i] = p[i];
+        }//遍历parent的原型中的所有属性与方法并将其全部复制拷贝给迟来的的原型；
+        c.uber = p;
+    }
+
+    function Papa() {
+    };
+
+    function Wee() {
+    };
+    Papa.prototype.name = "Bear";
+    Papa.prototype.owns = ["porrideg", "chair", "bed"];
+    extend2(Wee, Papa);
+    console.log(Wee.prototype.hasOwnProperty('name'));//true
+    console.log(Wee.prototype.hasOwnProperty('owns'));//true
+    console.log("name属于基本类型属性，创建的是一份全新的拷贝，而owns属性是一个数组对象，它所执行的是引用拷贝");
+</script>
+</body>
+</html>

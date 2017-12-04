@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>属性拷贝</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+<script>
+    function extend2(Child, Parent) {
+        let p = Parent.prototype;
+        let c = Child.prototype;
+        for (let i in p) {
+            c[i] = p[i];
+        }//遍历parent的原型中的所有属性与方法并将其全部复制拷贝给迟来的的原型；
+        c.uber = p;
+    }
+
+    console.log("这种方式仅适用于只包含基本数据类型的对象，所有的对象类型（包括函数与数组）都是不可复制的，因为他们只支持引用传递");
+    let Shape = function () {
+    };
+    let TwoDShape = function () {
+    };
+    Shape.prototype.name = "shape";
+    Shape.prototype.toString = function () {
+        return this.uber ? this.uber.toString() + ', ' + this.name
+            : this.name;
+    };
+    extend2(TwoDShape, Shape);
+    var td = new TwoDShape();
+    console.log(td.__proto__.hasOwnProperty('toString'));//true
+    console.log(td.__proto__.hasOwnProperty('name'));//true
+    console.log(td.__proto__.toString === Shape.prototype.toString);//true
+    console.log(td.__proto__);//
+    // {name: "shape", uber: {…}, toString: ƒ, constructor: ƒ}
+
+    console.log(td.toString());//shape,shape
+
+    TwoDShape.prototype.name = "2D shape";
+    console.log(td.toString());//shape, 2D shape
+</script>
+</body>
+</html>

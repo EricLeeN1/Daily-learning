@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>将继承部分封装成函数</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+<script>
+    function extend(Child, Parent) {
+        var F = function () {
+        };
+        F.prototype = Parent.prototype;
+        Child.prototype = new F();
+        Child.prototype.constructor = Child;
+        Child.uber = Parent.prototype;
+    }
+
+    function Shape() {
+    };
+    Shape.prototype.name = "Shape";
+    Shape.prototype.toString = function () {
+        return this.constructor.uber ? this.constructor.uber.toString() + ', ' + this.name : this.name;
+    };
+
+    function TwoDShape() {
+    };
+    extend(TwoDShape, Shape);
+    let td = new TwoDShape();
+    console.log(td.name);//Shape
+    console.log(TwoDShape.prototype.name);//Shape
+    console.log(td.__proto__.name);//Shape
+    console.log(td.hasOwnProperty('name'));//false
+    console.log(td.__proto__.hasOwnProperty('name'));//false
+    TwoDShape.prototype.name = "2D Shape";
+
+    function Triangle(side, height) {
+        this.side = side;
+        this.height = height;
+    }
+
+    extend(Triangle, TwoDShape);
+    Triangle.prototype.name = "Triangle";
+    Triangle.prototype.getArea = function () {
+        return this.side * this.height / 2;
+    }
+    console.log(new Triangle().toString());//Shape, 2D Shape, Triangle
+
+
+</script>
+</body>
+</html>
