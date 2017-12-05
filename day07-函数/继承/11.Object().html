@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Object()</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+<script>
+    function Shape() {
+    };
+    Shape.prototype.name = "Shape";
+    Shape.prototype.toString = function () {
+        return this.name
+    };
+
+    function object(o) {
+        let n;
+
+        function F() {
+        };
+        F.prototype = o;
+        n = new F();
+        n.uber = o;
+        return n;
+    }
+
+    let twoDee = object(Shape);
+    let triangle = object(twoDee);
+    triangle.name = 'Triangle';
+    triangle.getArea = function () {
+        return this.aside * this.height / 2;
+    }
+    // console.log(triangle.toString());
+    var square = Object.create(triangle);
+    console.log(square);
+</script>
+<h1>这种模式被称为原型继承</h1>
+</body>
+</html>

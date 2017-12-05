@@ -7,6 +7,54 @@
 </head>
 <body>
 <script>
+    function deepCopy(p, c) {
+        c = c || {};
+        for (var i in p) {
+            if (p.hasOwnProperty(i)) {
+                if (typeof p[i] === 'object') {
+                    c[i] = Array.isArray(p[i]) ? [] : deepCopy(p[i], c[i]);
+                } else {
+                    c[i] = p[i];
+                }
+            }
+        }
+        return c;
+    };
+
+    function extendCopy(p) {
+        let c = {};
+        for (let i in p) {
+            c[i] = p[i];
+        }
+        c.uber = p;
+        return c;
+    };
+
+    var parent = {
+        numbers: [1, 2, 3],
+        letters: ['a', 'b', 'c'],
+        obj: {
+            prop: 1
+        },
+        bool: true
+    }
+    var mydeep = deepCopy(parent);
+    var myshallow = extendCopy(parent);
+    console.log(mydeep);
+    mydeep.numbers.push(4, 5, 6);
+    console.log(mydeep.numbers);
+    console.log(parent.numbers);//[1, 2, 3]
+    myshallow.numbers.push(10);
+    console.log(myshallow.numbers);//[1, 2, 3, 10]
+    console.log(mydeep.numbers);//[4, 5, 6]
+    console.log(parent.numbers);// [1, 2, 3, 10]
+
+    //es3兼容Array.isArray
+    if (Array.isArray !== "function") {
+        Array.isArray = function (candidate) {
+            return Object.prototype.toString.call(candidate) === '[object Array]';
+        }
+    }
 </script>
 </body>
 </html>
