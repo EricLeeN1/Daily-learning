@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>原型继承与属性拷贝的混合应用</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+<script>
+    function objectPlus(o, stuff) {
+        var n;
+
+        function F() {
+        };
+        F.prototype = o;
+        n = new F();
+        n.uber = o;
+        for (var i in stuff) {
+            n[i] = stuff[i];
+        }
+        return n;
+    }//对象o用于继承，另一个对象stuff则用于拷贝方法与属性
+
+    let shape = {
+        name: 'shape',
+        toString: function () {
+            return this.name;
+        }
+    };
+    let twoDee = objectPlus(shape, {
+        name: '2D shape',
+        toString: function () {
+            return this.uber.toString() + ', ' + this.name;
+        }
+    });
+    let triangle = objectPlus(twoDee, {
+        name: 'Triangle',
+        getArea: function () {
+            return this.side * this.height / 2
+        },
+        side: 0,
+        height: 0
+    });
+    var my = objectPlus(triangle, {
+        side: 6,
+        height: 6
+    });
+    console.log(my.getArea());//18
+    console.log(my.toString());//shape, 2D shape, Triangle, Triangle
+    let square = objectPlus(triangle, {
+        side: 4,
+        height: 4,
+        name: 'My 4*4',
+    });
+    console.log(square.toString());//shape, 2D shape, Triangle, My 4*4
+</script>
+<h2>objectPlus这个有用哦</h2>
+</body>
+</html>

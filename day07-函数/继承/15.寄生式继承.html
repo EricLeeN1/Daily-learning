@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>寄生式继承</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+<h1>思路：我们在创建对象的函数中直接吸收其他对象的功能，然后对其进行扩展并返回</h1>
+<script>
+    function object(o) {
+        var n = o;
+
+        function F() {
+        };
+        F.prototype = o;
+        n = new F();
+        n.uber = o;
+        return n;
+    };
+    let twoD = {
+        name: "2D shape",
+        dimensions: 2
+    };
+
+    function triangle(s, h) {
+        let that = object(twoD);
+        that.name = 'Triangle';
+        that.getArea = function () {
+            return this.side * this.height / 2;
+        };
+        that.side = s;
+        that.height = h;
+        return that;
+    };
+    let t = triangle(5, 10);
+    console.log(t.dimensions);//2
+    let t2 = new triangle(5, 10);
+    console.log(t2.getArea());//25
+    console.log('这里的that只是一个名字，并不存在与保留字this用法类似的特殊含义');
+</script>
+</body>
+</html>

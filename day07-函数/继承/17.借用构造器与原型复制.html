@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>借用构造器与原型复制</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+<h1>在父对象构造器上调用apply()方法，以获得其全部的自身属性，然后再用一个简单的迭代器对其原型属性进行逐行拷贝（）</h1>
+<script>
+    function extend2(Child, Parent) {
+        let p = Parent.prototype;
+        let c = Child.prototype;
+        for (let i in p) {
+            c[i] = p[i];
+        }//遍历parent的原型中的所有属性与方法并将其全部复制拷贝给迟来的的原型；
+        c.uber = p;
+    }
+
+    function Shape(id) {
+        this.id = id;
+    };
+    Shape.prototype.name = "Shape";
+    Shape.prototype.toString = function () {
+        return this.name;
+    }
+
+    function Triangle() {
+        Shape.apply(this, arguments);
+    };
+    extend2(Triangle, Shape);
+    Triangle.prototype.name = "Triangle";
+
+    let t = new Triangle(101);
+    console.log(t.toString());//Triangle
+    console.log(t.id);//101
+    console.log(typeof t.__proto__.id);//undefined
+    console.log(t.uber.name);//Shape
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>构造器借用</title>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+<h5>call()与apply()这两个方法都允许我们将某个指定对象的this值与一个函数的调用绑定起来。这对于继承而言，就意味着子对象的构造器在调用父对象构造器时，也可以将子对象中新建的this对象与父对象的this值绑定起来</h5>
+<script>
+    function Shape(id) {
+        this.id = id;
+    };
+    Shape.prototype.name = "Shape";
+    Shape.prototype.toString = function () {
+        return this.name;
+    }
+
+    function Triangle() {
+        Shape.apply(this, arguments);
+    };
+    Triangle.prototype = new Shape(101);
+    Triangle.prototype.name = "Triangle";
+    let newtoy = new Triangle(101);
+    console.log(newtoy.name);//Triangle
+    console.log(newtoy.id);//101
+    console.log(newtoy.toString());//[object Object]
+    var t = new Triangle(202);
+    console.log(t.id);//202
+    console.log(t.__proto__.id);
+    /101
+
+    delete t.id;
+    console.log(t.id);//101
+</script>
+</body>
+</html>
