@@ -26,7 +26,7 @@ particlesJS('particles-js',
         "value": "#ffffff"
       },
       "shape": {
-        "type": "star",
+        "type": ["circle","triangle","polygon"],
         "stroke": {
           "width": 0,
           "color": "#000000"
@@ -42,9 +42,9 @@ particlesJS('particles-js',
       },
       "opacity": {
         "value": 0.5,
-        "random": false,
+        "random": true,
         "anim": {
-          "enable": false,
+          "enable": true,
           "speed": 1,
           "opacity_min": 0.1,
           "sync": false
@@ -69,15 +69,15 @@ particlesJS('particles-js',
       },
       "move": {
         "enable": true,
-        "speed": 6,
+        "speed": 3,
         "direction": "none",
         "random": false,
         "straight": false,
         "out_mode": "out",
         "attract": {
           "enable": false,
-          "rotateX": 600,
-          "rotateY": 1200
+          "rotateX": 800,
+          "rotateY": 800
         }
       }
     },
@@ -102,7 +102,7 @@ particlesJS('particles-js',
           }
         },
         "bubble": {
-          "distance": 400,
+          "distance": 300,
           "size": 40,
           "duration": 2,
           "opacity": 8,
