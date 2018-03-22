@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>给照片添加水印</title>
+    <style>
+        #watermark {
+            width: 551px;
+            height: 832px;
+            border: 1px solid #f55053;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="watermark">
+
+    </canvas>
+    <div>
+        <input type="text" id="markText">
+        <button id="markBtn" type="button">点击添加水印</button>
+    </div>
+    <script>
+        /*加水印*/
+
+        function shuiyin(canvasid, imgurl) {
+
+            var img = new Image;
+
+            img.src = imgurl;
+
+
+            img.onload = function () {
+
+                console.log(img.width);
+                console.log(img.height);
+
+                var canvas = document.getElementById(canvasid);
+
+                // canvas.style.width = img.width/3 + 'px';
+                // canvas.style.height = img.height/3 + 'px';
+
+                var ctx = canvas.getContext("2d");
+
+                ctx.drawImage(img, 0, 0, 551, 832, 0, 0, 551, 832);
+
+                ctx.font = "14px 微软雅黑 ";
+
+                ctx.fillStyle = "#f55053";
+
+                var addtext = document.getElementById("markText").value;
+
+                addtext = addtext ? addtext : 'Hello Beauty';
+
+                ctx.fillText(addtext, 10, 50); //选择位置
+
+            }
+
+        }
+
+        document.getElementById("markBtn").onclick = function () {
+            shuiyin("watermark", "./img/1.png");
+        }
+    </script>
+</body>
+
+</html>
