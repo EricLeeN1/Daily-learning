@@ -7,6 +7,7 @@ var Dog = require('../schema/dogSchema');
 router.showIndex = function (req, res, next) {
     Dog.statics.findByNames("Little White", function (err, result) {
         if (err) {
+            console.log(err);
             return console.error(err);
         }
         res.json({title: result});
