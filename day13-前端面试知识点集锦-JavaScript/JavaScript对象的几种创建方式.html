@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JavaScript对象的几种创建方式</title>
+</head>
+
+<body>
+    <script>
+        console.log('1.工厂模式');
+
+        function Parent() {
+            var child = new Object();
+            child.name = "Eric";
+            child.age = 18;
+            return child;
+        }
+        var x = Parent();
+
+        console.log('2.构造函数方式');
+
+        function Parent2(name, age) {
+            this.name = name;
+            this.age = age;
+        };
+        var x2 = new Parent2('Eric', 18);
+        console.log(x2.name, x2.age);
+
+        console.log('3.原型模式');
+
+        function Parent3() {}
+        Parent3.prototype.name = "Eric";
+        Parent3.prototype.age = 18;
+        var x3 = new Parent3();
+
+        console.log('4.混合的构造函数，原型方式（推荐）');
+
+        function Parent4(name, age) {
+            this.name = name;
+            this.age = age;
+        };
+        Parent4.prototype.lev = function () {
+            return this.name;
+        }
+        var x4 = new Parent4('Eric', 18);
+
+        console.log('5.动态原型方式');
+
+        function Parent5(name, age) {
+            this.name = name;
+            this.age = age;
+            if (typeof Parent5._lev == 'undefined') {
+                Parent5.prototype.lev = function () {
+                    return this.name;
+                }
+                Parent5._lev = true;
+            }
+        };
+        var x5 = new Parent5('Eric',18);
+        console.log(x5.name);
+    </script>
+</body>
+
+</html>
