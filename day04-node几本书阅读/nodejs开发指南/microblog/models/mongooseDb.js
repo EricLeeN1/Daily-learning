@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var db = mongoose.createConnection('mongodb://127.0.0.1:27018/dog');
+var db = mongoose.createConnection('mongodb://127.0.0.1:27017/dog');
 // 使用时 mongoose.model()，将使用默认的mongoose.connect()连接。
 
 // 使用自定义链接时,用connection.model()代替
