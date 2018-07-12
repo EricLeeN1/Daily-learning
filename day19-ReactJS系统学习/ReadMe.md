@@ -91,7 +91,9 @@
 
 七、webpack中使用的包
 
+	`cnpm i html-webpack-plugin -D`
 	webpack
 	webpack-cli
 	webpack-dev-server
+	html-webpack-plugin
 	
