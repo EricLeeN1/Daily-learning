@@ -14,8 +14,8 @@ const htmlPlugin = new HtmlWebPackPlugin({
 module.exports = {
     // 在webapck4.x中，有个很大的特性，就是约定大于配置  约定默认的打包路径是 src->index.js
     // entry:'',
-    // mode: 'development' //production
-    mode: 'production', //production,
+    mode: 'development', //production
+    // mode: 'production', //production,
     // output: "",
     plugins: [
         htmlPlugin
@@ -30,6 +30,9 @@ module.exports = {
             //     plugins: ['transform-runtime']
             // }
         }]
+    },
+    resolve: {
+        extensions: ['.js', '.jsx', '.json'] //表示这几个文件的后缀名可省略不写，
     },
     performance: {
 

@@ -166,8 +166,46 @@
 	- 为属性绑定值
 	- 渲染JSX元素
 	- 渲染JSX元素数组
-	- 将普通字符数组转为JSX数组并渲染到页面上【两种方案】
+	- 将普通字符数组，转为JSX数组并渲染到页面上【两种方案】
 4. **在JSX中写注释：**推荐使用{/*这是注释*/}
 5. **在JSX中的元素添加class类名：**
 	- 需要使用`className`来替代`class`；
 	- `htmlFor`替换label的`for`属性 
+6. 在JSX创建DOM的时候，所有的节点，必须有唯一的根元素进行包裹；
+7. 在JSX语法中，标签必须成对出现，如果是但标签，则必须自闭和！
+8. 当编译引擎，在编译JSX代码的时候，如果遇到了`<`那么就去把它当做HTML代码去编译，如果遇到了`{}`就把花括号内的代码当做普通JS代码去编译；
+
+##10.React中创建组件
+###第一种--创建组件的方式
+**使用构造函数来创建组件，**如果需要接收外界传递的数据,需要在构造函数的参数列表中使用`props`来接收；必须要向外return一个合法的JSX创建的虚拟DOM；
+
+- 创建组件
+
+	function Hello(){
+		//return null
+		<div>Hello 组件</div>
+	}
+- 为组件传递数据
+
+		// 使用组件并为组件传递props数据
+		<Hello name={user.name} age={user.age} gender={user.gender}>
+		
+		// 在构造函数中，使用props形参，接收外界传递过来的数据
+		function Hello(props) {
+    		// 结论：不论是Vue还是React，组件中的props永远都是只读的；不能被重新赋值
+    		return <h1 title={props.name}>{props.name}--{props.age}岁--{props.gender==1?'男':'女'}</h1>
+		};
+</Hello>
+1. 父组件向子组件传递数据
+2. 使用{...obj}属性扩展传递数据
+3. 将组件封装到单独的文件中
+4. tips:组件的名称首字母必须是大写；
+###第二种--创建组件的方式
+	使用class关键字来创建组件
+####了解ES6中class关键字的使用
+	1. class中`constructor`的基本使用
+	2. 实例属性和实例方法
+	3. 静态属性和静态方法
+	4. 使用`extends`关键字来实现继承
+####基于class关键字创建组件
+	
