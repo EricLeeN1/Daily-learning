@@ -5,7 +5,7 @@ const HtmlWebPackPlugin = require('html-webpack-plugin'); //导入 在内存中�
 
 const htmlPlugin = new HtmlWebPackPlugin({
     template: path.join(__dirname, './src/index.html'), //源文件
-    filename: "inidex.html" //生成的内存中首页的名称
+    filename: "index.html" //生成的内存中首页的名称
 });
 
 
