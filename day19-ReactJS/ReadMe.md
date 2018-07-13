@@ -129,3 +129,45 @@
 	- // 参数1：要渲染的那个虚拟DOM元素
 	- // 参数2：指定页面上一个容器做容器，是一个DOM元素而不是选择器
 	- ReactDOM.render(myh1,document.getElementById('app'));
+##9.JSX语法
+	定义：就是符合xml规范的JS语法；（语法格式相对来说，要比HTML严谨很多）
+1. 如何启用JSx语法
+	- 安装`babel`插件
+		- 运行`cnpm i babel-core babel-loader babel-plugin-transform-runtime -D`
+		- 运行`cnpm i babel-preset-env babel-preset-stage-0 -D`
+	- 安装能够识别转换JSX语法的包`babel-preset-react`
+		- 运行`cnpm i babel-preset-react -D`
+	- 添加`.babelrc`配置文件
+		- `{"presets": [
+        "env",
+        "stage-0",
+        "react"
+    ],
+    "plugins": [
+        "transform-runtime"
+    ]}` 
+    - 添加babel-loader配置项：
+	    - `module: { // 要打包的第三方模块
+        rules: [{ // 第三方匹配规则
+            test: /\.js|jsx$/,
+            use: "babel-loader",
+            exclude: /node_modules/, // 排除项
+            // options: {
+            //     presets: ['latest'],
+            //     plugins: ['transform-runtime']
+            // }
+        }]
+    },`
+2. **JSX语法的本质：**并不是直接把jsx渲染到页面上，而是内部先转换成了createElement形式，再渲染。
+3. **再JSX中混合写入js表达式：**在JSX语法中，要把JS代码写到{}中
+	- 渲染数字
+	- 渲染字符串
+	- 渲染布尔值
+	- 为属性绑定值
+	- 渲染JSX元素
+	- 渲染JSX元素数组
+	- 将普通字符数组转为JSX数组并渲染到页面上【两种方案】
+4. **在JSX中写注释：**推荐使用{/*这是注释*/}
+5. **在JSX中的元素添加class类名：**
+	- 需要使用`className`来替代`class`；
+	- `htmlFor`替换label的`for`属性 

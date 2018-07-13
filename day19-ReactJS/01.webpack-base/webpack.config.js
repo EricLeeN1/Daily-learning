@@ -10,6 +10,7 @@ const htmlPlugin = new HtmlWebPackPlugin({
 
 
 // 向外暴露一个大包的配置对象  因为webpack是基于Node构建的，所以webpack支持所有Node Api和语法。
+// webpack 默认智能打包处理.js后缀名类型的文件；像.png .vue无法主动处理，所以要配置第三方的loader
 module.exports = {
     // 在webapck4.x中，有个很大的特性，就是约定大于配置  约定默认的打包路径是 src->index.js
     // entry:'',
@@ -19,16 +20,16 @@ module.exports = {
     plugins: [
         htmlPlugin
     ],
-    module: { //要打包的第三方模块
-        // rules: [{
-        //     test: /\.js|jsx$/,
-        //     use: "babel-loader",
-        //     exclude: /node_modules/,
-        //     options: {
-        //         presets: ['latest'],
-        //         plugins: ['transform-runtime']
-        //     }
-        // }]
+    module: { // 要打包的第三方模块
+        rules: [{ // 第三方匹配规则
+            test: /\.js|jsx$/,
+            use: "babel-loader",
+            exclude: /node_modules/, // 排除项
+            // options: {
+            //     presets: ['latest'],
+            //     plugins: ['transform-runtime']
+            // }
+        }]
     },
     performance: {
 
