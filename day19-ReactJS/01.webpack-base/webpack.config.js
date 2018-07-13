@@ -18,7 +18,35 @@ module.exports = {
     // output: "",
     plugins: [
         htmlPlugin
-    ]
+    ],
+    module: { //要打包的第三方模块
+        // rules: [{
+        //     test: /\.js|jsx$/,
+        //     use: "babel-loader",
+        //     exclude: /node_modules/,
+        //     options: {
+        //         presets: ['latest'],
+        //         plugins: ['transform-runtime']
+        //     }
+        // }]
+    },
+    performance: {
+
+        hints: "warning", // 枚举
+
+        maxAssetSize: 300000, // 整数类型（以字节为单位）
+
+        maxEntrypointSize: 500000, // 整数类型（以字节为单位）
+
+        assetFilter: function (assetFilename) {
+
+            // 提供资源文件名的断言函数
+
+            return assetFilename.endsWith('.css') || assetFilename.endsWith('.js');
+
+        }
+
+    }
 }
 
 // es6中向外导出模块的API，与之对应的是import ** from *标识符*  这里目前不支持

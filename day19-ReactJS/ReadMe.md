@@ -89,11 +89,43 @@
 		- `--hot`设置热替换
 		- `--progress`设置显示进度
 
-七、webpack中使用的包
+##七、webpack中使用的包
 
-	`cnpm i html-webpack-plugin -D`
+	`-D` -> 工具
+	`-S` -> 开发到上线都要使用的包
+	`cnpm i html-webpack-plugin -D` -> 写法
 	webpack
-	webpack-cli
-	webpack-dev-server
-	html-webpack-plugin
+	webpack-cli -> webpack脚手架
+	webpack-dev-server -> webpack服务
+	html-webpack-plugin -> html打包
+	babel-core
+	babel-loader
+	babel-plugin-transform-runtime
+	babel-preset-env
+	babel-preset-react
+	babel-preset-stage-0
+	react -> 专门用于创建组件，同时组件的生命周期都在这个包中
+	react-dom -> 专门进行DOM操作的，最主要的应用场景就是`ReactDOM.render()`
 	
+##八、项目中使用react
+
+1. 运行`cnpm i react react-dom -S`安装包
+	- **react** -> 专门用于创建组件和虚拟DOM的，同时组件的生命周期都在这个包中
+	- **react-dom** -> 专门进行DOM操作的，最主要的应用场景就是`ReactDOM.render()`
+2. 在`index.html`页面中，创建容器：
+	<!-- 容器，将来，使用React创建的虚拟DOM元素，都会被渲染到这个指定的容器中--> 
+	- `<div id="app"></div>`
+3. 导入包 
+	- `import React from 'react';`
+	- `import ReactDOM from 'react-dom';`
+4. 创建虚拟DOM元素：
+	- //创建虚拟DOM元素
+	- // 这是创建虚拟DOM元素的API <h1 title="啊，五环" id="myh1">你比四环多一环</h1>
+	- // 第一个参数：字符串类型的参数，表示要创建的标签的名称
+	- // 第二个参数：对象类型的参数，表示创建的元素的属性节点
+	- // 第三个参数：子节点
+	- const myh1 = React.createElement('h1', {title: '啊，五环',id: "myh1"}, "你比四环多一环");
+5. 渲染：
+	- // 参数1：要渲染的那个虚拟DOM元素
+	- // 参数2：指定页面上一个容器做容器，是一个DOM元素而不是选择器
+	- ReactDOM.render(myh1,document.getElementById('app'));
