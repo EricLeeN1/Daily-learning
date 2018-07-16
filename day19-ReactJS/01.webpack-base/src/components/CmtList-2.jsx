@@ -21,7 +21,7 @@ export default class CmtList extends React.Component {
         return <div>
             {/*style={{color:'red'}} 外面那段花括号表示开始写js，里面是对象*/}
             {/* 在行内样式中，如果是数值类型的样式，则可以不用引号包裹，如果是字符串类型的样式值，必须使用引号包裹 */}
-            <h1 style={{ color: '#f55053', fontSize: '36px',zIndex:3,fontWeight:200,textAlign:'center'}}>这是评论列表组件</h1>
+            <h1>这是评论列表组件</h1>
             {this.state.CommentList.map(item => <CmtItem {...item} key={item.id}></CmtItem>)}
         </div>
     }

@@ -2,8 +2,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// 导入评论项子组件
-import CmtItem from '@/components/CmtItem';
 // 导入列表组件
 import CmtList from '@/components/CmtList';
 
