@@ -32,7 +32,10 @@ module.exports = {
         }]
     },
     resolve: {
-        extensions: ['.js', '.jsx', '.json'] //表示这几个文件的后缀名可省略不写，
+        extensions: ['.js', '.jsx', '.json'], //表示这几个文件的后缀名可省略不写，
+        alias:{ // 表示别名
+            '@':path.join(__dirname,'./src') //这样，@就表示项目根目录中src这一层路径
+        }
     },
     performance: {
 
