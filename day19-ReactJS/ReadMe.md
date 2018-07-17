@@ -106,6 +106,10 @@
 	babel-preset-stage-0
 	react -> 专门用于创建组件，同时组件的生命周期都在这个包中
 	react-dom -> 专门进行DOM操作的，最主要的应用场景就是`ReactDOM.render()`
+	css-loader
+	style-loader
+	url-loader -> 用来处理文字，图片
+	file-loader -> url-loader依赖项之一
 	
 ##八、项目中使用react
 
@@ -129,7 +133,7 @@
 	- // 参数1：要渲染的那个虚拟DOM元素
 	- // 参数2：指定页面上一个容器做容器，是一个DOM元素而不是选择器
 	- ReactDOM.render(myh1,document.getElementById('app'));
-##9.JSX语法
+##九、JSX语法
 	定义：就是符合xml规范的JS语法；（语法格式相对来说，要比HTML严谨很多）
 1. 如何启用JSx语法
 	- 安装`babel`插件
@@ -175,7 +179,7 @@
 7. 在JSX语法中，标签必须成对出现，如果是但标签，则必须自闭和！
 8. 当编译引擎，在编译JSX代码的时候，如果遇到了`<`那么就去把它当做HTML代码去编译，如果遇到了`{}`就把花括号内的代码当做普通JS代码去编译；
 
-##10.组件
+##十、组件
 ###1). React中创建组件
 ####第1种--创建组件的方式
 **使用构造函数来创建组件，**如果需要接收外界传递的数据,需要在构造函数的参数列表中使用`props`来接收；必须要向外return一个合法的JSX创建的虚拟DOM；
@@ -259,3 +263,50 @@
     {id:4,user:"赵六",content:"哈哈，砖头"},
     {id:5,user:"田七",content:"哈哈，楼下山炮"},
 	]`
+###4）、设置样式
+
+1. 使用普通的`style`样式
+		
+		<h1 style={{color:"red",fontWeight:200}}></h1> 
+		
+2. 启用css-modules
+	1. 修改`webpack.config.js`这个配置文件，为`css-loader`添加参数：
+		
+			{ //打包处理第三方loader
+            test: /\.css$/,
+            use: [
+                'style-loader',
+                'css-loader?modules',//可以在css-loader值，通过？追加参数，
+                // 其中有个固定的参数，叫做modules，表示为普通的CSS样式表，启用模块化
+            ]
+        	}
+	2. 在需要的组件中，`import`导入样式表，并接收模块化的CSS样式表，启用CSS模块化
+			
+			import cssobj from '@/css/cmtItem.css';
+
+	3. 在需要的HTML标签上，使用`className`指定模块化的样式：
+			
+			<h1 className={cssobj.title}></h1>
+			
+3. 使用`localIdentName`自定义生成的类名格式，可选的参数有：
+
+	- [path]表示样式表`相对于项目根目录`所在路径
+	- [name]表示样式表文件名称
+	- [local]表示样式的类名定义名称
+	- [hash:length]表示32位的hash值
+	- 例子：
+			 
+			{ //打包处理第三方loader
+            test: /\.css$/,
+            use: [
+                'style-loader',
+                'css-loader?modules&localIdentName=[path][name]-[local]-[hash:8]',//可以在css-loader值，通过？追加参数，
+                // 其中有个固定的参数，叫做modules，表示为普通的CSS样式表，启用模块化
+            ]
+        	}, 
+        	
+4. 使用`:local()`和`:global()`
+	- `:local()`包裹的类名，是被模块化的类名，只能通过`className={cssObj.类名}`来使用，同时，`:local()`默认可以不写，这样，默认在样式表中定义的类名，都是被模块化的类名；
+	- `:global()`包裹的类名，是全局生效的，不会被`css-modules`控制，定义的类名是什么，就是使用定义的类名`className="类名"`。
+
+5. 注意：只有`.title`这样的类样式选择器，才会被模块化控制，类似于`body`这样的标签选择器，不会被模块化控制；

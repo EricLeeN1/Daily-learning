@@ -1,7 +1,27 @@
 import React from "react";
 
+// 导入列表组件需要的样式表
+// 问题：这个样式表，是指在List组件中生效吗？
+// 经过实验，发现，直接导入css样式表，默认是在全局上，整个项目都生效的！
+
+// 思考:Vue组件中的样式表，有没有冲突的问题？？
+// 答案：Vue组件中的样式表，也有冲突的问题；但是可以使用<style scoped></style>
+// 疑问:React中，有没有类似于scoped这样的指令呢？
+// 答案：没有，因为在React中，根本就没有指令的概念；
+import cssobj from '@/css/cmtList.css';
+console.log(cssobj);
+
+//如果在引用某个包的时候，这个包被安装到了node_modules目录中，则可以省略node_modules这层目录，直接以包名开始引入自己的模块；或样式表
+//自己规定：第三方的样式表，都是以.css结尾，这样，我们不要为普通的.css启用模块化
+//自己的样式表，都要以.scss或.less结尾，只为.scss或.less文件启用模块化
+import  bootcss from 'bootstrap/dist/css/bootstrap.css';
+console.log('====================================');
+console.log(bootcss);
+console.log('====================================');
+
+
 // 导入评论项子组件
-import CmtItem from '@/components/CmtItem';
+import CmtItem from '@/components/CmtItem-2';
 
 // 使用class关键字，定义父组件
 export default class CmtList extends React.Component {
@@ -19,9 +39,10 @@ export default class CmtList extends React.Component {
     }
     render() {
         return <div>
-            {/*style={{color:'red'}} 外面那段花括号表示开始写js，里面是对象*/}
-            {/* 在行内样式中，如果是数值类型的样式，则可以不用引号包裹，如果是字符串类型的样式值，必须使用引号包裹 */}
-            <h1>这是评论列表组件</h1>
+            {/* <h1 className={cssobj.title+" test"}>这是评论列表组件</h1> */}
+            <h1 className={[cssobj.title,"test"].join(' ')}>这是评论列表组件</h1>
+            {/* <button className={[bootcss.btn,bootcss['btn-primary']].join(' ')}>按钮</button> */}
+            <button className={}>按钮</button>
             {this.state.CommentList.map(item => <CmtItem {...item} key={item.id}></CmtItem>)}
         </div>
     }

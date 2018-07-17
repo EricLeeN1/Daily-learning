@@ -1,9 +1,10 @@
 import React from 'react';
 
-// 使用function构造函数，定义普通的无状态组件
+import cssobj from '@/css/cmtItem.css';
+
 export default function CmtItem(props) {
-    return <div>
-        <h2>评论人：{props.user}</h2>
-        <p>评论内容：{props.content}</p>
+    return <div className={cssobj.cmtbox}>
+        <h2 className={cssobj.title}>评论人：{props.user}</h2>
+        <p className={cssobj.content}>评论内容：{props.content}</p>
     </div>
 }

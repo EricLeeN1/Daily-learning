@@ -24,17 +24,35 @@ module.exports = {
         rules: [{ // 第三方匹配规则
             test: /\.js|jsx$/,
             use: "babel-loader",
-            exclude: /node_modules/, // 排除项
+            exclude: /node_modules/, // 千万别忘记添加exclude排除项
             // options: {
             //     presets: ['latest'],
             //     plugins: ['transform-runtime']
             // }
-        }]
+        }, { //打包处理第三方loader
+            test: /\.css$/,
+            use: [
+                'style-loader',
+                'css-loader?modules&localIdentName=[path][name]-[local]-[hash:8]',//可以在css-loader值，通过？追加参数，
+                // 其中有个固定的参数，叫做modules，表示为普通的CSS样式表，启用模块化
+            ]
+        }, {
+            test: /\.jpg|png|gif|bmp$/,
+            use: 'url-loader'
+        },{
+            test: /\.ttf|woff|woff2|eot|svg$/,
+            use: 'url-loader'// 打包处理 字体文件的loader
+        },
+        // {
+        //     test:/\.scss$/,
+        //     use:[]
+        // }
+    ]
     },
     resolve: {
         extensions: ['.js', '.jsx', '.json'], //表示这几个文件的后缀名可省略不写，
-        alias:{ // 表示别名
-            '@':path.join(__dirname,'./src') //这样，@就表示项目根目录中src这一层路径
+        alias: { // 表示别名
+            '@': path.join(__dirname, './src') //这样，@就表示项目根目录中src这一层路径
         }
     },
     performance: {
