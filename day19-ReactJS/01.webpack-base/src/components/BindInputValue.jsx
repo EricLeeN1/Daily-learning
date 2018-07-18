@@ -35,6 +35,19 @@ export default class BindEvent extends React.Component {
     cons = () => {
         console.log(11111);
     }
+    //每当文本框的内容变化了，必然会调用这个txtChanged
+    txtChanged = (e) => {
+        // 在onChange事件中，获取文本框的值有两种，有两种方案
+        // 方案1:通过事件参数e来获取；
+        // 方案2：通过this.refs.名称.value
+
+        console.log('====================================');
+        console.log(e.target.value);
+        console.log('====================================');
+        this.setState({
+            title:this.refs.mytxt.value
+        })
+    }
     render() {
         return <div>
             <h3>{this.state.title ? this.state.title : 'BindEvent组件'}</h3>
@@ -44,7 +57,11 @@ export default class BindEvent extends React.Component {
             <button onClick={() => { this.cons() }} >按钮</button>
             {/* 注意：onClick只接受function作为处理函数 */}
             {/* 注意：箭头函数本身就是一个匿名的function函数 */}
-            <hr/>
+            <hr />
+            {/* 如果我们只是把文本框的value属性，绑定到了state状态，但是如果不提供OnChange处理函数的话，得到的文本框，将会是一个只读的文本框 */}
+            {/* 当为文本框绑定value值以后，要么同时提供一个readOnly,要么提供一个onChange处理函数 */}
+            {/* <input type="text" style={{width:'100%'}} value={this.state.title} readOnly/> */}
+            <input type="text" style={{ width: '100%' }} value={this.state.title} onChange={(e) => { this.txtChanged(e) }} ref="mytxt" />
         </div>
     }
 }

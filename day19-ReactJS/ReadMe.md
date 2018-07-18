@@ -341,5 +341,49 @@
 		1. 在setState,只会把对应的state状态更新，不会覆盖其他的state状态
         2. this.setState方法的执行是异步的,如果大家在调用完成this.setState之后，又想立即拿到最新的state值，需要使用this.setState({},callback) 
 
+###6）、绑定文本框与state中的值（单项数据流）
 
+1. 在Vue中，默认提供了`v-model`指令，可以很方便的实现`数据的双向绑定`；
+2. 但是在React中，默认只是`单项数据流`，也就是只能把state上的数据绑定到页面，无法把页面中数据的变化，自动同步回state;如果需要把页面上数据的变化，保存到state，则需要程序员手动监听`onChange`事件，拿到最新的数据，手动调用`this.setState({}）`更改回去；
+3. 案例：
 		
+		1. `<input type="text" style={{ width: '100%' }} value={this.state.title} onChange={(e) => { this.txtChanged(e) }} ref="mytxt" />`
+		2. ` txtChanged = (e) => {
+        // 在onChange事件中，获取文本框的值有两种，有两种方案
+        // 方案1:通过事件参数e来获取；
+        this.setState({
+            title:this.refs.mytxt.value
+        })
+    }`
+    
+7）、使用ref获取DOM元素引用
+
+	和vue差不多，vue为页面上的元素提供了`ref`的属性，如果想要获取元素引用，则需要使用`this.$refs.引用名称`；
+	在React中，也有`ref`，如果需要获取元素的引用`this.refs.引用名称`
+
+8）、组件的生命周期
+
+1. 组件的生命周期的概念：每个组件的实例，从创建、到运行、直到销毁，在这个过程中，会触发一系列事件，这些事件就叫做组件的生命周期函数；
+2. React组件生命周期分为三部分：	
+	- **组件创建阶段：**特点：一辈子只执行一次
+	> componentWillMount:
+
+	> render:
+	
+	> componentDidMount:
+
+	- **组件运行阶段：**：按需，根据props属性或者state状态的改变，有选择性的执行0到多次
+	> componentWillReceiveProps:
+	
+	> shouldComponentUpdate:
+	
+	> componentWillUpdate:
+	
+	> render:  
+
+	> componentDidUpdate:
+
+	- **组件销毁阶段：** 一辈子只执行一次
+	> componentWillUnmount
+	> 
+![](C:\Users\Eric\develop\Daily-learning\day19-ReactJS\01.webpack-base\src\images\1.jpg)
