@@ -2,11 +2,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// 导入列表组件
-import CmtList from '@/components/CmtList-2';
+import BindEvent from '@/components/BindInputValue';
 
 
-// 3.渲染
+
+// 3.调用render渲染函数
 ReactDOM.render( <div>
-    <CmtList></CmtList>
+   <BindEvent></BindEvent>
 </div>,document.getElementById('app'));

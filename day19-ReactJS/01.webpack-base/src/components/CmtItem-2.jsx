@@ -1,6 +1,6 @@
 import React from 'react';
 
-import cssobj from '@/css/cmtItem.css';
+import cssobj from '@/css/cmtItem.scss';
 
 export default function CmtItem(props) {
     return <div className={cssobj.cmtbox}>

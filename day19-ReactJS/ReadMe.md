@@ -110,6 +110,10 @@
 	style-loader
 	url-loader -> 用来处理文字，图片
 	file-loader -> url-loader依赖项之一
+	sass-loader -> 用来处理sass/scss文件 
+	node-sass -> sass-loader依赖
+	less
+	less-loader-> 用来处理less文件
 	
 ##八、项目中使用react
 
@@ -310,3 +314,32 @@
 	- `:global()`包裹的类名，是全局生效的，不会被`css-modules`控制，定义的类名是什么，就是使用定义的类名`className="类名"`。
 
 5. 注意：只有`.title`这样的类样式选择器，才会被模块化控制，类似于`body`这样的标签选择器，不会被模块化控制；
+
+#### 在项目中，启用模块化并同时使用bootstrap
+
+1. 把自己的样式表，定义为`.scss`文件
+2. 第三方的样式表，还是以`.css`结尾
+3. 我们只需要为自己的`.scss`文件，启用模块化即可
+4. 运行`cnpm i sass-loader node-sass -D`安装能够解析`scss`文件的loader
+
+###5）、React中绑定事件的注意点
+1. 事件的名称都是React的提供的，因此名称的首字母必须大写`onClick`、`onMouseOver`
+2. 为事件提供的处理函数，必须是如下格式
+	
+		onClick  = {function}
+	
+3. 用的最多的事件绑定形式为:
+
+		<button onClick={()=>this.show('传参'）}>按钮</button>
+		show = (arg1) =>{
+		console.log('show方法'+arg1)
+		}
+4. 在React中，如果想要修改state中的数据，推荐使用`this.setState({})`
+	
+	**tips:**
+	
+		1. 在setState,只会把对应的state状态更新，不会覆盖其他的state状态
+        2. this.setState方法的执行是异步的,如果大家在调用完成this.setState之后，又想立即拿到最新的state值，需要使用this.setState({},callback) 
+
+
+		

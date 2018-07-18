@@ -22,32 +22,36 @@ module.exports = {
     ],
     module: { // 要打包的第三方模块
         rules: [{ // 第三方匹配规则
-            test: /\.js|jsx$/,
-            use: "babel-loader",
-            exclude: /node_modules/, // 千万别忘记添加exclude排除项
-            // options: {
-            //     presets: ['latest'],
-            //     plugins: ['transform-runtime']
-            // }
-        }, { //打包处理第三方loader
-            test: /\.css$/,
-            use: [
-                'style-loader',
-                'css-loader?modules&localIdentName=[path][name]-[local]-[hash:8]',//可以在css-loader值，通过？追加参数，
-                // 其中有个固定的参数，叫做modules，表示为普通的CSS样式表，启用模块化
-            ]
-        }, {
-            test: /\.jpg|png|gif|bmp$/,
-            use: 'url-loader'
-        },{
-            test: /\.ttf|woff|woff2|eot|svg$/,
-            use: 'url-loader'// 打包处理 字体文件的loader
-        },
-        // {
-        //     test:/\.scss$/,
-        //     use:[]
-        // }
-    ]
+                test: /\.js|jsx$/,
+                use: "babel-loader",
+                exclude: /node_modules/, // 千万别忘记添加exclude排除项
+                // options: {
+                //     presets: ['latest'],
+                //     plugins: ['transform-runtime']
+                // }
+            }, { //打包处理第三方loader
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader', //可以在css-loader值，通过？追加参数，
+                    // 其中有个固定的参数，叫做modules，表示为普通的CSS样式表，启用模块化
+                ]
+            }, {
+                test: /\.jpg|png|gif|bmp$/,
+                use: 'url-loader'
+            }, {
+                test: /\.ttf|woff|woff2|eot|svg$/,
+                use: 'url-loader' // 打包处理 字体文件的loader
+            },
+            {
+                test: /\.scss$/,
+                use: ['style-loader', 'css-loader?modules&localIdentName=[path][name]-[local]-[hash:8]', 'sass-loader'] //打包处理scss文件的loader
+            },
+            {
+                test: /\.less$/,
+                use: ['style-loader', 'css-loader?modules&localIdentName=[path][name]-[local]-[hash:8]', 'less-loader'] //打包处理scss文件的loader
+            }
+        ]
     },
     resolve: {
         extensions: ['.js', '.jsx', '.json'], //表示这几个文件的后缀名可省略不写，
