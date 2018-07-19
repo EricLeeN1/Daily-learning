@@ -9,6 +9,7 @@ const htmlPlugin = new HtmlWebPackPlugin({
 module.exports = {
     mode: "development",
     // entry:"",
+    entry: './src/index.js',// 默认入口
     // output:"",
     plugins: [
         htmlPlugin
