@@ -34,7 +34,12 @@ module.exports = {
                 ], // 指定哪些路径下的文件需要经过 loader 处理 
                 // 如果要使用 issuer 匹配，便是 issuer: { test: ... }
                 exclude: /node_modules/, // 指定那些路径下的文件不需要经过loader处理
-                use: "babel-loader",
+                use: [{
+                    loader: "babel-loader",
+                    options: {
+                        cacheDirectory: true
+                    }
+                }]
             }, {
                 test: /\.css$/, // 1. 匹配条件
                 use: [ // 2. 匹配规则后应用结果  //1跟2是loader的匹配规则中最关键的因素
