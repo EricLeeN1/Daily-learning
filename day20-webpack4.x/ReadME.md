@@ -97,9 +97,15 @@ webpack 会读取这个文件，并从它开始解析依赖，然后进行打包
 	1. 引包 `const UglifyPlugin = require('uglifyjs-webpack-plugin')；
 	2. 添加到插件数组中
 5. 常用插件功能及使用
-	1. **DefinePlugin**：DefinePlugin 是 webpack 内置的插件，可以使用 webpack.DefinePlugin 直接获取。
+	1. **DefinePlugin：**DefinePlugin 是 webpack 内置的插件，可以使用 webpack.DefinePlugin 直接获取。
 		1. 用于创建一些在编译时可以配置的全局常量，这些常量的值我们可以在 webpack 的配置中去指定，
-
+	2. **copy-webpack-plugin：**是用来复制文件的。
+		1. 我们一般会把开发的所有源码和资源文件放在 src/ 目录下，构建的时候产出一个 build/ 目录，通常会直接拿 build 中的所有文件来发布。有些文件没经过 webpack 处理，但是我们希望它们也能出现在 build 目录下，这时就可以使用 CopyWebpackPlugin 来处理了。
+	3. **extract-text-webpack-plugin：**用它来把依赖的 CSS 分离出来成为单独的文件。
+	4. **ProvidePlugin：**是一个 webpack 内置的插件，我们可以直接使用 webpack.ProvidePlugin 来获取。
+		1. 该组件用于引用某些模块作为应用运行时的变量，从而不必每次都用 require 或者 import：
+	5. **IgnorePlugin:** 也是一个 webpack 内置的插件，可以直接使用 webpack.IgnorePlugin 来获取。
+		1. 这个插件用于忽略某些特定的模块，让 webpack 不把这些指定的模块打包进去。例如我们使用 moment.js，直接引用后，里边有大量的 i18n 的代码，导致最后打包出来的文件比较大，而实际场景并不需要这些 i18n 的代码，这时我们可以使用 IgnorePlugin 来忽略掉这些代码文件。
 ##六、输出
 
 输出即指 webpack 最终构建出来的静态文件，用 `output` 字段。
@@ -113,7 +119,22 @@ webpack 会读取这个文件，并从它开始解析依赖，然后进行打包
     		path: __dirname + '/dist/[hash]',
   		},
 	}`
+	
+##七、用HMR提高开发效率
 
+	即模块热替换，局部刷新。
+	
+	devServer: {
+        hot: true //// dev server 的配置要启动 hot，或者在命令行中带参数开启
+    }
+    new webpack.NamedModulesPlugin,// 用于启动HMR时可以显示模块的相对路径
+    new webpack.HotModuleReplacementPlugin,// hot Module Replacement的插件
+
+##八、优化前端资源加载1-图片加载优化和代码压缩
+
+###1. CSS Sprites
+
+webpack-spritesmith
 
 #最后、webpack中使用的包
 
@@ -125,6 +146,7 @@ webpack 会读取这个文件，并从它开始解析依赖，然后进行打包
 	webpack-dev-server -> webpack服务
 	html-webpack-plugin -> html打包
 	extract-text-webpack-plugin -> 导出CSS文件，请安装最新版 -> npm install extract-text-webpack-plugin@next -D
+	copy-webpack-plugin -> 复制文件
 	babel-core
 	babel-loader
 	babel-plugin-transform-runtime
@@ -141,4 +163,5 @@ webpack 会读取这个文件，并从它开始解析依赖，然后进行打包
 	node-sass -> sass-loader依赖
 	less
 	less-loader-> 用来处理less文件
-	webpack-dev-server -> 在本地开启一个简单的静态服务来进行开发。
+	webpack-dev-server -> 在本地开启一个简单的静态服务来进行开发
+	webpack-dev-middleware -> 就是在 Express 中提供 webpack-dev-server 静态服务能力的一个中间件，我们可以很轻松地将其集成到现有的 Express 代码中去，就像添加一个 Express 中间件那么简单。

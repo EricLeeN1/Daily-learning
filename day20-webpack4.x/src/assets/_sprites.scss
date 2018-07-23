@@ -1,0 +1,145 @@
+// SCSS variables are information about icon's compiled state, stored under its original file name
+//
+// .icon-home {
+//   width: $icon-home-width;
+// }
+//
+// The large array-like variables contain all information about a single icon
+// $icon-home: x y offset_x offset_y width height total_width total_height image_path;
+//
+// At the bottom of this section, we provide information about the spritesheet itself
+// $spritesheet: width height image $spritesheet-sprites;
+$home-name: 'home';
+$home-x: 0px;
+$home-y: 0px;
+$home-offset-x: 0px;
+$home-offset-y: 0px;
+$home-width: 200px;
+$home-height: 200px;
+$home-total-width: 600px;
+$home-total-height: 400px;
+$home-image: '~sprite.png';
+$home: (0px, 0px, 0px, 0px, 200px, 200px, 600px, 400px, '~sprite.png', 'home', );
+$pay-name: 'pay';
+$pay-x: 200px;
+$pay-y: 0px;
+$pay-offset-x: -200px;
+$pay-offset-y: 0px;
+$pay-width: 200px;
+$pay-height: 200px;
+$pay-total-width: 600px;
+$pay-total-height: 400px;
+$pay-image: '~sprite.png';
+$pay: (200px, 0px, -200px, 0px, 200px, 200px, 600px, 400px, '~sprite.png', 'pay', );
+$pic-name: 'pic';
+$pic-x: 0px;
+$pic-y: 200px;
+$pic-offset-x: 0px;
+$pic-offset-y: -200px;
+$pic-width: 200px;
+$pic-height: 200px;
+$pic-total-width: 600px;
+$pic-total-height: 400px;
+$pic-image: '~sprite.png';
+$pic: (0px, 200px, 0px, -200px, 200px, 200px, 600px, 400px, '~sprite.png', 'pic', );
+$refresh-name: 'refresh';
+$refresh-x: 200px;
+$refresh-y: 200px;
+$refresh-offset-x: -200px;
+$refresh-offset-y: -200px;
+$refresh-width: 200px;
+$refresh-height: 200px;
+$refresh-total-width: 600px;
+$refresh-total-height: 400px;
+$refresh-image: '~sprite.png';
+$refresh: (200px, 200px, -200px, -200px, 200px, 200px, 600px, 400px, '~sprite.png', 'refresh', );
+$settings-name: 'settings';
+$settings-x: 400px;
+$settings-y: 0px;
+$settings-offset-x: -400px;
+$settings-offset-y: 0px;
+$settings-width: 200px;
+$settings-height: 200px;
+$settings-total-width: 600px;
+$settings-total-height: 400px;
+$settings-image: '~sprite.png';
+$settings: (400px, 0px, -400px, 0px, 200px, 200px, 600px, 400px, '~sprite.png', 'settings', );
+$time-name: 'time';
+$time-x: 400px;
+$time-y: 200px;
+$time-offset-x: -400px;
+$time-offset-y: -200px;
+$time-width: 200px;
+$time-height: 200px;
+$time-total-width: 600px;
+$time-total-height: 400px;
+$time-image: '~sprite.png';
+$time: (400px, 200px, -400px, -200px, 200px, 200px, 600px, 400px, '~sprite.png', 'time', );
+$spritesheet-width: 600px;
+$spritesheet-height: 400px;
+$spritesheet-image: '~sprite.png';
+$spritesheet-sprites: ($home, $pay, $pic, $refresh, $settings, $time, );
+$spritesheet: (600px, 400px, '~sprite.png', $spritesheet-sprites, );
+
+// The provided mixins are intended to be used with the array-like variables
+//
+// .icon-home {
+//   @include sprite-width($icon-home);
+// }
+//
+// .icon-email {
+//   @include sprite($icon-email);
+// }
+//
+// Example usage in HTML:
+//
+// `display: block` sprite:
+// <div class="icon-home"></div>
+//
+// To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+//
+// // CSS
+// .icon {
+//   display: inline-block;
+// }
+//
+// // HTML
+// <i class="icon icon-home"></i>
+@mixin sprite-width($sprite) {
+  width: nth($sprite, 5);
+}
+
+@mixin sprite-height($sprite) {
+  height: nth($sprite, 6);
+}
+
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 3);
+  $sprite-offset-y: nth($sprite, 4);
+  background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite-image($sprite) {
+  $sprite-image: nth($sprite, 9);
+  background-image: url(#{$sprite-image});
+}
+
+@mixin sprite($sprite) {
+  @include sprite-image($sprite);
+  @include sprite-position($sprite);
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+
+// The `sprites` mixin generates identical output to the CSS template
+//   but can be overridden inside of SCSS
+//
+// @include sprites($spritesheet-sprites);
+@mixin sprites($sprites) {
+  @each $sprite in $sprites {
+    $sprite-name: nth($sprite, 10);
+    .#{$sprite-name} {
+      @include sprite($sprite);
+    }
+  }
+}
