@@ -1,1 +1,0 @@
-先运行cnpm install 安装所有依赖项.txt
