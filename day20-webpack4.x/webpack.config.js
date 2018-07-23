@@ -5,6 +5,7 @@ const UglifyPlugin = require('uglifyjs-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const SpritesmithPlugin = require('webpack-spritesmith');
+// const Server = require('./server');
 
 const htmlPlugin = new HtmlWebPackPlugin({
     template: path.resolve(__dirname, './src/index.html'), // 配置文件模版
@@ -17,63 +18,88 @@ module.exports = {
     entry: './src/index.js', // 默认入口
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js' // 默认./dist/main.js
+        filename: 'bundle[hash].js' // 默认./dist/main.js
     },
     module: {
         rules: [{
-            // resource: { // resource 的匹配条件
+                // resource: { // resource 的匹配条件
 
-            // },
-            test: /\.js|jsx$/,
-            include: [
-                path.resolve(__dirname, 'src')
-            ], // 指定哪些路径下的文件需要经过 loader 处理 
-            // 如果要使用 issuer 匹配，便是 issuer: { test: ... }
-            exclude: /node_modules/, // 指定那些路径下的文件不需要经过loader处理
-            use: "babel-loader",
-        }, {
-            test: /\.css$/, // 1. 匹配条件
-            use: [ // 2. 匹配规则后应用结果  //1跟2是loader的匹配规则中最关键的因素
-                'style-loader',
-                'css-loader'
-            ],
-            include: [
-                path.resolve(__dirname, 'src'),
-            ] // 一个object即一条规则
-        }, {
-            test: /\.jpg|png|gif|bmp$/,
-            use: [{
-                loader: 'file-loader?name=i/[hash].[ext]',
-                options: {}
-            }],
-        }, {
-            test: /\.ttf|woff|woff2|eot|svg$/,
-            use: 'url-loader' // 打包处理 字体文件的loader
-        }, {
-            test: /\.scss$/,
-            use: ExtractTextPlugin.extract({
-                fallback: "style-loader",
-                // 因为这个插件需要干涉模块转换的内容，所以需要使用它对应的loader
-                use: ['css-loader?modules&localIdentName=[path][name]-[local]-[hash:8]', 'sass-loader'] //打包处理scss文件的loader 
-            })
-        }, {
-            test: /\.less$/,
-            // 导出.css文件的写法
-            use: ExtractTextPlugin.extract({
-                fallback: "style-loader",
-                // 因为这个插件需要干涉模块转换的内容，所以需要使用它对应的loader
-                use: ['css-loader?modules&localIdentName=[path][name]-[local]-[hash:8]', 'less-loader'] //打包处理scss文件的loader 
-            })
-            // 不需要额外输出.css文件的写法什么都不要时候的写法
-            // use: ['style-loader', 'css-loader?modules&localIdentName=[path][name]-[local]-[hash:8]', 'less-loader'] //打包处理scss文件的loader
-        }]
+                // },
+                test: /\.js|jsx$/,
+                include: [
+                    path.resolve(__dirname, 'src')
+                ], // 指定哪些路径下的文件需要经过 loader 处理 
+                // 如果要使用 issuer 匹配，便是 issuer: { test: ... }
+                exclude: /node_modules/, // 指定那些路径下的文件不需要经过loader处理
+                use: "babel-loader",
+            }, {
+                test: /\.css$/, // 1. 匹配条件
+                use: [ // 2. 匹配规则后应用结果  //1跟2是loader的匹配规则中最关键的因素
+                    'style-loader',
+                    'css-loader'
+                ],
+                include: [
+                    path.resolve(__dirname, 'src'),
+                ] // 一个object即一条规则
+            }, {
+                test: /\.jpg|png|gif|bmp$/,
+                use: [{
+                    loader: 'file-loader?name=i/[hash].[ext]',
+                    options: {}
+                }, {
+                    loader: 'image-webpack-loader',
+                    options: {
+                        mozjpeg: { // 压缩 jpeg 的配置
+                            progressive: true,
+                            quality: 65 //0~100
+                        },
+                        optipng: { // 使用 imagemin-optipng 压缩 png，enable: false 为关闭
+                            enabled: false,
+                        },
+                        pngquant: { // 使用 imagemin-pngquant 压缩 png
+                            quality: '65-90',
+                            speed: 4
+                        },
+                        gifsicle: { // 压缩 gif 的配置
+                            interlaced: false,
+                        },
+                        webp: { // 开启 webp，会把 jpg 和 png 图片压缩为 webp 格式
+                            quality: 75
+                        },
+                    }
+                }],
+            },
+            {
+                test: /\.ttf|woff|woff2|eot|svg$/,
+                use: 'url-loader' // 打包处理 字体文件的loader
+            },
+            {
+                test: /\.scss$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    // 因为这个插件需要干涉模块转换的内容，所以需要使用它对应的loader
+                    use: ['css-loader?modules&localIdentName=[path][name]-[local]-[hash:8]', 'sass-loader'] //打包处理scss文件的loader 
+                })
+            },
+            {
+                test: /\.less$/,
+                // 导出.css文件的写法
+                use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    // 因为这个插件需要干涉模块转换的内容，所以需要使用它对应的loader
+                    use: ['css-loader?modules&localIdentName=[path][name]-[local]-[hash:8]', 'less-loader'] //打包处理scss文件的loader 
+                })
+                // 不需要额外输出.css文件的写法什么都不要时候的写法
+                // use: ['style-loader', 'css-loader?modules&localIdentName=[path][name]-[local]-[hash:8]', 'less-loader'] //打包处理scss文件的loader
+            }
+        ]
     },
     // 代码模块路径解析的配置
     resolve: {
         modules: [ // 这种配置在某种程度上可以简化模块的查找，提升构建速度。
             "node_modules", // 如果有一些类库是放在一些奇怪的地方的，你可以添加自定义的路径或者目录
             path.resolve(__dirname, 'node_modules'), // 指定当前目录下的 node_modules 优先查找,
-            "assets/sprite"// css在哪里能找到sprite图
+            "assets/sprite" // css在哪里能找到sprite图
         ],
         extensions: ['.js', '.jsx', '.json'], //表示这几个文件的后缀名可省略不写，
         alias: { // 表示别名
@@ -126,18 +152,16 @@ module.exports = {
         new SpritesmithPlugin({
             src: {
                 cwd: path.resolve(__dirname, 'src/ico'), // 准备合并成sprit的图片存放文件夹
-                glob: '*.png'// 哪类图片
+                glob: '*.png' // 哪类图片
             },
             target: {
-                image: path.resolve(__dirname, 'src/assets/sprite.png'),// sprite图片保存路径
-                css: path.resolve(__dirname, 'src/assets/_sprites.scss')  // 生成的sass保存在哪里
+                image: path.resolve(__dirname, 'src/assets/sprite.png'), // sprite图片保存路径
+                css: path.resolve(__dirname, 'src/assets/_sprites.scss') // 生成的sass保存在哪里
             },
             apiOptions: {
-                cssImageRef: "~sprite.png"//css根据该指引找到sprite图
+                cssImageRef: "~sprite.png" //css根据该指引找到sprite图
             }
         })
     ],
-    // devServer: {
-    //     hot: true //// dev server 的配置要启动 hot，或者在命令行中带参数开启
-    // }
+    // devServer: Server
 }

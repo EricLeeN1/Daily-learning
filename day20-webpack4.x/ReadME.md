@@ -130,7 +130,16 @@ webpack 会读取这个文件，并从它开始解析依赖，然后进行打包
     new webpack.NamedModulesPlugin,// 用于启动HMR时可以显示模块的相对路径
     new webpack.HotModuleReplacementPlugin,// hot Module Replacement的插件
 
-##八、优化前端资源加载1-图片加载优化和代码压缩
+##八、优化前端资源加载
+
+	实现功能
+	1. 精灵图
+	2. 图片压缩
+	3. base64
+	4. 代码分离
+	5. 按需加载模块
+	6. Tree shaking
+	7. sideEffects
 
 ###1. CSS Sprites
 
