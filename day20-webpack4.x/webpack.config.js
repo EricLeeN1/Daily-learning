@@ -9,7 +9,11 @@ const SpritesmithPlugin = require('webpack-spritesmith');
 
 const htmlPlugin = new HtmlWebPackPlugin({
     template: path.resolve(__dirname, './src/index.html'), // 配置文件模版
-    filename: "index.html" // 配置输出文件名和路径
+    filename: "index.html", // 配置输出文件名和路径,
+    minify: { // 压缩HTML的配置
+        minifyCSS: true, // 压缩 HTML 中出现的 CSS 代码
+        minifyJS: true // 压缩 HTML 中出现的 JS 代码
+    }
 });
 
 module.exports = {
@@ -17,13 +21,12 @@ module.exports = {
     // entry:"",
     entry: './src/index.js', // 默认入口
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle[hash].js' // 默认./dist/main.js
+        path: path.resolve(__dirname, 'dist/'),
+        filename: 'bundle-[hash].js' // 默认./dist/main.js
     },
     module: {
         rules: [{
                 // resource: { // resource 的匹配条件
-
                 // },
                 test: /\.js|jsx$/,
                 include: [
@@ -36,16 +39,25 @@ module.exports = {
                 test: /\.css$/, // 1. 匹配条件
                 use: [ // 2. 匹配规则后应用结果  //1跟2是loader的匹配规则中最关键的因素
                     'style-loader',
-                    'css-loader'
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            minimize: true
+                        }
+                    }
                 ],
                 include: [
                     path.resolve(__dirname, 'src'),
                 ] // 一个object即一条规则
             }, {
-                test: /\.jpg|png|gif|bmp$/,
+                test: /\.png|gif|bmp|svg|jpe?g|webp$/,
                 use: [{
-                    loader: 'file-loader?name=i/[hash].[ext]',
-                    options: {}
+                    loader: 'file-loader',
+                    options: {
+                        name: './[name].min.[ext]',
+                        outputPath: 'images',
+                        publicPath: "/dist/"
+                    }
                 }, {
                     loader: 'image-webpack-loader',
                     options: {
@@ -54,7 +66,7 @@ module.exports = {
                             quality: 65 //0~100
                         },
                         optipng: { // 使用 imagemin-optipng 压缩 png，enable: false 为关闭
-                            enabled: false,
+                            enabled: true,
                         },
                         pngquant: { // 使用 imagemin-pngquant 压缩 png
                             quality: '65-90',
@@ -67,10 +79,19 @@ module.exports = {
                             quality: 75
                         },
                     }
+                }, {
+
+                    loader: 'url-loader',
+                    options: {
+                        limit: 8192, // 单位是 Byte，当文件小于 8KB 时作为 DataURL 处理
+                    },
                 }],
+                include: [
+                    path.resolve(__dirname, 'src/images/')
+                ]
             },
             {
-                test: /\.ttf|woff|woff2|eot|svg$/,
+                test: /\.ttf|woff|woff2|eot$/,
                 use: 'url-loader' // 打包处理 字体文件的loader
             },
             {
@@ -78,7 +99,7 @@ module.exports = {
                 use: ExtractTextPlugin.extract({
                     fallback: "style-loader",
                     // 因为这个插件需要干涉模块转换的内容，所以需要使用它对应的loader
-                    use: ['css-loader?modules&localIdentName=[path][name]-[local]-[hash:8]', 'sass-loader'] //打包处理scss文件的loader 
+                    use: ['css-loader?modules&localIdentName=[path][name]-[local]-[hash:8]&sourceMap=true', 'sass-loader'] //打包处理scss文件的loader 
                 })
             },
             {
@@ -118,8 +139,26 @@ module.exports = {
     },
     plugins: [
         htmlPlugin,
-        new UglifyPlugin(),
-        new ExtractTextPlugin('[name][hash].css'),
+        new UglifyPlugin({
+            sourceMap: true, //是否生成.map文件
+            parallel: true, //是否启用并行化，
+            cache: true, //是否启用缓存
+            uglifyOptions: {
+                ecma: 6,
+                warnings: false,
+                output: {
+                    comments: false,
+                    beautify: false
+                },
+                toplevel: false,
+                nameCache: null,
+                ie8: false,
+                keep_classnames: undefined,
+                keep_fnames: false,
+                safari10: false,
+            }
+        }),
+        new ExtractTextPlugin('./styles/[name]-[hash].css'),
         // 使用 uglifyjs-webpack-plugin 来压缩 JS 代码
         // 默认已经使用了 JS 代码压缩的插件
         // mode: production 时会自动压缩，
@@ -137,8 +176,8 @@ module.exports = {
                 to: 'build/file.txt',
             }, // 顾名思义，from 配置来源，to 配置目标路径
             {
-                from: 'src/*.ico',
-                to: 'build/*.ico'
+                from: 'src/favicon.ico',
+                to: './favicon.ico',
             }, // 配置项可以使用 glob
             // 可以配置很多项复制规则...
         ]),

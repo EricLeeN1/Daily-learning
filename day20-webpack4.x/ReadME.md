@@ -135,15 +135,28 @@ webpack 会读取这个文件，并从它开始解析依赖，然后进行打包
 	实现功能
 	1. 精灵图
 	2. 图片压缩
-	3. base64
-	4. 代码分离
-	5. 按需加载模块
-	6. Tree shaking
-	7. sideEffects
+	3. base64使用 DataURL
+	4. 代码压缩
+	5. 代码分离
+	6. 按需加载模块
+	7. Tree shaking
+	8. sideEffects
 
 ###1. CSS Sprites
 
 webpack-spritesmith
+
+###2. 图片压缩
+
+image-webpack-loader
+
+
+###3. 使用 DataURL
+
+url-loader
+
+
+
 
 #最后、webpack中使用的包
 
@@ -174,3 +187,4 @@ webpack-spritesmith
 	less-loader-> 用来处理less文件
 	webpack-dev-server -> 在本地开启一个简单的静态服务来进行开发
 	webpack-dev-middleware -> 就是在 Express 中提供 webpack-dev-server 静态服务能力的一个中间件，我们可以很轻松地将其集成到现有的 Express 代码中去，就像添加一个 Express 中间件那么简单。
+	webpack-spritesmith -> 精灵图
