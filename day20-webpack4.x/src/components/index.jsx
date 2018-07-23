@@ -1,6 +1,7 @@
 import React from 'react';
+import Banner from '@/components/index/banner';
 
 export default function Hello(props) {
     console.log(props);
-    return <h1 title={props.name}>{props.name}--{props.age}岁--{props.gender == 1 ? '男' : '女'}</h1>
+    return <Banner></Banner>
 };

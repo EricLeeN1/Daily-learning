@@ -44,15 +44,10 @@ module.exports = {
                 test: /\.css$/, // 1. 匹配条件
                 use: [ // 2. 匹配规则后应用结果  //1跟2是loader的匹配规则中最关键的因素
                     'style-loader',
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            minimize: true
-                        }
-                    }
+                    'css-loader'
                 ],
                 include: [
-                    path.resolve(__dirname, 'src'),
+                    path.resolve(__dirname, 'node_modules'),
                 ] // 一个object即一条规则
             }, {
                 test: /\.png|gif|bmp|svg|jpe?g|webp$/,

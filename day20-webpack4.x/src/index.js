@@ -1,21 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import './assets/_sprites.scss';
+// import './assets/_sprites.scss';
 
-import Hello from './components/index';
 
-console.log('Hello world');
+// import { Button } from 'antd-mobile';
+// import 'antd-mobile/dist/antd-mobile.css';  // or 'antd-mobile/dist/antd-mobile.less'
 
-console.log('Running App version ' + VERSION);
-if (BROWSER_SUPPORTS_HTML5) {
-    console.log('支持html5');
-}
+import Hello from '@/components/index.jsx';
 
-const user = {
-    name: "123",
-    gender: 1,
-    age: 18
-}
-
-ReactDOM.render( < Hello {...user} / > , document.getElementById('app'));
+ReactDOM.render(<Hello>Start</Hello>,document.getElementById('app'));

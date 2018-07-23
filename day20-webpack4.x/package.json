@@ -37,6 +37,8 @@
     "webpack-spritesmith": "^0.5.1"
   },
   "dependencies": {
+    "antd-mobile": "^2.2.2",
+    "babel-plugin-import": "^1.8.0",
     "bootstrap": "^3.3.7",
     "react": "^16.4.1",
     "react-dom": "^16.4.1"

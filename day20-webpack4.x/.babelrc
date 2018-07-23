@@ -5,6 +5,15 @@
         "react"
     ],
     "plugins": [
-        "transform-runtime"
+        "transform-runtime", [
+            "import", {
+                "libraryName": "antd",
+                "libraryDirectory": "lib",
+                "style": true
+            }, {
+                "libraryName": "antd-mobile",
+                "style": "css"
+            }
+        ]
     ]
 }
