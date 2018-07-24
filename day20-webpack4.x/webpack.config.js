@@ -5,7 +5,7 @@ const UglifyPlugin = require('uglifyjs-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const SpritesmithPlugin = require('webpack-spritesmith');
-// const Server = require('./server');
+const Server = require('./server');
 
 const htmlPlugin = new HtmlWebPackPlugin({
     template: path.resolve(__dirname, './src/index.html'), // 配置文件模版
@@ -206,5 +206,5 @@ module.exports = {
             }
         })
     ],
-    // devServer: Server
+    devServer: Server
 }
