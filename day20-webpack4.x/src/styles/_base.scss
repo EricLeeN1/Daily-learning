@@ -94,24 +94,24 @@ $height) {
     border-radius: $radius;
 }
 
-@mixin positions( $left:auto,
-$right:auto,
-$top:auto,
-$bottom:auto,
-$position:absolute,
-$index:2) {
-    position: $position;
-    @if $left !=auto {
-        left: $left;
+@mixin positions( $l:auto,
+$r:auto,
+$t:auto,
+$b:auto,
+$p:absolute,
+$i:1) {
+    position: $p;
+    @if $l !=auto {
+        left: $l;
     }
-    @if $right !=auto {
-        right: $right;
+    @if $r !=auto {
+        right: $r;
     }
-    @if $bottom !=auto {
-        bottom: $bottom;
+    @if $b !=auto {
+        bottom: $b;
     }
-    @if $top !=auto {
-        top: $top;
+    @if $t!=auto {
+        top: $t;
     }
-    z-index: $index;
+    z-index: $i;
 }

@@ -1,0 +1,15 @@
+@import './_base.scss';
+.header {
+    position: relative;
+}
+
+.position {
+    @include positions($l:0,$t:.2rem);
+    font-size: .24rem;
+    line-height: .4rem;
+    padding: 0 .2rem 0 0.1rem;
+    color: $main-theme;
+    background-color: rgba(255, 255, 255, .8);
+    border-top-right-radius: .2rem;
+    border-bottom-right-radius: .2rem;
+}

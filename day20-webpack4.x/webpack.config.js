@@ -145,7 +145,7 @@ module.exports = {
         htmlPlugin,
         new UglifyPlugin({
             sourceMap: true, //是否生成.map文件
-            parallel: true, //是否启用并行化，
+            parallel: 4, //是否启用并行化，
             cache: true, //是否启用缓存
             uglifyOptions: {
                 ecma: 6,
