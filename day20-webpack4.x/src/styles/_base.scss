@@ -1,0 +1,117 @@
+$modal-color:rgba(0, 0, 0, .4);
+$main-theme:#ff5053;
+$main-theme-blue:skyblue;
+//@font-face {
+//    font-family: huakang;
+//    src: url('../fonts/DFYuanGB-W7.otf');
+//}
+
+.clearfix::after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden
+}
+
+@mixin p30{
+    padding: 0 .3rem;
+}
+
+@mixin clearfix {
+    &::after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden
+    }
+}
+
+.important {
+    &::before {
+        content: '*';
+        color: #ff5053;
+    }
+}
+
+@mixin container-main {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+@mixin container-main1 {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+@mixin spirit($xPos,
+$yPos,
+$width,
+$height) {
+    background: url('../images/spirits.png') no-repeat;
+    background-size: 1000px auto;
+    background-position: $xPos $yPos;
+    width: $width;
+    height: $height;
+}
+
+// 手机上的多行省略 
+@mixin overflow-hidden {
+    display: flex;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    /*第几行出现省略号*/
+    /*text-align:justify;不能和溢出隐藏的代码一起写，会有bug*/
+}
+
+@mixin overflow-1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@mixin flex-center($direction) {
+    display: flex;
+    align-items: center;
+    @if $direction==1 {
+        flex-direction: column;
+    }
+    @else if $direction==2 {
+        flex-direction: row-reverse;
+    }
+    @else if $direction==3 {
+        flex-direction: column-reverse;
+    }
+    @else {
+        flex-direction: row;
+    }
+}
+
+@mixin rounded-corners ($radius:.2rem) {
+    border-radius: $radius;
+}
+
+@mixin positions( $left:auto,
+$right:auto,
+$top:auto,
+$bottom:auto,
+$position:absolute,
+$index:2) {
+    position: $position;
+    @if $left !=auto {
+        left: $left;
+    }
+    @if $right !=auto {
+        right: $right;
+    }
+    @if $bottom !=auto {
+        bottom: $bottom;
+    }
+    @if $top !=auto {
+        top: $top;
+    }
+    z-index: $index;
+}

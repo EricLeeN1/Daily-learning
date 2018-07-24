@@ -1,7 +1,18 @@
-import React from 'react';
-import Banner from '@/components/index/banner';
+import React  from 'react';
+import Header from './index/Header';
 
-export default function Hello(props) {
-    console.log(props);
-    return <Banner></Banner>
-};
+export default class App extends  React.Component{
+    constructor(){
+        super();
+        this.state = {
+
+        }
+    }
+    render(){
+        return (<div>
+            <Header>Header</Header>
+            {/* <Content>Content</Content> */}
+            {/* <Footer>Footer</Footer> */}
+        </div>)
+    }
+}

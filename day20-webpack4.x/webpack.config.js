@@ -48,6 +48,7 @@ module.exports = {
                 ],
                 include: [
                     path.resolve(__dirname, 'node_modules'),
+                    path.resolve(__dirname, 'src/styles'),
                 ] // 一个object即一条规则
             }, {
                 test: /\.png|gif|bmp|svg|jpe?g|webp$/,
@@ -100,7 +101,10 @@ module.exports = {
                     fallback: "style-loader",
                     // 因为这个插件需要干涉模块转换的内容，所以需要使用它对应的loader
                     use: ['css-loader?modules&localIdentName=[path][name]-[local]-[hash:8]&sourceMap=true', 'sass-loader'] //打包处理scss文件的loader 
-                })
+                }),
+                include: [
+                    path.resolve(__dirname, 'src/styles/')
+                ]
             },
             {
                 test: /\.less$/,
