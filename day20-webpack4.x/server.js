@@ -1,4 +1,5 @@
 const path = require('path');
+import Settings from './src/assets/libs/settings';
 module.exports = {
     // hot: true, //// dev server 的配置要启动 hot，或者在命令行中带参数开启
     // public: "", // 用于指定静态服务的域名，默认是 http://localhost:8080/ 
@@ -6,7 +7,7 @@ module.exports = {
     // publicPath: "assets", // 字段用于指定构建好的静态文件在浏览器中用什么路径去访问,默认是/, publicPath的优先级高于contentBase
     proxy: { // 用于配置 webpack-dev-server 将特定 URL 的请求代理到另外一台服务器上。当你有单独的后端开发服务器用于请求 API 时，这个配置相当有用。
         '/api': {
-            target: "http://60.205.111.27:801", // 将 URL 中带有 /api 的请求代理到本地的 3000 端口的服务上
+            target: Settings.site, // 将 URL 中带有 /api 的请求代理到本地的 3000 端口的服务上
             pathRewrite: {
                 '^/api': '' // 把 URL 中 path 部分的 `api` 移除掉
             },
