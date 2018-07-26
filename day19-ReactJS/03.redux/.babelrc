@@ -1,0 +1,19 @@
+{
+    "presets": [
+        "env",
+        "stage-0",
+        "react"
+    ],
+    "plugins": [
+        "transform-runtime", [
+            "import", {
+                "libraryName": "antd",
+                "libraryDirectory": "lib",
+                "style": true
+            }, {
+                "libraryName": "antd-mobile",
+                "style": "css"
+            }
+        ]
+    ]
+}
