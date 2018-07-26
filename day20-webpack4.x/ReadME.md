@@ -188,3 +188,4 @@ url-loader
 	webpack-dev-server -> 在本地开启一个简单的静态服务来进行开发
 	webpack-dev-middleware -> 就是在 Express 中提供 webpack-dev-server 静态服务能力的一个中间件，我们可以很轻松地将其集成到现有的 Express 代码中去，就像添加一个 Express 中间件那么简单。
 	webpack-spritesmith -> 精灵图
+	react-bmap -> 百度地图

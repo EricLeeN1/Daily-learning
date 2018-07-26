@@ -119,6 +119,9 @@ module.exports = {
             }
         ]
     },
+    externals: {
+        'BMap': 'BMap'
+    },
     // 代码模块路径解析的配置
     resolve: {
         modules: [ // 这种配置在某种程度上可以简化模块的查找，提升构建速度。
