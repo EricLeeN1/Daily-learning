@@ -21,6 +21,7 @@ const ParamsExample = () => (
       </ul>
 
       <Route path="/:id" component={Child} />
+      {/* //针对不同参数展示对应内容 */}
 
       {/*
          It's possible to use regular expressions to control what param values should be matched.
@@ -31,6 +32,7 @@ const ParamsExample = () => (
       <Route
         path="/order/:direction(asc|desc)"
         component={ComponentWithRegex}
+        //精确匹配
       />
     </div> 
   </Router>
@@ -41,6 +43,7 @@ const Child = ({ match }) => (
     <h3>ID: {match.params.id}</h3>
   </div>
 );
+// 匹配参数中的:id部分
 
 const ComponentWithRegex = ({ match }) => (
   <div>
