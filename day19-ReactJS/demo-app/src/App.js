@@ -4,6 +4,8 @@ import './App.css';
 
 import ParamsExample from './examples/url-params.js';
 import BasicExample from './examples/Base.js';
+import AuthExample from './examples/Redirects';
+
 
 
 class App extends Component {
@@ -17,7 +19,9 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+        {/* <BasicExample></BasicExample> */}
         <ParamsExample></ParamsExample>
+        {/* <AuthExample></AuthExample> */}
       </div>
     );
   }
