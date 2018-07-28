@@ -13,6 +13,9 @@ import SidebarExample from './examples/sidebar';
 import AnimationExample from './examples/animated-transitions';
 import AmbiguousExample from './examples/ambiguous-matches';
 import RouteConfigExample from './examples/route-config';
+import ModalGallery from './examples/modal-gallery';
+import StaticRouterExample from './examples/static-router';
+
 
 
 class App extends Component {
@@ -36,7 +39,9 @@ class App extends Component {
         {/* <SidebarExample></SidebarExample> */}
         {/* <AnimationExample></AnimationExample> */}
         {/* <AmbiguousExample></AmbiguousExample> */}
-        <RouteConfigExample></RouteConfigExample>
+        {/* <RouteConfigExample></RouteConfigExample> */}
+        {/* <ModalGallery></ModalGallery> */}
+        {/* <StaticRouterExample></StaticRouterExample> */}
       </div>
     );
   }
