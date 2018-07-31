@@ -1,3 +1,57 @@
+#考察点:
+	1. ajax
+	2. deferred
+	3. 跨域 --需要考察
+	4. 模板引擎 --需要考察
+	5. JavaScript简介
+	6. 数据类型
+	7. 原生获取输入框值
+	8. JS执行
+	9. dom操作增、删、改、查、复制、创建
+	10. json理解
+	11. 略
+	12. 闭包
+	13. this对象 --需要考察
+	14. JS创建对象的几种方式（es5）
+	15. get和post的区别,何时使用post
+	16. null和undefined的区别？
+	17. 请写出js内存泄漏的问题?--需要考察
+	18. css阻塞，js阻塞？
+	19. 略
+	20. 事件冒泡机制 --需要考察
+	21. split()与join() 
+	22. Promise  -需要考察
+	23. Javascript垃圾回收机制 --需要考察
+	24. 原型（prototype）理解
+	25. typeof与instanceof的区别
+	26. node.js的理解
+	27. NPM
+	28. typeof bar === “object” 判断问题
+	29. 立即执行函数作用域
+	30. 立即执行函数作用域
+	31. IIFE立即执行函数 --需要考察
+	32. (‘use strict’)
+	33. return
+	34. NAN
+	35. 0.1+0.2
+	36. isInteger(x) 是否是整数
+	37. 定时机制和时间循环
+	38. 回文字符串80字符内函数
+	39. sum方法扩展
+	40. for循环经典问题
+	41. reverse
+	42. 字符串数字混合运算
+	43. 堆栈溢出 --需要考察
+	44. for循环经典 --需要考察
+	45. 逻辑判断&& || !=
+	46. 逻辑判断
+	47. 设置对象属性问题
+	48. 递归
+	49. 闭包
+	50. call/apply/bind()--需要考察
+	51. 深度优先搜索 
+
+
 ##1、谈谈你对Ajax的理解？(概念、特点、作用) 
     1. 定义：AJAX全称为“Asynchronous JavaScript And XML”（异步JavaScript和XML） 是指一种创建交互式网页应用的开发技术、改善用户体验，实现无刷新效果。
     2. 优点：
@@ -91,7 +145,7 @@
     d、JSON 具有自我描述性，更易理解 
     e、JSON 可以将 JavaScript 对象中表示的一组数据转换为字符串，然后就可以在函数之间轻松地传递这个字符串，或者在异步应用程序中将字符串从 Web 客户机传递给服务器端程序。这个字符串看起来有点儿古怪，但是JavaScript很容易解释它，而且 JSON 可以表示比”名称 / 值对”更复杂的结构。例如，可以表示数组和复杂的对象，而不仅仅是键和值的简单列表
 
-11、ionic和angularjs的区别? 
+##11、ionic和angularjs的区别? 
 
     a、ionic是一个用来开发混合手机应用的，开源的，免费的代码库。可以优化html、css和js的性能，构建高效的应用程序，而且还可以用于构建Sass和AngularJS的优化。 
     b、AngularJS通过新的属性和表达式扩展了HTML。AngularJS可以构建一个单一页面应用程序（SPAs：Single Page Applications）。 
@@ -115,7 +169,7 @@
     b、对与a，要让this指向input，可以将this作为参数传递。 
     c、使用addEventListener等注册事件。此时this也是指向 input。 
 
-14、JavaScript对象的几种创建方式? 
+##14、JavaScript对象的几种创建方式? 
 
 **详细参考 -> JavaScript对象的几种创建方式.html**
 
@@ -269,3 +323,427 @@
     a、允许用户从NPM服务器下载别人编写的第三方包到本地使用。 -> `npm install --save-dev 包名` 多个包名用空格隔开
     b、允许用户从NPM服务器下载并安装别人编写的命令行程序到本地使用。 -> `npm adduser`
     c、允许用户将自己编写的包或命令行程序上传到NPM服务器供别人使用。-> `npm publish`
+    
+##28.使用 typeof bar === “object” 判断 bar 是不是一个对象有神马潜在的弊端？如何避免这种弊端？
+
+	使用 typeof 的弊端是显而易见的(这种弊端同使用 instanceof)：
+
+	let obj = {};
+	let arr = [];
+ 
+	console.log(typeof obj === 'object');  //true
+	console.log(typeof arr === 'object');  //true
+	console.log(typeof null === 'object');  //true
+	从上面的输出结果可知，typeof bar === “object” 并不能准确判断 bar 就是一个 Object。可以通过 Object.prototype.toString.call(bar) === “[object Object]” 来避免这种弊端：
+
+	let obj = {};
+	let arr = [];
+ 
+	console.log(Object.prototype.toString.call(obj));  //[object Object]
+	console.log(Object.prototype.toString.call(arr));  //[object Array]
+	console.log(Object.prototype.toString.call(null));  //[object Null]
+	另外，为了珍爱生命，请远离 ==： 
+	珍爱生命
+
+	而 [] === false 是返回 false 的。
+
+##29.下面的代码会在 console 输出神马？为什么？
+
+	(function(){
+  		var a = b = 3;
+	})();
+ 
+	console.log("a defined? " + (typeof a !== 'undefined'));   
+	console.log("b defined? " + (typeof b !== 'undefined'));
+	这跟变量作用域有关，输出换成下面的：
+
+	console.log(b); //3
+	console,log(typeof a); //undefined
+	拆解一下自执行函数中的变量赋值：
+
+	b = 3;
+	var a = b;
+	所以 b 成了全局变量，而 a 是自执行函数的一个局部变量。
+
+##30.下面的代码会在 console 输出神马？为什么？
+
+	var myObject = {
+    	foo: "bar",
+    	func: function() {
+        	var self = this;
+        	console.log("outer func:  this.foo = " + this.foo);
+        	console.log("outer func:  self.foo = " + self.foo);
+        	(function() {
+            	console.log("inner func:  this.foo = " + this.foo);
+            	console.log("inner func:  self.foo = " + self.foo);
+        	}());
+    	}
+	};
+	myObject.func();
+	第一个和第二个的输出不难判断，在 ES6 之前，JavaScript 只有函数作用域，所以 func 中的 IIFE 有自己的独立作用域，并且它能访问到外部作用域中的 self，所以第三个输出会报错，因为 this 在可访问到的作用域内是 undefined，第四个输出是 bar。如果你知道闭包，也很容易解决的：
+
+	(function(test) {
+            console.log("inner func:  this.foo = " + test.foo);  //'bar'
+            console.log("inner func:  self.foo = " + self.foo);
+	}(self));
+
+
+##31.将 JavaScript 代码包含在一个函数块中有神马意思呢？为什么要这么做？
+
+	换句话说，为什么要用立即执行函数表达式（Immediately-Invoked Function Expression）。
+
+	IIFE 有两个比较经典的使用场景，一是类似于在循环中定时输出数据项，二是类似于 JQuery/Node 的插件和模块开发。
+
+	for(var i = 0; i < 5; i++) {
+    	setTimeout(function() {
+        	console.log(i);  
+    	}, 1000);
+	}
+	上面的输出并不是你以为的0，1，2，3，4，而输出的全部是5，这时 IIFE 就能有用了：
+
+	for(var i = 0; i < 5; i++) {
+    	(function(i) {
+      	setTimeout(function() {
+        	console.log(i);  
+      	}, 1000);
+    	})(i)
+	}
+	而在 JQuery/Node 的插件和模块开发中，为避免变量污染，也是一个大大的 IIFE：
+
+	(function($) { 
+        //代码
+ 	} )(jQuery);
+
+##32.在严格模式(‘use strict’)下进行 JavaScript 开发有神马好处？
+
+	消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为;
+	消除代码运行的一些不安全之处，保证代码运行的安全；
+	提高编译器效率，增加运行速度；
+	为未来新版本的Javascript做好铺垫。 
+
+##33.下面两个函数的返回值是一样的吗？为什么？
+	function foo1(){
+  		return {
+      		bar: "hello"
+  		};
+	}
+ 
+	function foo2(){
+  		return
+  		{
+      		bar: "hello"
+  		};
+	}
+	
+	在编程语言中，基本都是使用分号（;）将语句分隔开，这可以增加代码的可读性和整洁性。而在JS中，如若语句各占独立一行，通常可以省略语句间的分号（;），JS 解析器会根据能否正常编译来决定是否自动填充分号：
+
+	var test = 1 + 2;
+	console.log(test);  //3
+	在上述情况下，为了正确解析代码，就不会自动填充分号了，但是对于 return 、break、continue 等语句，如果后面紧跟换行，解析器一定会自动在后面填充分号(;)，所以上面的第二个函数就变成了这样：
+
+	function foo2()
+	{
+  		return;
+  	{
+      	bar: "hello"
+  	};
+	}
+	所以第二个函数是返回 undefined。
+
+##34.神马是 NaN，它的类型是神马？怎么测试一个值是否等于 NaN?
+
+	NaN 是 Not a Number 的缩写，JavaScript 的一种特殊数值，其类型是 Number，可以通过 isNaN(param) 来判断一个值是否是 NaN：
+
+	console.log(isNaN(NaN)); //true
+	console.log(isNaN(23)); //false
+	console.log(isNaN('ds')); //true
+	console.log(isNaN('32131sdasd')); //true
+	console.log(NaN === NaN); //false
+	console.log(NaN === undefined); //false
+	console.log(undefined === undefined); //false
+	console.log(typeof NaN); //number
+	console.log(Object.prototype.toString.call(NaN)); //[object Number]
+	ES6 中，isNaN() 成为了 Number 的静态方法：Number.isNaN().
+
+##35.解释一下下面代码的输出
+
+	console.log(0.1 + 0.2);   //0.30000000000000004
+	console.log(0.1 + 0.2 == 0.3);  //false
+	JavaScript 中的 number 类型就是浮点型，JavaScript 中的浮点数采用IEEE-754 格式的规定，这是一种二进制表示法，可以精确地表示分数，比如1/2，1/8，1/1024，每个浮点数占64位。但是，二进制浮点数表示法并不能精确的表示类似0.1这样 的简单的数字，会有舍入误差。
+
+	由于采用二进制，JavaScript 也不能有限表示 1/10、1/2 等这样的分数。在二进制中，1/10(0.1)被表示为 0.00110011001100110011…… 注意 0011 是无限重复的，这是舍入误差造成的，所以对于 0.1 + 0.2 这样的运算，操作数会先被转成二进制，然后再计算：
+
+	0.1 => 0.0001 1001 1001 1001…（无限循环）
+	0.2 => 0.0011 0011 0011 0011…（无限循环）
+	双精度浮点数的小数部分最多支持 52 位，所以两者相加之后得到这么一串 0.0100110011001100110011001100110011001100…因浮点数小数位的限制而截断的二进制数字，这时候，再把它转换为十进制，就成了 0.30000000000000004。
+
+	对于保证浮点数计算的正确性，有两种常见方式。
+
+	一是先升幂再降幂：
+
+	function add(num1, num2){
+  		let r1, r2, m;
+  		r1 = (''+num1).split('.')[1].length;
+  		r2 = (''+num2).split('.')[1].length;
+ 
+  		m = Math.pow(10,Math.max(r1,r2));
+  		return (num1 * m + num2 * m) / m;
+	}
+	console.log(add(0.1,0.2));   //0.3
+	console.log(add(0.15,0.2256)); //0.3756
+	二是是使用内置的 toPrecision() 和 toFixed() 方法，注意，方法的返回值字符串。
+
+	function add(x, y) {
+    	return x.toPrecision() + y.toPrecision()
+	}
+	console.log(add(0.1,0.2));  //"0.10.2"
+	
+##36.实现函数 isInteger(x) 来判断 x 是否是整数
+
+	可以将 x 转换成10进制，判断和本身是不是相等即可：
+
+	function isInteger(x) { 
+    	return parseInt(x, 10) === x; 
+	}
+	ES6 对数值进行了扩展，提供了静态方法 isInteger() 来判断参数是否是整数：
+
+	Number.isInteger(25) // true
+	Number.isInteger(25.0) // true
+	Number.isInteger(25.1) // false
+	Number.isInteger("15") // false
+	Number.isInteger(true) // false
+	JavaScript能够准确表示的整数范围在 -2^53 到 2^53 之间（不含两个端点），超过这个范围，无法精确表示这个值。ES6 引入了Number.MAX_SAFE_INTEGER 和 Number.MIN_SAFE_INTEGER这两个常量，用来表示这个范围的上下限，并提供了 Number.isSafeInteger() 来判断整数是否是安全型整数。
+
+##37.在下面的代码中，数字 1-4 会以什么顺序输出？为什么会这样输出？
+
+	(function() {
+    	console.log(1); 
+    	setTimeout(function(){console.log(2)}, 1000); 
+    	setTimeout(function(){console.log(3)}, 0); 
+    	console.log(4);
+	})();
+	这个就不多解释了，主要是 JavaScript 的定时机制和时间循环，不要忘了，JavaScript 是单线程的。详解可以参考 从setTimeout谈JavaScript运行机制。
+	
+	//1432
+
+##38.写一个少于 80 字符的函数，判断一个字符串是不是回文字符串
+
+	function isPalindrome(str) {
+    	str = str.replace(/\W/g, '').toLowerCase();
+    	return (str == str.split('').reverse().join(''));
+	}
+	//上海自来水来自海上 -> true
+
+##39.写一个按照下面方式调用都能正常工作的 sum 方法
+
+	console.log(sum(2,3));   // Outputs 5
+	console.log(sum(2)(3));  // Outputs 5
+	针对这个题，可以判断参数个数来实现：
+
+	function sum() {
+  		var fir = arguments[0];
+  		if(arguments.length === 2) {
+    		return arguments[0] + arguments[1]
+  		} else {
+ 			return function(sec) {
+       			return fir + sec;
+    		}
+  		}
+	}
+	
+##40.根据下面的代码片段回答后面的问题
+
+	for (var i = 0; i < 5; i++) {
+  		var btn = document.createElement('button');
+  		btn.appendChild(document.createTextNode('Button ' + i));
+  		btn.addEventListener('click', function(){ console.log(i); });
+  		document.body.appendChild(btn);
+	}
+	1、点击 Button 4，会在控制台输出什么？ //5 5 5 5 5
+	2、给出一种符合预期的实现方式
+
+	答案：1、点击5个按钮中的任意一个，都是输出5 
+	2、参考 IIFE，或改成let
+
+##41.下面的代码会输出什么？为什么？
+
+	var arr1 = "john".split(''); [ 'n', 'h', 'o', 'j', [ 'j', 'o', 'n', 'e', 's' ] ]
+	var arr2 = arr1.reverse(); [ 'n', 'h', 'o', 'j', [ 'j', 'o', 'n', 'e', 's' ] ]
+	var arr3 = "jones".split(''); ['j','o','n','e','s']
+	arr2.push(arr3);
+	console.log("array 1: length=" + arr1.length + " last=" + arr1.slice(-1));
+	console.log("array 2: length=" + arr2.length + " last=" + arr2.slice(-1));
+	//array 1: length=5 last=j,o,n,e,s
+	//array 2: length=5 last=j,o,n,e,s
+	
+	MDN 上对于 reverse() 的描述是酱紫的：
+
+	Description 
+	The reverse method transposes the elements of the calling array object in place, mutating the array, and returning a reference to the array.
+	reverse() 会改变数组本身，并返回原数组的引用。
+
+	slice 的用法请参考：slice
+
+##42.下面的代码会输出什么？为什么？
+
+	console.log(1 +  "2" + "2");
+	console.log(1 +  +"2" + "2");
+	console.log(1 +  -"1" + "2");
+	console.log(+"1" +  "1" + "2");
+	console.log( "A" - "B" + "2");
+	console.log( "A" - "B" + 2);
+	需要注意三个点：
+
+	多个数字和数字字符串混合运算时，跟操作数的位置有关
+	console.log(2 + 1 + '3'); / /‘33’
+	console.log('3' + 2 + 1); //'321'
+	数字字符串之前存在数字中的正负号(+/-)时，会被转换成数字
+	console.log(typeof '3');   // string
+	console.log(typeof +'3');  //number
+	同样，可以在数字前添加 ”，将数字转为字符串
+
+	console.log(typeof 3);   // number
+	console.log(typeof (''+3));  //string
+	对于运算结果不能转换成数字的，将返回 NaN
+	console.log('a' * 'sd');   //NaN
+	console.log('A' - 'B');  // NaN
+
+
+##43.如果 list 很大，下面的这段递归代码会造成堆栈溢出。如果在不改变递归模式的前提下修善这段代码？
+
+	var list = readHugeList();
+ 
+	var nextListItem = function() {
+    	var item = list.pop();
+ 
+    	if (item) {
+        	// process the list item...
+        	nextListItem();
+    	}
+	};
+	解决方式是加个定时器：
+
+	var list = readHugeList();
+ 
+	var nextListItem = function() {
+    	var item = list.pop();
+ 
+    	if (item) {
+        	// process the list item...
+        	setTimeout( nextListItem, 0);
+		}
+	};
+	
+##44.下面的代码会输出什么？为啥？
+
+	for (var i = 0; i < 5; i++) {
+  		setTimeout(function() { console.log(i); }, i * 1000 );
+	}//5,5,5,5,5
+
+##45.解释下列代码的输出
+
+	console.log("0 || 1 = "+(0 || 1));//0 || 1 = 1
+	console.log("1 || 2 = "+(1 || 2));//1 || 2 = 1
+	console.log("0 && 1 = "+(0 && 1));//0 && 1 = 0
+	console.log("1 && 2 = "+(1 && 2));//1 && 2 = 2
+	逻辑与和逻辑或运算符会返回一个值，并且二者都是短路运算符：
+	
+	逻辑与返回第一个是 false 的操作数 或者 最后一个是 true的操作数
+	console.log(1 && 2 && 0);  //0
+	console.log(1 && 0 && 1);  //0
+	console.log(1 && 2 && 3);  //3
+	如果某个操作数为 false，则该操作数之后的操作数都不会被计算
+
+	逻辑或返回第一个是 true 的操作数 或者 最后一个是 false的操作数
+	console.log(1 || 2 || 0); //1
+	console.log(0 || 2 || 1); //2
+	console.log(0 || 0 || false); //false
+	如果某个操作数为 true，则该操作数之后的操作数都不会被计算
+
+	如果逻辑与和逻辑或作混合运算，则逻辑与的优先级高：
+
+	console.log(1 && 2 || 0); //2
+	console.log(0 || 2 && 1); //1
+	console.log(0 && 2 || 1); //1
+	在 JavaScript，常见的 false 值：
+
+	0, '0', +0, -0, false, '',null,undefined,null,NaN
+	要注意空数组([])和空对象({}):
+
+	console.log([] == false) //true
+	console.log({} == false) //false
+	console.log(Boolean([])) //true
+	console.log(Boolean({})) //true
+	所以在 if 中，[] 和 {} 都表现为 true：
+
+##46.解释下面代码的输出
+
+	console.log(false == '0')//true
+	console.log(false === '0')//false
+	请参考前面第14题运算符转换规则的图。
+
+##47.解释下面代码的输出
+
+	var a={},
+    b={key:'b'},
+    c={key:'c'};
+ 
+	a[b]=123;
+	a[c]=456;
+ 
+	console.log(a[b]);
+	输出是 456，参考原文的解释：
+	这样做的原因是：在设置对象属性时，JavaScript将隐式地细化参数值。在这种情况下，由于B和C都是对象，它们都将被转换为“[object object ]”。因此，[b] AND[C]既等价于[[对象[object ] ] ]，也可以互换使用。因此，设置或引用A[C]与设置或引用[B]完全一样。
+
+##48.解释下面代码的输出
+
+	console.log((function f(n){return ((n > 1) ? n * f(n-1) : n)})(10));//3628800
+	结果是10的阶乘。这是一个递归调用，为了简化，我初始化 n=5，则调用链和返回链如下：
+	//120
+	
+##49.解释下面代码的输出
+
+	(function(x) {
+    	return (function(y) {
+    		console.log(y);//2
+        	console.log(x);//1
+    	})(2)
+	})(1);//1
+	输出1，闭包能够访问外部作用域的变量或参数。
+
+##50.解释下面代码的输出，并修复存在的问题
+
+	var hero = {
+    	_name: 'John Doe',
+    	getSecretIdentity: function (){
+        	return this._name;
+    	}
+	};
+ 
+	var stoleSecretIdentity = hero.getSecretIdentity;
+ 
+	console.log(stoleSecretIdentity());
+	console.log(hero.getSecretIdentity());
+	将 getSecretIdentity 赋给 stoleSecretIdentity，等价于定义了 stoleSecretIdentity 函数：
+
+	var stoleSecretIdentity =  function (){
+        return this._name;
+	}
+	stoleSecretIdentity 的上下文是全局环境，所以第一个输出 undefined。若要输出 John Doe，则要通过 call 、apply 和 bind 等方式改变 stoleSecretIdentity 的this 指向(hero)。
+	stoleSecretIdentity.bind(hero)()；
+	第二个是调用对象的方法，输出 John Doe。
+
+##51.给你一个 DOM 元素，创建一个能访问该元素所有子元素的函数，并且要将每个子元素传递给指定的回调函数。
+
+	函数接受两个参数：
+
+	DOM
+	指定的回调函数 
+	原文利用 深度优先搜索(Depth-First-Search) 给了一个实现：
+	function Traverse(p_element,p_callback) {
+   		p_callback(p_element);
+   		var list = p_element.children;
+   		for (var i = 0; i < list.length; i++) {
+       		Traverse(list[i],p_callback);  // recursive call
+   		}
+	}
