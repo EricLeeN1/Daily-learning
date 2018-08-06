@@ -64,7 +64,7 @@ export default class Header extends React.Component {
     }
     render() {
         return <header className={HeaderCss.header}>
-            <Banner ></Banner>
+            <Banner></Banner>
             <div className={HeaderCss.position}>{this.state.position}</div>
             <PickBar></PickBar>
             <SearchBar></SearchBar>

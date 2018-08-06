@@ -18,6 +18,7 @@ const htmlPlugin = new HtmlWebPackPlugin({
 
 module.exports = {
     mode: "development",
+    devtool: 'source-map',
     // entry:"",
     entry: './src/index.js', // 默认入口
     output: {

@@ -29,6 +29,7 @@
     "node-sass": "^4.9.2",
     "react-app-rewired": "^1.5.2",
     "sass-loader": "^7.0.3",
+    "source-map": "^0.7.3",
     "style-loader": "^0.21.0",
     "uglifyjs-webpack-plugin": "^1.2.7",
     "url-loader": "^1.0.1",
