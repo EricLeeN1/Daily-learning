@@ -1007,7 +1007,7 @@ router.upload = function (req, res, next) {
 };
 // 上传文件验证页面
 router.doUpload = function (req, res, next) {
-    console.log(1111);
+    console.log(req);
     for (var i in req.files) {
         console.log('这个是不是没走？');
         if (req.files[i].size == 0) {
